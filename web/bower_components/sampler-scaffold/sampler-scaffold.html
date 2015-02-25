@@ -51,9 +51,9 @@ of the scaffold.
           <core-icon-button class="menuButton fallback" icon="menu"></core-icon-button>
         </content>
         <div hidden?="{{!narrow}}">{{item.label}}</div>
-        <content select=".sourceButton" on-tap="{{viewSourceAction}}">
-          <core-icon-button class="sourceButton fallback" icon="launch"></core-icon-button>
-        </content>
+          <content id="toggle_fullscreen" select=".sourceButton">
+              <core-icon-button class="sourceButton fallback" icon="launch"></core-icon-button>
+          </content>
 
       </core-toolbar>
       
@@ -109,6 +109,33 @@ of the scaffold.
       this.boundResizeFrame = this.resizeFrame.bind(this);
       window.addEventListener('resize', this.updateFrameHeight.bind(this));
       window.addEventListener('hashchange', this.parseLocationHash.bind(this));
+
+      var e = this.$.toggle_fullscreen;
+      e.onclick = function () {
+          if (RunPrefixMethod(document, "FullScreen") || RunPrefixMethod(document, "IsFullScreen")) {
+              RunPrefixMethod(document, "CancelFullScreen");
+          }
+          else {
+              RunPrefixMethod(e, "RequestFullScreen");
+          }
+      }
+      var pfx = ["webkit", "moz", "ms", "o", ""];
+      function RunPrefixMethod(obj, method) {
+          var p = 0, m, t;
+          while (p < pfx.length && !obj[m]) {
+              m = method;
+              if (pfx[p] == "") {
+                  m = m.substr(0, 1).toLowerCase() + m.substr(1);
+              }
+              m = pfx[p] + m;
+              t = typeof obj[m];
+              if (t != "undefined") {
+                  pfx = [pfx[p]];
+                  return (t == "function" ? obj[m]() : obj[m]);
+              }
+              p++;
+          }
+      }
     },
     
     domReady: function() {
