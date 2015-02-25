@@ -1,0 +1,100 @@
+﻿<div class="container_apply" layout vertical center>
+    <style>
+        .card {
+            width: 512px;
+            margin: 64px auto 0;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+            margin-bottom: 50px;
+        }
+
+        .theme-bg {
+            background-color: #1de9b6;
+            color: #616161;
+        }
+
+        .card > core-toolbar {
+            height: 100px;
+            font-size: 16px;
+            line-height: 26px;
+            border-bottom: 1px solid rgba(0,0,0,.15);
+        }
+
+        .content {
+            background-color: #fff;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            padding-left: 20px;
+            padding-bottom: 20px;
+        }
+
+        .check-button {
+            right: 24px;
+            position: absolute;
+            bottom: 25px;
+        }
+
+        .contact_info {
+            margin-left: 16px;
+        }
+
+        paper-dialog {
+            width: 50%;
+            min-width: 430px;
+            outline: none;
+            opacity: 1;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+    <div class="card">
+        <core-toolbar class="theme-bg" hero-id="punch-bottom" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
+            <div class="question" flex="" cross-fade-delayed="" style="
+    margin-top: auto;
+    font-size: 1.6em;
+    text-align: center;
+    vertical-align: middle;
+">Registration Form</div>
+        </core-toolbar>
+        <div id="content" class="content" flex="" hero-id="content" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
+            <paper-button label="End User License Agreement" onclick="toggleDialog('paper-dialog-transition-center')" role="button" tabindex="0" aria-label="EULA"></paper-button>
+            <paper-input floatinglabel label="Name" error="Required!" layout vertical></paper-input>
+            <paper-input floatinglabel label="Age" error="Required!" layout vertical></paper-input>
+            <h4>Gender</h4>
+            <paper-radio-group selected="male" role="radiogroup">
+                <paper-radio-button name="male" label="Male" role="radio" tabindex="0" aria-checked="true" aria-label="Male" class="core-selected" checked=""></paper-radio-button>
+                <paper-radio-button name="female" label="Female" role="radio" tabindex="0" aria-checked="false" aria-label="Female"></paper-radio-button>
+            </paper-radio-group>
+            <paper-input floatinglabel label="Phone" error="Required!" layout vertical></paper-input>
+            <paper-input floatinglabel label="Other contacts" layout vertical></paper-input>
+            <section>
+                <h4>Other contact information</h4>
+                <div center="" horizontal="" layout="">
+                    <paper-checkbox checked="" role="checkbox" tabindex="0" aria-checked="true"></paper-checkbox>
+                    <paper-input class="contact_info" label="Social network account" layout vertical></paper-input>
+                </div>
+                <div center="" horizontal="" layout="">
+                    <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
+                    <paper-input class="contact_info" label="Facebook" layout vertical></paper-input>
+                </div>
+
+                <div center="" horizontal="" layout="">
+                    <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
+                    <paper-input class="contact_info" label="Twitter" layout vertical></paper-input>
+                </div>
+            </section>
+            <paper-input multiline floatinglabel label="Bio" layout vertical></paper-input>
+            <paper-fab class="check-button" icon="arrow-forward" role="button" tabindex="0" aria-label="arrow-forward" style="color: white;"></paper-fab>
+
+            <paper-dialog heading="End User License Agreement" transition="paper-dialog-transition-center" role="dialog" aria-label="EULA" tabindex="-1" class="paper-dialog-transition paper-dialog-transition-center" style="position: fixed; outline: none; z-index: 18; top: 50.5px; left: 372.5px;">
+                <p>This page was intentionally left blank.</p>
+                <paper-button label="Read more..." dismissive="" role="button" tabindex="0" aria-label="Read more..."></paper-button>
+                <paper-button label="Decline" affirmative="" role="button" tabindex="0" aria-label="Decline"></paper-button>
+                <paper-button label="Agree" affirmative="" autofocus="" role="button" tabindex="0" aria-label="Agree" class=""></paper-button>
+
+            </paper-dialog>
+        </div>
+    </div>
+</div>

@@ -1,29 +1,393 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html>
-    <head>
-        <title>308 - It works!</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/default.css" />
-        <script src="js/jquery-1.11.2.min"></script>
-        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="bower_components/paper-elements/paper-elements.html">
-        <link rel="import" href="bower_components/core-elements/core-elements.html">
-        <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
-    </head>
-    <body>
-        <sampler-scaffold label="IT WORKS!" touch-action="auto">
-            <paper-item label="1" tag="" url="date_record.html" horizontal center layout active>Item 1</paper-item>
-            <paper-item label="2" tag="" url="search_people.html" horizontal center layout>Item 2</paper-item>
-            <paper-item label="3" tag="" url="leaderboard.html" horizontal center layout>Item 3</paper-item>
-            <paper-item label="4" tag="" url="inbox.html" horizontal center layout>Item 4</paper-item>
-            <paper-item label="5" tag="" url="settings.html" horizontal center layout>Item 5</paper-item>
-            <paper-item label="6" tag="" url="/" horizontal center layout>Item 6</paper-item>
-            <paper-item label="7" tag="" url="/" horizontal center layout>Item 7</paper-item>
-            <paper-item label="8" tag="" url="/" horizontal center layout>Item 8</paper-item>
-            <paper-item label="9" tag="" url="/" horizontal center layout>Item 9</paper-item>
-            <paper-item label="10" tag="" url="/" horizontal center layout>Item 10</paper-item>
-            <paper-item label="11" tag="" url="/" horizontal center layout>Item 11</paper-item>
-        </sampler-scaffold>
-    </body>
+
+<head>
+
+    <title>Project PULPKORN</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+    <link rel="import" href="bower_components/core-elements/core-elements.html">
+    <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
+    <link rel="import" href="components/font-roboto/roboto.html">
+    <link rel="import" href="post-list.html">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #E5E5E5;
+            font-family: "RobotoDraft", "Noto Sans", "Roboto", sans-serif !important;
+            text-shadow: silver 0px 0px 1px !important;
+        }
+
+        core-header-panel {
+            height: 100%;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        core-toolbar {
+            background: #03a9f4;
+            color: white;
+        }
+
+        #tabs {
+            width: 100%;
+            margin-left: 200px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 481px) {
+            #tabs {
+                /*width: 200px;*/
+            }
+        }
+
+        img {
+            border: none;
+        }
+
+        #normal2, #normal3, #normal4, #normal5 {
+            display: none;
+        }
+
+        .gallery {
+            margin: 0 auto;
+            width: 800px;
+        }
+
+        #thumbs {
+            margin: 10px auto 10px auto;
+            text-align: center;
+            width: 800px;
+        }
+
+        #bigimages {
+            width: 770px;
+            float: left;
+        }
+
+        #thumbs img {
+            width: 130px;
+            height: 130px;
+        }
+
+        #bigimages img {
+            border: 4px solid #03a9f4;
+            margin-top: 5px;
+            width: 750px;
+        }
+
+        #thumbs a:link, #thumbs a:visited {
+            width: 130px;
+            height: 130px;
+            border: 5px solid #555;
+            margin: 6px;
+            float: left;
+        }
+
+        #thumbs a:hover {
+            border: 5px solid #ffff8d;
+        }
+
+        footer {
+            background: #444;
+            height: 125px;
+        }
+
+        footer, header, section {
+            display: block;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .section-wrapper {
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: inline-block;
+            float: left;
+            width: 96px;
+        }
+
+        footer ul {
+            margin: 0;
+            padding: 51px 30px 0;
+            text-align: right;
+        }
+
+        footer li {
+            display: inline;
+            line-height: 2.19;
+            list-style: none;
+            margin: auto;
+        }
+
+        footer a {
+            color: #f3f3f3;
+            font-size: .9em;
+            font-weight: 400;
+        }
+
+        a {
+            color: #0277bb;
+            text-decoration: none;
+            -webkit-transition: color 0.1s linear;
+            -moz-transition: color 0.1s linear;
+            transition: color 0.1s linear;
+        }
+
+        a {
+            background: transparent;
+            color: #02a8f3;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body unresolved>
+
+    <core-header-panel mode="waterfall-tall">
+
+        <core-toolbar class="tall" style="background-image:url('images/Banner.png'); background-size:cover;min-height: 120px;">
+            <div class=" core-header"><img src="images/Logo_icon.png" style="height: 120px;margin-top: 70px;"></div>
+            <paper-tabs id="tabs" class="bottom indent" selected="all" self-end style="font-size: 22px;">
+                <paper-tab name="all">Index</paper-tab>
+                <paper-tab name="videos">Videos</paper-tab>
+                <paper-tab name="news">News</paper-tab>
+                <paper-tab name="sponsor">Buy me a drink</paper-tab>
+                <paper-tab name="people">People</paper-tab>
+                <paper-tab name="gallery">Gallery</paper-tab>
+                <paper-tab name="apply">Join us</paper-tab>
+            </paper-tabs>
+        </core-toolbar>
+
+        <div class="container" layout vertical center>
+            <post-list show="all"></post-list>
+        </div>
+
+    </core-header-panel>
+    <footer>
+        <div class="section-wrapper">
+            <div class="logo">
+                <img alt="Logo" src="images/Logo.png" style="padding-left: 30px;height: 120px;">
+            </div>
+            <ul>
+                <li>
+                    <a href="/">Company Name</a>
+                </li>
+                <li>
+                    <a href="">Link Anchor</a>
+                </li>
+                <li>
+                    &gt;<a href="/about/">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        var tabs = document.querySelector('paper-tabs');
+        var list = document.querySelector('post-list');
+
+        tabs.addEventListener('core-select', function () {
+            list.show = tabs.selected;
+            if (tabs.selected == "all" && document.getElementsByClassName("container_videos") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+            }
+            else if (tabs.selected == "all" && document.getElementsByClassName("container_news") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+            }
+            else if (tabs.selected == "all" && document.getElementsByClassName("container_sponsor") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+            }
+            else if (tabs.selected == "all" && document.getElementsByClassName("container_people") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+            }
+            else if (tabs.selected == "all" && document.getElementsByClassName("container_gallery") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+            }
+            else if (tabs.selected == "all" && document.getElementsByClassName("container_apply") != null) {
+                document.getElementsByTagName("post-list")[0].style.display = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "videos") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_videos")[1] != undefined)
+                            document.getElementsByClassName("container_videos")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'videos.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "news") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_news")[1] != undefined)
+                            document.getElementsByClassName("container_news")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'news.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "sponsor") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_sponsor")[1] != undefined)
+                            document.getElementsByClassName("container_sponsor")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'sponsor.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "people") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_people")[1] != undefined)
+                            document.getElementsByClassName("container_people")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'people.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "gallery") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_gallery")[1] != undefined)
+                            document.getElementsByClassName("container_gallery")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'gallery.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_apply")[0] != undefined)
+                    document.getElementsByClassName("container_apply")[0].outerHTML = "";
+            }
+            if (tabs.selected == "apply") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = ajaxFetch.response;
+                        document.getElementsByTagName("post-list")[0].style.display = "none";
+                        document.getElementsByTagName("post-list")[0].outerHTML += documentResponse;
+                        if (document.getElementsByClassName("container_apply")[1] != undefined)
+                            document.getElementsByClassName("container_apply")[1].outerHTML = "";
+                    }
+                };
+                ajaxFetch.open('GET', 'apply.html', true);
+                ajaxFetch.send();
+
+                if (document.getElementsByClassName("container_videos")[0] != undefined)
+                    document.getElementsByClassName("container_videos")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_news")[0] != undefined)
+                    document.getElementsByClassName("container_news")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_sponsor")[0] != undefined)
+                    document.getElementsByClassName("container_sponsor")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_gallery")[0] != undefined)
+                    document.getElementsByClassName("container_gallery")[0].outerHTML = "";
+                if (document.getElementsByClassName("container_people")[0] != undefined)
+                    document.getElementsByClassName("container_people")[0].outerHTML = "";
+            }
+        });
+    </script>
+</body>
+
 </html>

@@ -1,0 +1,31 @@
+﻿[
+    {
+        "uid": 1,
+        "video_id": "video1",
+        "text": "We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design. This spec is a living document that will be updated as we continue to develop the tenets and specifics of material design.",
+        "username": "Material Design",
+        "avatar": "images/index_image_0.png",
+        "video": "",
+        "video_display": "none",
+        "favorite": false
+    },
+    {
+        "uid": 2,
+        "video_id": "video2",
+        "text": "Create a visual language that synthesizes classic principles of good design with the innovation and possibility of technology and science.",
+        "username": "Goals",
+        "avatar": "",
+        "video": "videos/1.mp4",
+        "favorite": false
+    },
+    {
+        "uid": 3,
+        "video_id": "video3",
+        "text": "A material metaphor is the unifying theory of a rationalized space and a system of motion. The material is grounded in tactile reality, inspired by the study of paper and ink, yet technologically advanced and open to imagination and magic.",
+        "username": "Principles",
+        "avatar": "images/index_image_1.png",
+        "video": "",
+        "video_display": "none",
+        "favorite": false
+    }
+]
