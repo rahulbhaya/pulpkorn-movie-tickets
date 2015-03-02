@@ -1,0 +1,21 @@
+.moviecard {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+}
+
+.moviecard:first-child {
+    margin-left: 200px;
+}
+
+.moviecard img {
+    display: block;
+}
+
+.moviecard p {
+    background-color: white;
+    font-size: 20px;
+    height: 70px;
+    margin: 0;
+}
