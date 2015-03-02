@@ -14,7 +14,7 @@
     <link rel="import" href="bower_components/paper-elements/paper-elements.html">
     <link rel="import" href="bower_components/core-elements/core-elements.html">
     <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
-    <link rel="import" href="components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="post-list.html">
 
     <style>
@@ -243,10 +243,10 @@
         <core-toolbar id="site-head" class="tall" style="background-image:url('images/Banner.png'); background-size:cover;min-height: 120px;transition: all 0.18s ease-in;">
             <div class="core-header">
                 <img id="site-logo" class="shake" src="images/Logo_icon.png" style="height: 120px;margin-top: 125px;margin-right:25px;">
-                <!--<paper-icon-button id="toolbar-menu" icon="menu" role="button" tabindex="0" aria-label="menu" style="display:none;"></paper-icon-button>-->
+                <paper-icon-button id="toolbar-menu" icon="menu" role="button" tabindex="0" aria-label="menu" style="display:none;"></paper-icon-button>
                 <h1 style="margin: 0;">Pulpkorn</h1>
             </div>
-            <paper-input label="Search Movie or Theater" style="width:100%;"></paper-input>
+            <paper-input id="searchbar" label="Search Movie or Theater" style="width:100%;"></paper-input>
             <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
             <paper-tabs id="tabs" class="bottom indent" scrollable selected="all" self-end style="font-size: 22px;">
@@ -257,48 +257,8 @@
             </paper-tabs>
         </core-toolbar>
 
-        <div class="container">
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/177207/images/masterrepository/fandango/177207/insurgentfinalposter.jpg">
-                <p>Insurgent</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/179546/images/masterrepository/fandango/179546/focusposter.jpg">
-                <p>Focus</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/131951/images/masterrepository/fandango/131951/thelazaruseffect-ps-1.jpg">
-                <p>The Lazarus<br>Effect</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/165809/images/masterrepository/fandango/165809/fsg_westwoodwall_rgb_0124_1.jpg">
-                <p>Fifty Shades<br>of Grey</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/175203/images/masterrepository/fandango/175203/kingsmanposter.jpg">
-                <p>Kingsman:<br>The Secret<br>Service</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/175334/images/masterrepository/fandango/175334/the-spongebob-movie-2d-.jpg">
-                <p>The<br>Spongebob<br>Movie:</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/167669/images/masterrepository/fandango/167669/mcfarlandusa-ps-4.jpg">
-                <p>McFarland,<br>USA</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/179847/images/masterrepository/fandango/179847/hot-tub-time-machine-2-r.jpg">
-                <p>Hot Tub<br>Time<br>Machine 2</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/176140/images/masterrepository/fandango/176140/birdman-poster2.jpg">
-                <p>Birdman</p>
-            </div>
-            <div class="moviecard">
-                <img src="http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/177733/images/masterrepository/fandango/177733/american-sniper-movie-poster.jpg">
-                <p>American<br>Sniper</p>
-            </div>
-            <!--<post-list show="all"></post-list>-->
+        <div class="container" onmousewheel="checkToolboarHeight()" vertical center>
+            <post-list show="all"></post-list>
         </div>
 
     </core-header-panel>
@@ -518,11 +478,13 @@
             var h = document.getElementById("site-head").clientHeight;
             if (h <= 120) {
                 $('#site-logo').hide();
-                $('#toolbar-menu').fadeIn('fast');
+                //$('#toolbar-menu').fadeIn('fast');
+                document.getElementById("searchbar").style.marginLeft = "50px";
                 document.getElementById("tabs").style.marginLeft = "0px";
             } else {
                 $('#site-logo').fadeIn('fast');
-                $('#toolbar-menu').hide();
+                //$('#toolbar-menu').hide();
+                document.getElementById("searchbar").style.marginLeft = "0px";
                 document.getElementById("tabs").style.marginLeft = "200px";
             }
         }
