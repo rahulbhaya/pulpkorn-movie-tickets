@@ -284,6 +284,10 @@
                 </ul>
             </div>
         </footer>
+        <paper-dialog id="content-dialog" transition="core-transition-bottom" role="dialog" backdrop layout="" vertical="" tabindex="-1" class="core-transition core-transition-bottom core-opened" style="position: fixed; outline: none; z-index: 12; top: 0px;">
+            <iframe id="content-dialog-frame" src="" onload='javascript: resizeFrameHeight(this);' style="border: none; display: block; width: 100%"></iframe>
+        </paper-dialog>
+        <paper-toast id="toast1" class="core-transition core-transition-bottom" text="Post loaded successfully" style="padding-right: 60px; position: fixed; outline: none; z-index: 16; box-sizing: border-box; display: none;" role="status" touch-action="none" tabindex="-1"></paper-toast>
     </core-header-panel>
 
 
@@ -498,6 +502,21 @@
         function adjustContentHeight() {
             var contenth = document.body.clientHeight - document.getElementById("site-head").clientHeight - document.getElementsByTagName("footer")[0].clientHeight;
             document.getElementsByClassName("container")[0].style.minHeight = contenth + "px";
+        }
+
+        function showContentDialog(postUrl) {
+            document.querySelector('#content-dialog-frame').src = postUrl;
+            document.querySelector('#content-dialog').style.left = (document.body.clientWidth - (document.body.clientWidth / 2) - 32 - 32) / 2 + 'px';
+            document.querySelector('#content-dialog').toggle();
+        }
+        function resizeFrameHeight(frame) {
+            frame.style.width = document.body.clientWidth/2 + 'px';
+            frame.style.height = 'auto';
+            frame.style.minHeight = document.body.clientHeight - 32 - 32 + 'px';
+            frame.style.height = frame.contentDocument.documentElement.scrollHeight + 'px';
+            frame.contentWindow.document.body.style.overflow = 'hidden';
+            if ($("#content-dialog-frame").length == 0)
+                document.querySelector('#toast1').show();
         }
     </script>
 </body>

@@ -6,7 +6,8 @@
         "username": "Insurgent",
         "avatar": "http://images.fandango.com/r95.8/ImageRenderer/125/188/redesign/static/img/default_poster.png/177207/images/masterrepository/fandango/177207/insurgentfinalposter.jpg",
         "video": "",
-        "video_display": "none",
+		"video_display": "none",
+		"detail_url": "movie_detail.html",
         "favorite": false
     },
     {

@@ -27,7 +27,7 @@
             <template repeat="{{post in posts}}">
                 <post-card favorite="{{post.favorite}}"
                            on-favorite-tap="{{handleFavorite}}"
-                           hidden?="{{show == 'favorites' && !post.favorite}}">
+                           hidden?="{{show == 'favorites' && !post.favorite}}" onclick="showContentDialog('{{post.detail_url}}');">
                     <img src="{{post.avatar}}">
                     <video id="{{post.video_id}}" controls width="100%" style="display: {{post.video_display}}" ;><source src="{{post.video}}" type="video/mp4"></video>
                     <div style="background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;">
