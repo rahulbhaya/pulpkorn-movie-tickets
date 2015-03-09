@@ -18,6 +18,11 @@
     <link rel="import" href="post-list.html">
 
     <style>
+        * {
+            -webkit-transition: all 0.1s ease-in;
+            transition: all 0.1s ease-in;
+        }
+
         html, body {
             height: 100%;
             margin: 0;
@@ -236,6 +241,11 @@
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         }
+
+        post-list {
+            -webkit-transition: margin 0.618s ease-in-out, opacity 0.2s ease-in;
+            transition: margin 0.618s ease-in-out, opacity 0.2s ease-in;
+        }
     </style>
 
 </head>
@@ -262,7 +272,7 @@
         </core-toolbar>
 
         <div class="container" onmousewheel="checkToolboarHeight()" vertical center>
-            <post-list show="all"></post-list>
+            <post-list show="all" style="margin-top:2160px;opacity:0;"></post-list>
         </div>
         <footer>
             <div class="section-wrapper">
@@ -514,7 +524,7 @@
             document.querySelector('#content-dialog').toggle();
         }
         function resizeFrameHeight(frame) {
-            frame.style.width = document.body.clientWidth/2 + 'px';
+            frame.style.width = document.body.clientWidth / 2 + 'px';
             frame.style.height = 'auto';
             frame.style.minHeight = document.body.clientHeight - 32 - 32 + 'px';
             frame.style.height = frame.contentDocument.documentElement.scrollHeight + 'px';
@@ -522,6 +532,14 @@
             if ($("#content-dialog-frame").length == 0)
                 document.querySelector('#toast1').show();
         }
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("post-list").css("opacity", "1");
+                $("post-list").css("margin-top", "0");
+            }, 500);
+        });
+
     </script>
 </body>
 
