@@ -263,6 +263,17 @@
             <paper-input id="searchbar" label="Search Movie or Theater" style="width:100%;"></paper-input>
             <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
+            <paper-menu-button tabindex="0" relative="" style="min-width: 126px;">
+                <paper-item tabindex="0">Jackson Tan</paper-item>
+                <paper-dropdown class="dropdown core-transition core-closed" tabindex="-1" style="outline: none; color: rgb(0, 0, 0); display: none;">
+                <core-menu class="menu">
+                    <paper-item tabindex="0" class="">Share</paper-item>
+                    <paper-item tabindex="0" class="">Settings</paper-item>
+                    <paper-item tabindex="0" class="">Help</paper-item>
+                    <paper-item tabindex="0" class="">Sign out</paper-item>
+                </core-menu>
+                </paper-dropdown>
+            </paper-menu-button>
             <paper-tabs id="tabs" class="bottom indent" scrollable selected="all" self-end style="font-size: 22px;">
                 <paper-tab name="all">Home</paper-tab>
                 <paper-tab name="videos">Browse</paper-tab>
