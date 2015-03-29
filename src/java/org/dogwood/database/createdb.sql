@@ -11,7 +11,7 @@ CREATE TABLE User(
     Address VARCHAR(50) NOT NULL,
     Type VARCHAR(25) NOT NULL,
     PRIMARY KEY (Name),
-    CHECK (Type = 'REGULAR' OR Type = 'ADMIN')
+    CHECK (Type = 'NORMAL' OR Type = 'ADMIN')
 );
 
 CREATE TABLE Movie(
