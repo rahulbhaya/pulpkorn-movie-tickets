@@ -18,13 +18,22 @@
 
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/dogwood.js"></script>
     <link rel="stylesheet" href="css/default.css">
     <link rel="import" href="bower_components/paper-elements/paper-elements.html">
     <link rel="import" href="bower_components/core-elements/core-elements.html">
     <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="post-list.html">
-
+    <script>
+        //Test
+        searchMovies("Gone with the Wind", 30, 1, function(data) {
+            var movies = data.movies;
+            $.each(movies, function(index, movie) {
+                console.log(movie.title);
+            });
+        });
+    </script>
     <style>
         * {
             -webkit-transition: all 0.1s ease-in;
