@@ -1,4 +1,12 @@
-﻿<!doctype html>
+<%
+    //Check if user is logged in
+    String username = "Guest";
+    if (session.getAttribute("loggedIn") != null) {
+        username = (String) session.getAttribute("loggedIn");
+    }
+%>
+
+<!doctype html>
 <html>
 
 <head>
@@ -264,13 +272,13 @@
             <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
             <paper-menu-button tabindex="0" relative="" style="min-width: 126px;">
-                <paper-item tabindex="0">Jackson Tan</paper-item>
+                <paper-item tabindex="0"><%=username %></paper-item>
                 <paper-dropdown class="dropdown core-transition core-closed" tabindex="-1" style="outline: none; color: rgb(0, 0, 0); display: none;">
                 <core-menu class="menu">
                     <paper-item tabindex="0" class="">Share</paper-item>
                     <paper-item tabindex="0" class="">Settings</paper-item>
                     <paper-item tabindex="0" class="">Help</paper-item>
-                    <paper-item tabindex="0" class="">Sign out</paper-item>
+                    <paper-item tabindex="0" class=""><a href="logout.jsp">Sign out</a></paper-item>
                 </core-menu>
                 </paper-dropdown>
             </paper-menu-button>
