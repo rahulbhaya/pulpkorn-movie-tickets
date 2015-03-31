@@ -59,34 +59,36 @@
 ">Registration Form</div>
         </core-toolbar>
         <div id="content" class="content" flex="" hero-id="content" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <paper-button label="End User License Agreement" onclick="toggleDialog('paper-dialog-transition-center')" role="button" tabindex="0" aria-label="EULA"></paper-button>
-            <paper-input floatinglabel label="Name" error="Required!" layout vertical></paper-input>
-            <paper-input floatinglabel label="Age" error="Required!" layout vertical></paper-input>
-            <h4>Gender</h4>
-            <paper-radio-group selected="male" role="radiogroup">
-                <paper-radio-button name="male" label="Male" role="radio" tabindex="0" aria-checked="true" aria-label="Male" class="core-selected" checked=""></paper-radio-button>
-                <paper-radio-button name="female" label="Female" role="radio" tabindex="0" aria-checked="false" aria-label="Female"></paper-radio-button>
-            </paper-radio-group>
-            <paper-input floatinglabel label="Phone" error="Required!" layout vertical></paper-input>
-            <paper-input floatinglabel label="Other contacts" layout vertical></paper-input>
-            <section>
-                <h4>Other contact information</h4>
-                <div center="" horizontal="" layout="">
-                    <paper-checkbox checked="" role="checkbox" tabindex="0" aria-checked="true"></paper-checkbox>
-                    <paper-input class="contact_info" label="Social network account" layout vertical></paper-input>
-                </div>
-                <div center="" horizontal="" layout="">
-                    <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
-                    <paper-input class="contact_info" label="Facebook" layout vertical></paper-input>
-                </div>
+            <form action="signup.jsp" method="POST">
+                <paper-button label="End User License Agreement" onclick="toggleDialog('paper-dialog-transition-center')" role="button" tabindex="0" aria-label="EULA"></paper-button>
+                <paper-input floatinglabel label="Name" error="Required!" layout vertical></paper-input>
+                <paper-input floatinglabel label="Age" error="Required!" layout vertical></paper-input>
+                <h4>Gender</h4>
+                <paper-radio-group selected="male" role="radiogroup">
+                    <paper-radio-button name="male" label="Male" role="radio" tabindex="0" aria-checked="true" aria-label="Male" class="core-selected" checked=""></paper-radio-button>
+                    <paper-radio-button name="female" label="Female" role="radio" tabindex="0" aria-checked="false" aria-label="Female"></paper-radio-button>
+                </paper-radio-group>
+                <paper-input floatinglabel label="Phone" error="Required!" layout vertical></paper-input>
+                <paper-input floatinglabel label="Other contacts" layout vertical></paper-input>
+                <section>
+                    <h4>Other contact information</h4>
+                    <div center="" horizontal="" layout="">
+                        <paper-checkbox checked="" role="checkbox" tabindex="0" aria-checked="true"></paper-checkbox>
+                        <paper-input class="contact_info" label="Social network account" layout vertical></paper-input>
+                    </div>
+                    <div center="" horizontal="" layout="">
+                        <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
+                        <paper-input class="contact_info" label="Facebook" layout vertical></paper-input>
+                    </div>
 
-                <div center="" horizontal="" layout="">
-                    <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
-                    <paper-input class="contact_info" label="Twitter" layout vertical></paper-input>
-                </div>
-            </section>
-            <paper-input multiline floatinglabel label="Bio" layout vertical></paper-input>
-            <paper-fab class="check-button" icon="arrow-forward" role="button" tabindex="0" aria-label="arrow-forward" style="color: white;"></paper-fab>
+                    <div center="" horizontal="" layout="">
+                        <paper-checkbox role="checkbox" tabindex="0" aria-checked="false"></paper-checkbox>
+                        <paper-input class="contact_info" label="Twitter" layout vertical></paper-input>
+                    </div>
+                </section>
+                <paper-input multiline floatinglabel label="Bio" layout vertical></paper-input>
+                <paper-fab class="check-button" icon="arrow-forward" role="button" tabindex="0" aria-label="arrow-forward" onclick="this.parentNode.submit();" style="color: white;"></paper-fab>
+            </form>
 
             <paper-dialog heading="End User License Agreement" transition="paper-dialog-transition-center" role="dialog" aria-label="EULA" tabindex="-1" class="paper-dialog-transition paper-dialog-transition-center" style="position: fixed; outline: none; z-index: 18; top: 50.5px; left: 372.5px;">
                 <p>This page was intentionally left blank.</p>

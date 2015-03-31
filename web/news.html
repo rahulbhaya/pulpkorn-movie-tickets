@@ -42,23 +42,25 @@
     <div class="main" vertical="" cross-fade-delayed="">
         <div class="card wide" flex="" layout="" vertical="" cross-fade="false" slide-up-offscreen="">
             <div layout="" vertical="" flex="" on-keypress="{{ keypressAction }}">
-                <div class="indent" layout="" vertical="">
-                    <div class="header">Sign In</div>
-                    <paper-input-decorator label="Email address" floatinglabel="" layout="" vertical="">
-                        <input id="first" is="core-input" name="j_email" value="" placeholder="Email address" aria-label="Email address">
-                    </paper-input-decorator>
-                    <paper-input-decorator label="Password" floatinglabel>
-                        <input id="password" is="core-input" name="j_password" type="password" value="" />
-                    </paper-input-decorator>
-                    <div class="header spaced"></div>
-                </div>
-                <div horizontal="" center="" layout="">
-                    <paper-button on-tap="{{ handleLogout }}" role="button" tabindex="0">Sign Up</paper-button>
-                    <div flex="">
+                <form action="login.jsp" method="POST">
+                    <div class="indent" layout="" vertical="">
+                        <div class="header">Sign In</div>
+                        <paper-input-decorator label="Email address" floatinglabel="" layout="" vertical="" error="Invalid Email address!" autovalidate isInvalid="{{!$.first.validity.valid}}">
+                            <input id="first" is="core-input" name="j_email" value="" placeholder="Email address" aria-label="Email address" required pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
+                        </paper-input-decorator>
+                        <paper-input-decorator label="Password" floatinglabel error="Password is required!" autovalidate>
+                            <input id="password" is="core-input" name="j_password" type="password" value="" required />
+                        </paper-input-decorator>
+                        <div class="header spaced"></div>
                     </div>
-                    <paper-fab id="check" icon="check" on-tap="{{ handleLogin }}" role="button" tabindex="0" aria-label="check">
-                    </paper-fab>
-                </div>
+                    <div horizontal="" center="" layout="">
+                        <paper-button on-tap="{{ handleLogout }}" role="button" tabindex="0">Sign Up</paper-button>
+                        <div flex="">
+                        </div>
+                        <paper-fab id="check" icon="check" onclick="this.parentNode.parentNode.submit();" role="button" tabindex="0" aria-label="check">
+                        </paper-fab>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
