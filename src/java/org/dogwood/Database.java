@@ -1,4 +1,4 @@
-package org.dogwood.database;
+package org.dogwood;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
