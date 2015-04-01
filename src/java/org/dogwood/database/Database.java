@@ -32,19 +32,19 @@ public class Database {
         }
     }
     
-    public double getMovieRating(String movieName) {
+    public double getMovieRating(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT Rating FROM MovieRating WHERE MovieName = ?");
-            statement.setString(1, movieName);
+                    "SELECT Rating FROM MovieRating WHERE MovieId = ?");
+            statement.setString(1, movieId);
             ResultSet results = statement.executeQuery();
             double rating = 0;
             while (results.next()) {
                 rating += results.getInt(1);
             }
             statement = connection.prepareStatement(
-                    "SELECT COUNT(Rating) FROM MovieRating WHERE MovieName = ?");
-            statement.setString(1, movieName);
+                    "SELECT COUNT(Rating) FROM MovieRating WHERE MovieId = ?");
+            statement.setString(1, movieId);
             results = statement.executeQuery();
             if (results.next()) {
                 rating /= results.getInt(1);
@@ -59,11 +59,11 @@ public class Database {
         }
     }
     
-    public boolean login(String username, String password) {
+    public boolean login(String email, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM User WHERE Name = ? AND Password = ?");
-            statement.setString(1, username);
+                    "SELECT * FROM User WHERE Email = ? AND Password = ?");
+            statement.setString(1, email);
             statement.setString(2, password);
             return statement.executeQuery().next();
         } 
@@ -72,12 +72,12 @@ public class Database {
         }
     }
     
-    public boolean rate(String username, String movieName, int rating) {
+    public boolean rate(String email, String movieId, int rating) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO MovieRating VALUES(?, ?, ?)");
-            statement.setString(1, username);
-            statement.setString(2, movieName);
+            statement.setString(1, email);
+            statement.setString(2, movieId);
             statement.setInt(3, rating);
             statement.executeUpdate();
             return true;
@@ -87,30 +87,13 @@ public class Database {
         }
     }
     
-    public boolean register(String username, String password, String email, String address, String userType) {
+    public boolean register(String email, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User VALUES(?, ?, ?, ?, ?)");
-            statement.setString(1, username);
+                    "INSERT INTO User VALUES(?, ?, ?)");
+            statement.setString(1, email);
             statement.setString(2, password);
-            statement.setString(3, email);
-            statement.setString(4, address);
-            statement.setString(5, userType);
-            statement.executeUpdate();
-            return true;
-        }
-        catch (SQLException ex) {
-            return false;
-        }
-    }
-    
-    public boolean review(String username, String movieName, String review) {
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO MovieReview VALUES(?, ?, ?)");
-            statement.setString(1, username);
-            statement.setString(2, movieName);
-            statement.setString(3, review);
+            statement.setString(3, type);
             statement.executeUpdate();
             return true;
         }

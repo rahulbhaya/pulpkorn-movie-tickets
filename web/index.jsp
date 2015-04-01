@@ -1,8 +1,8 @@
 <%
     //Check if user is logged in
-    String username = "Guest";
+    String email = "Guest";
     if (session.getAttribute("loggedIn") != null) {
-        username = (String) session.getAttribute("loggedIn");
+        email = (String) session.getAttribute("loggedIn");
     }
 %>
 
@@ -281,7 +281,7 @@
             <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
             <paper-menu-button tabindex="0" relative="" style="min-width: 126px;">
-                <paper-item tabindex="0"><%=username %></paper-item>
+                <paper-item tabindex="0"><%=email %></paper-item>
                 <paper-dropdown class="dropdown core-transition core-closed" tabindex="-1" style="outline: none; color: rgb(0, 0, 0); display: none;">
                 <core-menu class="menu">
                     <paper-item tabindex="0" class="">Share</paper-item>

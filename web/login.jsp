@@ -1,10 +1,10 @@
 <%@page import="org.dogwood.database.Database"%>
 <%
-    String username = request.getParameter("Username");
+    String email = request.getParameter("Email");
     String password = request.getParameter("Password");
     Database db = new Database();
-    if (db.login(username, password)) {
-        session.setAttribute("loggedIn", username);
+    if (db.login(email, password)) {
+        session.setAttribute("loggedIn", email);
     }
     else {
         session.setAttribute("loggedInFail", true);
