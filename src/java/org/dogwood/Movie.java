@@ -14,4 +14,16 @@ public class Movie {
         times = new ArrayList<>();
     }
     
+    private String timesToString() {
+        StringBuilder builder = new StringBuilder();
+        for (String time : times) {
+            builder.append("\"" + time + "\", ");
+        }
+        return builder.substring(0, builder.lastIndexOf(", "));
+    }
+    
+    public String toString() {
+        return "{\"name\":\"" + name + "\", \"times\":[" + timesToString() + "]}";
+    }
+    
 }

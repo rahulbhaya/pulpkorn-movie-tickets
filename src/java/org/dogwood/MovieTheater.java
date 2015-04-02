@@ -15,4 +15,8 @@ public class MovieTheater {
         movies = new ArrayList<>();
     }
     
+    public String toString() {
+        return "{\"name\":\"" + name + "\", \"address\":\"" + address + "\", \"movies\":" + movies + "}";
+    }
+    
 }

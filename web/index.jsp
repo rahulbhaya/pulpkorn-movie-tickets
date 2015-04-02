@@ -33,6 +33,15 @@
                 console.log(movie.title);
             });
         });
+        $.ajax({
+            url: "theaters.jsp?Near=11747",
+            success: function(data) {
+                var theaters = JSON.parse(data).theaters;
+                for (var theater in theaters) {
+                    console.log(theaters[theater].name);
+                }
+            }
+        });
     </script>
     <style>
         * {
