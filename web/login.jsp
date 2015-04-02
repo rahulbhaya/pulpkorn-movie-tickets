@@ -1,4 +1,4 @@
-<%@page import="org.dogwood.database.Database"%>
+<%@page import="org.dogwood.Database"%>
 <%
     String email = request.getParameter("Email");
     if (session.getAttribute("loggedIn") != null && new Database().login(email, request.getParameter("Password"))) {
