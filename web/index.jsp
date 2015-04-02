@@ -407,6 +407,8 @@
                 $('#dropdown_signout').hide();
             }
             else{
+                var reg_username = /(\w+)@(\w+)\.(\w+)/ig;
+                $('#placeholder_user').find('paper-item')[0].textContent = reg_username.exec($('#placeholder_user').find('paper-item')[0].textContent)[1];
                 $('#dropdown_signin').hide();
                 $('#dropdown_reg').hide();
             }
