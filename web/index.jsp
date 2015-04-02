@@ -395,11 +395,11 @@
         });
         
         function showLogInPage(){
-            ajaxSwitchTabs("news", false);
+            ajaxSwitchTabs("signin", false);
         }
         
         function showRegistrationPage(){
-            ajaxSwitchTabs("apply", false);
+            ajaxSwitchTabs("register", false);
         }
         
         function checkLoginStatus(){
