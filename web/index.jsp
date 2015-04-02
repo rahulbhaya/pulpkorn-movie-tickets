@@ -304,7 +304,8 @@
             </paper-menu-button>
             <paper-tabs id="tabs" class="bottom indent" scrollable selected="all" self-end style="font-size: 22px;">
                 <paper-tab name="all">Home</paper-tab>
-                <paper-tab name="videos">Browse</paper-tab>
+                <paper-tab name="videos">Theaters</paper-tab>
+                <paper-tab name="upcoming">Upcoming</paper-tab>
             </paper-tabs>
         </core-toolbar>
 
