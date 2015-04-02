@@ -1,5 +1,4 @@
 <%@page import="org.json.simple.JSONObject"%>
-<%@page import="org.json.simple.JSONValue"%>
 <%@page import="org.dogwood.GoogleMoviesScraper"%>
 <%
     JSONObject json = new JSONObject();
