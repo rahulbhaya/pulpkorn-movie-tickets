@@ -36,10 +36,17 @@
         $.ajax({
             url: "theaters.jsp?Near=11747",
             success: function(data) {
-                var theaters = JSON.parse(data).theaters;
+                var theaters = JSON.parse(data);
                 for (var theater in theaters) {
                     console.log(theaters[theater].name);
                 }
+            }
+        });
+        $.ajax({
+            url: "movie.jsp?MovieId=770672122",
+            success: function(data) {
+                var movie = JSON.parse(data);
+                console.log(movie.title);
             }
         });
     </script>

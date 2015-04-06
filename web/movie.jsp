@@ -1,4 +1,4 @@
-<%@page import="org.dogwood.RottenTomatoes"%>
+<%@page import="org.dogwood.Dogwood"%>
 <%
-    out.println(RottenTomatoes.getMovieInfo((String) request.getParameter("MovieId")));
+    Dogwood.getMovieInfo(request.getParameter("MovieId")).writeJSONString(out);
 %>

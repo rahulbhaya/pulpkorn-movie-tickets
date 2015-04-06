@@ -8,8 +8,8 @@ public class Test {
         Database db = new Database();
         System.out.println(db.register("Test", "Test", "NORMAL"));
         System.out.println(db.login("Test", "Test"));
-        List<MovieTheater> theaters = GoogleMoviesScraper.getTheaters("11747");
-        for (MovieTheater theater : theaters) {
+        List<MovieTheater> theaters = Dogwood.getTheaters("11747");
+        /*for (MovieTheater theater : theaters) {
             System.out.println(theater.name);
             System.out.println(theater.address);
             System.out.println("\nMovies:\n");
@@ -20,7 +20,9 @@ public class Test {
                 }
                 System.out.println("\n");
             }
-        }
+        }*/
+        System.out.println(theaters);
+        System.out.println(Dogwood.getMovieInfo("770672122").get("title"));
     }
     
 }

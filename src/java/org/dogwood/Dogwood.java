@@ -1,13 +1,21 @@
 package org.dogwood;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class GoogleMoviesScraper {
+public class Dogwood {
+    
+    public static final String API_KEY = "gs2spwmu9dt6uqnaxhsadxp6";
+    
+    public static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
     
     public static List<MovieTheater> getTheaters(String near) {
         try {
@@ -29,6 +37,18 @@ public class GoogleMoviesScraper {
             return theaterList;
         } 
         catch (IOException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public static JSONObject getMovieInfo(String movieId) {
+        try {
+            URL url = new URL(BASE_URL + "/movies/" + movieId + 
+                    ".json?apikey=" + API_KEY);
+            return (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+        } 
+        catch (Exception ex) {
             System.out.println(ex);
             return null;
         }

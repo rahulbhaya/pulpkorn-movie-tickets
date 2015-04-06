@@ -1,7 +1,5 @@
-<%@page import="org.json.simple.JSONObject"%>
-<%@page import="org.dogwood.GoogleMoviesScraper"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.dogwood.Dogwood"%>
 <%
-    JSONObject json = new JSONObject();
-    json.put("theaters", GoogleMoviesScraper.getTheaters(request.getParameter("Near")));
-    json.writeJSONString(out);
+    JSONArray.writeJSONString(Dogwood.getTheaters(request.getParameter("Near")), out);
 %>
