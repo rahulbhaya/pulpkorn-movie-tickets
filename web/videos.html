@@ -1,57 +1,25 @@
-<div class="container_videos" layout vertical center>
-    <style>
-        .card_videos {
-            width: 784px;
-            margin: 10px auto 0;
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-            margin-bottom: 20px;
-        }
-
-            .card_videos > theme-bg {
-                background-color: #1de9b6;
-                color: #616161;
+<link rel="import" href="post-card.html">
+<style>
+            :host {
+                display: block;
+                width: 100%;
             }
 
-            .card_videos > core-toolbar {
-                height: 100px;
-                font-size: 16px;
-                line-height: 26px;
-                border-bottom: 1px solid rgba(0,0,0,.15);
+            post-card {
             }
-
-            .card_videos > content {
-                background-color: #fff;
-                overflow: auto;
-                -webkit-overflow-scrolling: touch;
-                position: relative;
-                padding-left: 20px;
-                padding-bottom: 20px;
+</style>
+<style>
+            .h2 {
+                margin-top: -10px;
+                font-size: 1.6rem;
+                font-weight: 300;
             }
-    </style>
-    <div class="card_videos">
-        <core-toolbar class="theme-bg" hero-id="punch-bottom" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <div class="question" flex="" cross-fade-delayed="" style="margin-top: auto;font-size: 1.6em;text-align: center;vertical-align: middle;">American Sniper</div>
-        </core-toolbar>
-        <div id="content" class="content" flex="" hero-id="content" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <video controls width="100%"><source src="videos/Trailer_1.mp4" type="video/mp4"></video>
+</style>
+<!--<div horizontal layout wrap center-justified>-->
+    <post-card>
+        <img src="images/insurgentPoster.jpg">
+        <div style="background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;">
+            <div class="h2" style="max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;  padding-right: 10px;">Insurgent</div>
         </div>
-    </div>
-    <div class="card_videos">
-        <core-toolbar class="theme-bg" hero-id="punch-bottom" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <div class="question" flex="" cross-fade-delayed="" style="margin-top: auto;font-size: 1.6em;text-align: center;vertical-align: middle;">Fifty Shades of Grey</div>
-        </core-toolbar>
-        <div id="content" class="content" flex="" hero-id="content" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <video controls width="100%"><source src="videos/Trailer_2.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-    <div class="card_videos">
-        <core-toolbar class="theme-bg" hero-id="punch-bottom" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <div class="question" flex="" cross-fade-delayed="" style="margin-top: auto;font-size: 1.6em;text-align: center;vertical-align: middle;">Focus</div>
-        </core-toolbar>
-        <div id="content" class="content" flex="" hero-id="content" hero="" style="-webkit-transform-origin: 0px 0px; border-radius: 0px;">
-            <video controls width="100%"><source src="videos/Trailer_3.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-</div>
+    </post-card>
+<!--</div>-->
