@@ -16,7 +16,8 @@
     <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="post-list.html">
-    <link rel="import" href="bower_components/paper_button/paper-button.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/core-field/core-field.html">
 
     <style>
         html, body {
@@ -83,6 +84,11 @@
             paper-button{
                 color: #fff;
                 background-color: #616161;
+            }
+            core-field {
+                border: 1px solid #ddd;
+                margin: 10px;
+                height: 100px;
             }
     </style>
 
@@ -154,7 +160,10 @@
                         </div>
                     </div>
                 </div>
-                <paper-button raised>Purchase Tickets</paper-button>
+                <textarea rows="4" cols="50" placeholder="Leave a Review"></textarea>
+                <div>
+                    <paper-button raised>Purchase Tickets</paper-button>
+                </div>
             </div>
         </div>
     </div>
