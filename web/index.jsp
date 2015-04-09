@@ -293,8 +293,10 @@
                 <paper-icon-button id="toolbar-menu" icon="menu" role="button" tabindex="0" aria-label="menu" style="display:none;"></paper-icon-button>
                 <h1 style="margin: 0;">Pulpkorn</h1>
             </div>
-            <paper-input id="searchbar" label="Search Movie or Theater" style="width:100%;"></paper-input>
-            <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
+            <paper-input-decorator label="Search Movie or Theater" isInvalid="{{!$.first.validity.valid}}" style="width:100%;">
+                <input id="searchbar" is="core-input" name="searchContent" value="" placeholder="Search Movie or Theater" aria-label="Search Movie or Theater">
+            </paper-input-decorator>
+            <paper-icon-button id="searchBtn" icon="search" role="button" tabindex="0" aria-label="search" onclick="searchMovieById();"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
             <paper-menu-button id="placeholder_user" tabindex="0" relative="" style="min-width: 126px;">
                 <paper-item tabindex="0"><%=email %></paper-item>
@@ -421,6 +423,10 @@
             }
         }
         
+        function searchMovieById(){
+            var movieId = document.getElementById("searchbar").value;
+            showContentDialog("http://localhost:8084/search.jsp?MovieId="+movieId);
+        }
         
         function checkToolboarHeight() {
             var h = document.getElementById("site-head").clientHeight;
@@ -470,10 +476,15 @@
                 $(".container").css("opacity", "1");
                 $(".container").css("margin-top", "0");
                 checkLoginStatus();
+                
+                $("#searchbar").keyup(function(event){
+                    if(event.keyCode == 13){
+                        $("#searchBtn").click();
+                    }
+                });
             }, 500);
         });
 
     </script>
 </body>
-
 </html>
