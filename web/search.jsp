@@ -36,7 +36,7 @@
                             +mpaa_rating+'<br/>';
                     }
                 };
-                xhr.open('GET', 'http://localhost:8084/movie.jsp?MovieId='+movieId, true);
+                xhr.open('GET', 'movie.jsp?MovieId='+movieId, true);
                 xhr.send();
         </script>
         <div id="Movie_Info"></div>
