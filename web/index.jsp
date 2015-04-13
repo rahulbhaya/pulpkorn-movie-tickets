@@ -9,281 +9,282 @@
 <!doctype html>
 <html>
 
-<head>
+    <head>
 
-    <title>Project PULPKORN</title>
+        <title>Project PULPKORN</title>
 
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <meta charset="utf-8">
 
-    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/dogwood.js"></script>
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
-    <link rel="import" href="bower_components/core-elements/core-elements.html">
-    <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
-    <link rel="import" href="bower_components/font-roboto/roboto.html">
-    <link rel="import" href="post-list.html">
-    <script>
-        //Test
-        searchMovies("Gone with the Wind", 30, 1, function(data) {
-            var movies = data.movies;
-            $.each(movies, function(index, movie) {
-                console.log(movie.title);
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/dogwood.js"></script>
+        <link rel="stylesheet" href="css/default.css">
+        <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+        <link rel="import" href="bower_components/core-elements/core-elements.html">
+        <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html">
+        <link rel="import" href="bower_components/font-roboto/roboto.html">
+        <link rel="import" href="post-list.html">
+        <link rel="import" href="theater-card.html">
+        <script>
+            //Test
+            searchMovies("Gone with the Wind", 30, 1, function (data) {
+                var movies = data.movies;
+                $.each(movies, function (index, movie) {
+                    console.log(movie.title);
+                });
             });
-        });
-        $.ajax({
-            url: "theaters.jsp?Near=11747",
-            success: function(data) {
-                var theaters = JSON.parse(data);
-                for (var theater in theaters) {
-                    console.log(theaters[theater].name);
+            $.ajax({
+                url: "theaters.jsp?Near=11747",
+                success: function (data) {
+                    var theaters = JSON.parse(data);
+                    for (var theater in theaters) {
+                        console.log(theaters[theater].name);
+                    }
+                }
+            });
+            $.ajax({
+                url: "movie.jsp?MovieId=770672122",
+                success: function (data) {
+                    var movie = JSON.parse(data);
+                    console.log(movie.title);
+                }
+            });
+        </script>
+        <style>
+            * {
+                -webkit-transition: all 0.1s ease-in;
+                transition: all 0.1s ease-in;
+            }
+
+            html, body {
+                height: 100%;
+                margin: 0;
+                background-color: #E5E5E5;
+                font-family: "RobotoDraft", "Noto Sans", "Roboto", sans-serif !important;
+                text-shadow: silver 0px 0px 1px !important;
+            }
+
+            core-header-panel {
+                height: 100%;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            core-toolbar {
+                background: #03a9f4;
+                color: white;
+            }
+
+            #tabs {
+                width: 100%;
+                margin-left: 200px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                text-transform: uppercase;
+            }
+
+            @media (min-width: 481px) {
+                #tabs {
+                    /*width: 200px;*/
                 }
             }
-        });
-        $.ajax({
-            url: "movie.jsp?MovieId=770672122",
-            success: function(data) {
-                var movie = JSON.parse(data);
-                console.log(movie.title);
-            }
-        });
-    </script>
-    <style>
-        * {
-            -webkit-transition: all 0.1s ease-in;
-            transition: all 0.1s ease-in;
-        }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            background-color: #E5E5E5;
-            font-family: "RobotoDraft", "Noto Sans", "Roboto", sans-serif !important;
-            text-shadow: silver 0px 0px 1px !important;
-        }
-
-        core-header-panel {
-            height: 100%;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        core-toolbar {
-            background: #03a9f4;
-            color: white;
-        }
-
-        #tabs {
-            width: 100%;
-            margin-left: 200px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            text-transform: uppercase;
-        }
-
-        @media (min-width: 481px) {
-            #tabs {
-                /*width: 200px;*/
-            }
-        }
-
-        .container {
-            padding: 1rem;
-        }
-
-        img {
-            border: none;
-        }
-
-        #normal2, #normal3, #normal4, #normal5 {
-            display: none;
-        }
-
-        .gallery {
-            margin: 0 auto;
-            width: 800px;
-        }
-
-        #thumbs {
-            margin: 10px auto 10px auto;
-            text-align: center;
-            width: 800px;
-        }
-
-        #bigimages {
-            width: 770px;
-            float: left;
-        }
-
-        #thumbs img {
-            width: 130px;
-            height: 130px;
-        }
-
-        #bigimages img {
-            border: 4px solid #03a9f4;
-            margin-top: 5px;
-            width: 750px;
-        }
-
-        #thumbs a:link, #thumbs a:visited {
-            width: 130px;
-            height: 130px;
-            border: 5px solid #555;
-            margin: 6px;
-            float: left;
-        }
-
-        #thumbs a:hover {
-            border: 5px solid #ffff8d;
-        }
-
-        footer {
-            background: #444;
-            height: 125px;
-        }
-
-        footer, header, section {
-            display: block;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .section-wrapper {
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: inline-block;
-            float: left;
-            width: 96px;
-        }
-
-        footer ul {
-            margin: 0;
-            padding: 51px 30px 0;
-            text-align: right;
-        }
-
-        footer li {
-            display: inline;
-            line-height: 2.19;
-            list-style: none;
-            margin: auto;
-        }
-
-        footer a {
-            color: #f3f3f3;
-            font-size: .9em;
-            font-weight: 400;
-        }
-
-        a {
-            color: #0277bb;
-            text-decoration: none;
-            -webkit-transition: color 0.1s linear;
-            -moz-transition: color 0.1s linear;
-            transition: color 0.1s linear;
-        }
-
-        a {
-            background: transparent;
-            color: #02a8f3;
-            text-decoration: none;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        @-webkit-keyframes shakeit {
-            0% {
-                -webkit-transform: translate(2px, 1px) rotate(0deg);
-                transform: translate(2px, 1px) rotate(0deg);
+            .container {
+                padding: 1rem;
             }
 
-            2% {
-                -webkit-transform: translate(-1px, -2px) rotate(-1deg);
-                transform: translate(-1px, -2px) rotate(-1deg);
+            img {
+                border: none;
             }
 
-            4% {
-                -webkit-transform: translate(-3px, 0px) rotate(1deg);
-                transform: translate(-3px, 0px) rotate(1deg);
+            #normal2, #normal3, #normal4, #normal5 {
+                display: none;
             }
 
-            6% {
-                -webkit-transform: translate(0px, 2px) rotate(0deg);
-                transform: translate(0px, 2px) rotate(0deg);
+            .gallery {
+                margin: 0 auto;
+                width: 800px;
             }
 
-            8% {
-                -webkit-transform: translate(1px, -1px) rotate(1deg);
-                transform: translate(1px, -1px) rotate(1deg);
+            #thumbs {
+                margin: 10px auto 10px auto;
+                text-align: center;
+                width: 800px;
             }
 
-            10% {
-                -webkit-transform: translate(-1px, 2px) rotate(-1deg);
-                transform: translate(-1px, 2px) rotate(-1deg);
+            #bigimages {
+                width: 770px;
+                float: left;
             }
 
-            12% {
-                -webkit-transform: translate(-3px, 1px) rotate(0deg);
-                transform: translate(-3px, 1px) rotate(0deg);
+            #thumbs img {
+                width: 130px;
+                height: 130px;
             }
 
-            14% {
-                -webkit-transform: translate(2px, 1px) rotate(-1deg);
-                transform: translate(2px, 1px) rotate(-1deg);
+            #bigimages img {
+                border: 4px solid #03a9f4;
+                margin-top: 5px;
+                width: 750px;
             }
 
-            16% {
-                -webkit-transform: translate(-1px, -1px) rotate(1deg);
-                transform: translate(-1px, -1px) rotate(1deg);
+            #thumbs a:link, #thumbs a:visited {
+                width: 130px;
+                height: 130px;
+                border: 5px solid #555;
+                margin: 6px;
+                float: left;
             }
 
-            18% {
-                -webkit-transform: translate(2px, 2px) rotate(0deg);
-                transform: translate(2px, 2px) rotate(0deg);
+            #thumbs a:hover {
+                border: 5px solid #ffff8d;
             }
 
-            20% {
-                -webkit-transform: translate(1px, -2px) rotate(-1deg);
-                transform: translate(1px, -2px) rotate(-1deg);
+            footer {
+                background: #444;
+                height: 125px;
             }
-        }
 
-        .shake:hover,
-        .shake:focus {
-        }
+            footer, header, section {
+                display: block;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
 
-        .shake {
-            display: inline-block;
-            -webkit-animation-name: shakeit;
-            -webkit-animation-duration: 2.5s;
-            -webkit-transform-origin: 50% 50%;
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-timing-function: linear;
-            animation-name: shakeit;
-            animation-duration: 2.5s;
-            transform-origin: 50% 50%;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
+            .section-wrapper {
+                margin: 0 auto;
+            }
 
-        .container {
-            -webkit-transition: margin 0.318s ease-in-out, opacity 0s ease-in;
-            transition: margin 0.318s ease-in-out, opacity 0s ease-in;
-        }
-    </style>
+            .logo {
+                display: inline-block;
+                float: left;
+                width: 96px;
+            }
 
-</head>
+            footer ul {
+                margin: 0;
+                padding: 51px 30px 0;
+                text-align: right;
+            }
 
-<body unresolved>
+            footer li {
+                display: inline;
+                line-height: 2.19;
+                list-style: none;
+                margin: auto;
+            }
+
+            footer a {
+                color: #f3f3f3;
+                font-size: .9em;
+                font-weight: 400;
+            }
+
+            a {
+                color: #0277bb;
+                text-decoration: none;
+                -webkit-transition: color 0.1s linear;
+                -moz-transition: color 0.1s linear;
+                transition: color 0.1s linear;
+            }
+
+            a {
+                background: transparent;
+                color: #02a8f3;
+                text-decoration: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            @-webkit-keyframes shakeit {
+                0% {
+                    -webkit-transform: translate(2px, 1px) rotate(0deg);
+                    transform: translate(2px, 1px) rotate(0deg);
+                }
+
+                2% {
+                    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+                    transform: translate(-1px, -2px) rotate(-1deg);
+                }
+
+                4% {
+                    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+                    transform: translate(-3px, 0px) rotate(1deg);
+                }
+
+                6% {
+                    -webkit-transform: translate(0px, 2px) rotate(0deg);
+                    transform: translate(0px, 2px) rotate(0deg);
+                }
+
+                8% {
+                    -webkit-transform: translate(1px, -1px) rotate(1deg);
+                    transform: translate(1px, -1px) rotate(1deg);
+                }
+
+                10% {
+                    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+                    transform: translate(-1px, 2px) rotate(-1deg);
+                }
+
+                12% {
+                    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+                    transform: translate(-3px, 1px) rotate(0deg);
+                }
+
+                14% {
+                    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+                    transform: translate(2px, 1px) rotate(-1deg);
+                }
+
+                16% {
+                    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+                    transform: translate(-1px, -1px) rotate(1deg);
+                }
+
+                18% {
+                    -webkit-transform: translate(2px, 2px) rotate(0deg);
+                    transform: translate(2px, 2px) rotate(0deg);
+                }
+
+                20% {
+                    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+                    transform: translate(1px, -2px) rotate(-1deg);
+                }
+            }
+
+            .shake:hover,
+            .shake:focus {
+            }
+
+            .shake {
+                display: inline-block;
+                -webkit-animation-name: shakeit;
+                -webkit-animation-duration: 2.5s;
+                -webkit-transform-origin: 50% 50%;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-timing-function: linear;
+                animation-name: shakeit;
+                animation-duration: 2.5s;
+                transform-origin: 50% 50%;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+
+            .container {
+                -webkit-transition: margin 0.318s ease-in-out, opacity 0s ease-in;
+                transition: margin 0.318s ease-in-out, opacity 0s ease-in;
+            }
+        </style>
+
+    </head>
+
+    <body unresolved>
 
     <core-header-panel mode="waterfall-tall">
 
@@ -299,16 +300,16 @@
             <paper-icon-button id="searchBtn" icon="search" role="button" tabindex="0" aria-label="search" onclick="searchMovieById();"></paper-icon-button>
             <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
             <paper-menu-button id="placeholder_user" tabindex="0" relative="" style="min-width: 126px;">
-                <paper-item tabindex="0"><%=email %></paper-item>
+                <paper-item tabindex="0"><%=email%></paper-item>
                 <paper-dropdown class="dropdown core-transition core-closed" tabindex="-1" style="outline: none; color: rgb(0, 0, 0); display: none;">
-                <core-menu class="menu">
-                    <paper-item id="dropdown_share" tabindex="0" class="">Share</paper-item>
-                    <paper-item id="dropdown_settings" tabindex="0" class="">Settings</paper-item>
-                    <paper-item id="dropdown_help" tabindex="0" class="">Help</paper-item>
-                    <paper-item id="dropdown_signin" tabindex="0" class="" onclick="showLogInPage();">Sign In</a></paper-item>
-                    <paper-item id="dropdown_reg" tabindex="0" class="" onclick="showRegistrationPage();">Join Today</paper-item>
-                    <paper-item id="dropdown_signout" tabindex="0" class=""><a href="logout.jsp">Sign out</a></paper-item>
-                </core-menu>
+                    <core-menu class="menu">
+                        <paper-item id="dropdown_share" tabindex="0" class="">Share</paper-item>
+                        <paper-item id="dropdown_settings" tabindex="0" class="">Settings</paper-item>
+                        <paper-item id="dropdown_help" tabindex="0" class="">Help</paper-item>
+                        <paper-item id="dropdown_signin" tabindex="0" class="" onclick="showLogInPage();">Sign In</a></paper-item>
+                        <paper-item id="dropdown_reg" tabindex="0" class="" onclick="showRegistrationPage();">Join Today</paper-item>
+                        <paper-item id="dropdown_signout" tabindex="0" class=""><a href="logout.jsp">Sign out</a></paper-item>
+                    </core-menu>
                 </paper-dropdown>
             </paper-menu-button>
             <paper-tabs id="tabs" class="bottom indent" scrollable selected="all" self-end style="font-size: 22px;">
@@ -355,35 +356,32 @@
     <script>
         var tabs = document.querySelector('paper-tabs');
         var list = document.querySelector('post-list');
-        
-        function ajaxSwitchTabs(tabHtmlPath, isIndexPage){
+
+        function ajaxSwitchTabs(tabHtmlPath, isIndexPage) {
             $(".container").css("opacity", "0");
             $(".container").css("margin-top", "2160px");
-            if(isIndexPage){
-                        var list = document.querySelectorAll( '.container' )[0].childNodes;
-                        for (var i = 0; i < list.length; ++i) {
-                          if(list[i].tagName==="POST-LIST"){
-                              list[i].style.display = "";
-                          }
-                          else if(list[i].tagName!=undefined){
-                              list[i].outerHTML="";
-                          }
-                        }
-                        displayTransitionAnimation();
-            }
-            else{
+            if (isIndexPage) {
+                var list = document.querySelectorAll('.container')[0].childNodes;
+                for (var i = 0; i < list.length; ++i) {
+                    if (list[i].tagName === "POST-LIST") {
+                        list[i].style.display = "";
+                    } else if (list[i].tagName != undefined) {
+                        list[i].outerHTML = "";
+                    }
+                }
+                displayTransitionAnimation();
+            } else {
                 var ajaxFetch = new XMLHttpRequest();
                 ajaxFetch.onreadystatechange = function () {
                     if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
                         var documentResponse = ajaxFetch.response;
-                        var list = document.querySelectorAll( '.container' )[0].childNodes;
+                        var list = document.querySelectorAll('.container')[0].childNodes;
                         for (var i = 0; i < list.length; ++i) {
-                          if(list[i].tagName==="POST-LIST"){
-                              list[i].style.display = "none";
-                          }
-                          else if(list[i].tagName!=undefined){
-                              list[i].outerHTML="";
-                          }
+                            if (list[i].tagName === "POST-LIST") {
+                                list[i].style.display = "none";
+                            } else if (list[i].tagName != undefined) {
+                                list[i].outerHTML = "";
+                            }
                         }
                         document.getElementsByClassName('container')[0].innerHTML += documentResponse;
                         adjustContentHeight();
@@ -397,37 +395,66 @@
 
         tabs.addEventListener('core-select', function () {
             list.show = tabs.selected;
-            if(tabs.selected=="all")
-                ajaxSwitchTabs(tabs.selected,true);
-            else
-                ajaxSwitchTabs(tabs.selected,false);
+            if (tabs.selected == "all")
+                ajaxSwitchTabs(tabs.selected, true);
+            else if (tabs.selected == "videos") {
+                var ajaxFetch = new XMLHttpRequest();
+                ajaxFetch.onreadystatechange = function () {
+                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                        var documentResponse = JSON.parse(ajaxFetch.responseText);
+                        var list = document.querySelectorAll('.container')[0].childNodes;
+                        for (var i = 0; i < list.length; ++i) {
+                            if (list[i].tagName === "POST-LIST") {
+                                list[i].style.display = "none";
+                            } else if (list[i].tagName != undefined) {
+                                list[i].outerHTML = "";
+                            }
+                        }
+                        var html = "<div vertical layout wrap center>";
+                        for (var theater in documentResponse) {
+                            html+='<theater-card><img src=""><div style="background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;"><h2 style="max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;  padding-right: 10px;">'+documentResponse[theater].name+'</h2><p style="max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;">{{post.text}}</p><\/div><div><span><\/span><\/div><\/theater-card>';
+                        }
+                        html+="</div>";
+                        document.getElementsByClassName('container')[0].innerHTML += html;
+                        adjustContentHeight();
+                        displayTransitionAnimation();
+                    }
+                };
+                ajaxFetch.open('GET', 'theaters.jsp?Near=11747', true);
+                ajaxFetch.send();
+                
+                
+                
+                
+
+            } else
+                ajaxSwitchTabs(tabs.selected, false);
         });
-        
-        function showLogInPage(){
+
+        function showLogInPage() {
             ajaxSwitchTabs("signin", false);
         }
-        
-        function showRegistrationPage(){
+
+        function showRegistrationPage() {
             ajaxSwitchTabs("register", false);
         }
-        
-        function checkLoginStatus(){
-            if($('#placeholder_user').find('paper-item')[0].textContent=="Guest"){
+
+        function checkLoginStatus() {
+            if ($('#placeholder_user').find('paper-item')[0].textContent == "Guest") {
                 $('#dropdown_signout').hide();
-            }
-            else{
+            } else {
                 var reg_username = /(\w+)@(\w+)\.(\w+)/ig;
                 $('#placeholder_user').find('paper-item')[0].textContent = reg_username.exec($('#placeholder_user').find('paper-item')[0].textContent)[1];
                 $('#dropdown_signin').hide();
                 $('#dropdown_reg').hide();
             }
         }
-        
-        function searchMovieById(){
+
+        function searchMovieById() {
             var movieId = document.getElementById("searchbar").value;
-            showContentDialog("http://localhost:8084/search.jsp?MovieId="+movieId);
+            showContentDialog("search.jsp?MovieId=" + movieId);
         }
-        
+
         function checkToolboarHeight() {
             var h = document.getElementById("site-head").clientHeight;
             if (h <= 120) {
@@ -446,10 +473,10 @@
             var contenth = document.body.clientHeight - document.getElementById("site-head").clientHeight - document.getElementsByTagName("footer")[0].clientHeight;
             document.getElementsByClassName("container")[0].style.minHeight = contenth + "px";
         }
-        
+
         function displayTransitionAnimation() {
-            var list = document.querySelectorAll( '.container' )[0];
-                setTimeout(function () {
+            var list = document.querySelectorAll('.container')[0];
+            setTimeout(function () {
                 $(".container").css("opacity", "1");
                 $(".container").css("margin-top", "0");
                 checkLoginStatus();
@@ -476,9 +503,9 @@
                 $(".container").css("opacity", "1");
                 $(".container").css("margin-top", "0");
                 checkLoginStatus();
-                
-                $("#searchbar").keyup(function(event){
-                    if(event.keyCode == 13){
+
+                $("#searchbar").keyup(function (event) {
+                    if (event.keyCode == 13) {
                         $("#searchBtn").click();
                     }
                 });
