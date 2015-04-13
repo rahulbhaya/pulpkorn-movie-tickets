@@ -18,6 +18,7 @@
 
         <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
         <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,visualization&sensor=false"></script>
         <script src="js/dogwood.js"></script>
         <link rel="stylesheet" href="css/default.css">
         <link rel="import" href="bower_components/paper-elements/paper-elements.html">
@@ -398,35 +399,48 @@
             if (tabs.selected == "all")
                 ajaxSwitchTabs(tabs.selected, true);
             else if (tabs.selected == "videos") {
-                var ajaxFetch = new XMLHttpRequest();
-                ajaxFetch.onreadystatechange = function () {
-                    if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
-                        var documentResponse = JSON.parse(ajaxFetch.responseText);
-                        var list = document.querySelectorAll('.container')[0].childNodes;
-                        for (var i = 0; i < list.length; ++i) {
-                            if (list[i].tagName === "POST-LIST") {
-                                list[i].style.display = "none";
-                            } else if (list[i].tagName != undefined) {
-                                list[i].outerHTML = "";
+                var zipcode = '10001';
+                var location = 'New York, NY';
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geocoder = new google.maps.Geocoder();
+                    var latLng = new google.maps.LatLng(
+                            position.coords.latitude, position.coords.longitude);
+                    geocoder.geocode({
+                        'latLng': latLng
+                    }, function (results, status) {
+                        for (var i = 0; i < results[0].address_components.length; i++) {
+                            var address = results[0].address_components[i];
+                            if (address.types[0] == "postal_code") {
+                                zipcode = address.long_name;
+                                location = results[0].formatted_address;
                             }
                         }
-                        var html = "<div vertical layout wrap center>";
-                        for (var theater in documentResponse) {
-                            html+='<theater-card><img src=""><div style="background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;"><h2 style="max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;  padding-right: 10px;">'+documentResponse[theater].name+'</h2><p style="max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;">{{post.text}}</p><\/div><div><span><\/span><\/div><\/theater-card>';
-                        }
-                        html+="</div>";
-                        document.getElementsByClassName('container')[0].innerHTML += html;
-                        adjustContentHeight();
-                        displayTransitionAnimation();
-                    }
-                };
-                ajaxFetch.open('GET', 'theaters.jsp?Near=11747', true);
-                ajaxFetch.send();
-                
-                
-                
-                
-
+                        var ajaxFetch = new XMLHttpRequest();
+                        ajaxFetch.onreadystatechange = function () {
+                            if (ajaxFetch.readyState == 4 && ajaxFetch.status == 200) {
+                                var documentResponse = JSON.parse(ajaxFetch.responseText);
+                                var list = document.querySelectorAll('.container')[0].childNodes;
+                                for (var i = 0; i < list.length; ++i) {
+                                    if (list[i].tagName === "POST-LIST") {
+                                        list[i].style.display = "none";
+                                    } else if (list[i].tagName != undefined) {
+                                        list[i].outerHTML = "";
+                                    }
+                                }
+                                var html = "<div vertical layout wrap center>";
+                                for (var theater in documentResponse) {
+                                    html += '<theater-card><img src=""><div style="background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;"><h2 style="max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;  padding-right: 10px;">' + documentResponse[theater].name + '</h2><p style="max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;">{{post.text}}</p><\/div><div><span><\/span><\/div><\/theater-card>';
+                                }
+                                html += "</div>";
+                                document.getElementsByClassName('container')[0].innerHTML += html;
+                                adjustContentHeight();
+                                displayTransitionAnimation();
+                            }
+                        };
+                        ajaxFetch.open('GET', 'theaters.jsp?Near=' + zipcode, true);
+                        ajaxFetch.send();
+                    });
+                });
             } else
                 ajaxSwitchTabs(tabs.selected, false);
         });
