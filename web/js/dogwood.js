@@ -44,12 +44,10 @@ var searchMovies = function(query, page_limit, page, callback) {
     });
 };
 
-var upcomingMovies = function(page_limit, page, country, callback) {
+var upcomingMovies = function(callback) {
     $.ajax({
         dataType: "jsonp",
-        url: baseURL + "/lists/movies/upcoming.json?apikey=" + apiKey + 
-                "&page_limit=" + encodeURI(page_limit) + "&page=" + 
-                encodeURI(page) + "&country=" + encodeURI(country),
+        url: baseURL + "/lists/movies/upcoming.json?apikey=" + apiKey,
         success: callback
     });
 };
