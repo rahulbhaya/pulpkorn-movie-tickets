@@ -59,11 +59,11 @@ public class Database {
         }
     }
     
-    public boolean login(String email, String password) {
+    public boolean login(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM User WHERE Email = ? AND Password = ?");
-            statement.setString(1, email);
+                    "SELECT * FROM User WHERE Name = ? AND Password = ?");
+            statement.setString(1, name);
             statement.setString(2, password);
             return statement.executeQuery().next();
         } 
@@ -87,11 +87,11 @@ public class Database {
         }
     }
     
-    public boolean register(String email, String password, String type) {
+    public boolean register(String name, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO User VALUES(?, ?, ?)");
-            statement.setString(1, email);
+            statement.setString(1, name);
             statement.setString(2, password);
             statement.setString(3, type);
             statement.executeUpdate();

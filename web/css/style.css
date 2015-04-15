@@ -1,0 +1,17 @@
+.movie-card {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    width: 200px;
+}
+
+.movie-card img {
+    display: block;
+}
+
+.movie-card p {
+    background-color: white;
+    font-size: 20px;
+    margin: 0;
+}

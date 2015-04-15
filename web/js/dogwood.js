@@ -10,12 +10,10 @@ var boxOfficeMovies = function(limit, country, callback) {
     });
 };
 
-var inTheatersMovies = function(page_limit, page, country, callback) {
+var inTheatersMovies = function(callback) {
     $.ajax({
         dataType: "jsonp",
-        url: baseURL + "/lists/movies/in_theaters.json?apikey=" + apiKey + 
-                "&page_limit=" + encodeURI(page_limit) + "&page=" + 
-                encodeURI(page) + "&country=" + encodeURI(country),
+        url: baseURL + "/lists/movies/in_theaters.json?apikey=" + apiKey,
         success: callback
     });
 };
