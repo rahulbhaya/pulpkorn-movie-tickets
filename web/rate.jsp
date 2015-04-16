@@ -1,8 +1,13 @@
-<%@page import="org.dogwood.database.Database"%>
+<%@page import="org.dogwood.Database"%>
 <%
-    String email = request.getParameter("Email");
-    if (email.equals((String) session.getAttribute("loggedIn"))) {
-        new Database().rate(email, request.getParameter("MovieId"), request.getParameter("Rating"));
+    String name = (String) session.getAttribute("loggedIn");
+    String movieId = request.getParameter("MovieId");
+    String rating = request.getParameter("Rating");
+    if (name == null || movieId == null || rating == null) {
+        response.sendRedirect("index.jsp");
     }
-    response.sendRedirect("index.jsp");
+    else if (!new Database().rate(name, movieId, rating)) {
+        session.setAttribute("rated", "You already rated this movie.");
+    }
+    response.sendRedirect("movie.jsp?MovieId=" + movieId);
 %>

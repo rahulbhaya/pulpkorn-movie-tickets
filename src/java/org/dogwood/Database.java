@@ -72,11 +72,11 @@ public class Database {
         }
     }
     
-    public boolean rate(String email, String movieId, String rating) {
+    public boolean rate(String name, String movieId, String rating) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO MovieRating VALUES(?, ?, ?)");
-            statement.setString(1, email);
+            statement.setString(1, name);
             statement.setString(2, movieId);
             statement.setInt(3, Integer.parseInt(rating));
             statement.executeUpdate();
