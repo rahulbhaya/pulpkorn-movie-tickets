@@ -14,7 +14,7 @@ public class Movie {
         times = new ArrayList<>();
     }
     
-    private String timesToString() {
+    public String timesToString() {
         StringBuilder builder = new StringBuilder();
         for (String time : times) {
             builder.append("\"" + time + "\", ");
