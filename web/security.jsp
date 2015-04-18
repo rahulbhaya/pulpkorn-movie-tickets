@@ -1,5 +1,5 @@
 <%
-    if (session.getAttribute("loggedIn") != null) {
+    if (session.getAttribute("LoggedIn") != null) {
         response.sendRedirect("index.jsp");
     }
 %>

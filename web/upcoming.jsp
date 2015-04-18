@@ -12,7 +12,7 @@
         </div>
         <script>
             //Retrieve upcoming movies as a JSON using the Rotten Tomatoes API and append the results to a container div.
-            upcomingMovies(function(data) {
+            getUpcomingMovies(function(data) {
                 var container = $("#movies");
                 var movies = data.movies;
                 for (var i in movies) {

@@ -1,7 +1,7 @@
 <%
-    String loggedIn = (String) session.getAttribute("loggedIn");
-    if (loggedIn == null) {
-        loggedIn = "Guest";
+    String name = (String) session.getAttribute("LogIn");
+    if (name == null) {
+        name = "Guest";
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,12 +11,12 @@
         <li><a href="upcoming.jsp">Upcoming Movies</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                <%=loggedIn%>
+                <%=name%>
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <%
-                    if (loggedIn.equals("Guest")) {
+                    if (name.equals("Guest")) {
                 %>
                 <li><a href="login.jsp">Log In</a></li>
                 <li><a href="register.jsp">Register</a></li>
@@ -24,7 +24,7 @@
                         }
                         else {
                     %>
-                <li><a href="logout.jsp">Log Out</a></li>
+                <li><a href="LogOut">Log Out</a></li>
                     <%
                         }
                     %>

@@ -1,7 +1,7 @@
 var apiKey = "gs2spwmu9dt6uqnaxhsadxp6";
 var baseURL = "http://api.rottentomatoes.com/api/public/v1.0";
 
-var boxOfficeMovies = function(limit, country, callback) {
+var getBoxOfficeMovies = function(limit, country, callback) {
     $.ajax({
         dataType: "jsonp",
         url: baseURL + "/lists/movies/.json?apikey=" + apiKey + 
@@ -10,7 +10,7 @@ var boxOfficeMovies = function(limit, country, callback) {
     });
 };
 
-var inTheatersMovies = function(callback) {
+var getInTheatersMovies = function(callback) {
     $.ajax({
         dataType: "jsonp",
         url: baseURL + "/lists/movies/in_theaters.json?apikey=" + apiKey,
@@ -18,7 +18,7 @@ var inTheatersMovies = function(callback) {
     });
 };
 
-var movieCast = function(id, callback) {
+var getMovieCast = function(id, callback) {
     $.ajax({
         dataType: "jsonp",
         url: baseURL + "/movies/" + id + "/cast.json?apikey=" + apiKey,
@@ -26,10 +26,18 @@ var movieCast = function(id, callback) {
     });
 };
 
-var movieInfo = function(id, callback) {
+var getMovieInfo = function(id, callback) {
     $.ajax({
         dataType: "jsonp",
         url: baseURL + "/movies/" + id + ".json?apikey=" + apiKey,
+        success: callback
+    });
+};
+
+var getUpcomingMovies = function(callback) {
+    $.ajax({
+        dataType: "jsonp",
+        url: baseURL + "/lists/movies/upcoming.json?apikey=" + apiKey,
         success: callback
     });
 };
@@ -40,14 +48,6 @@ var searchMovies = function(query, page_limit, page, callback) {
         url: baseURL + "/movies.json?apikey=" + apiKey + "&q=" + 
                 encodeURI(query) + "&page_limit=" + encodeURI(page_limit) + 
                 "&page=" + encodeURI(page),
-        success: callback
-    });
-};
-
-var upcomingMovies = function(callback) {
-    $.ajax({
-        dataType: "jsonp",
-        url: baseURL + "/lists/movies/upcoming.json?apikey=" + apiKey,
         success: callback
     });
 };

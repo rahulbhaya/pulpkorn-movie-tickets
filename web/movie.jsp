@@ -14,7 +14,7 @@
         </div>
         <script>
             //Retrieve in theaters movies as a JSON using the Rotten Tomatoes API and append the results to a container div.
-            movieInfo(<%=movieId%>, function(movie) {
+            getMovieInfo(<%=movieId%>, function(movie) {
                 var container = $("#movie");
                 container.append($("<h1>").text(movie.title));
                 container.append($("<img>").attr("src", movie.posters.original));

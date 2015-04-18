@@ -59,7 +59,7 @@ public class Database {
         }
     }
     
-    public boolean login(String name, String password) {
+    public boolean logIn(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM User WHERE Name = ? AND Password = ?");
@@ -72,11 +72,11 @@ public class Database {
         }
     }
     
-    public boolean rate(String name, String movieId, String rating) {
+    public boolean rateMovie(String userName, String movieId, String rating) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO MovieRating VALUES(?, ?, ?)");
-            statement.setString(1, name);
+            statement.setString(1, userName);
             statement.setString(2, movieId);
             statement.setInt(3, Integer.parseInt(rating));
             statement.executeUpdate();

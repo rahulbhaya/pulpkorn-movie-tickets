@@ -7,7 +7,7 @@ public class Test {
     public static void main(String[] args) {
         Database db = new Database();
         System.out.println(db.register("Test", "Test", "NORMAL"));
-        System.out.println(db.login("Test", "Test"));
+        System.out.println(db.logIn("Test", "Test"));
         List<MovieTheater> theaters = Dogwood.getTheaters("11747");
         /*for (MovieTheater theater : theaters) {
             System.out.println(theater.name);
@@ -17,7 +17,7 @@ public class Test {
                 System.out.print(movie.name + " ");
                 for (String time : movie.times) {
                     System.out.print(time);
-                }
+    }
                 System.out.println("\n");
             }
         }*/
