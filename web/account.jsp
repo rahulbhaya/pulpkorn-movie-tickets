@@ -40,6 +40,48 @@
                 </form>
             </div>
         </div>
+           
+       <form id=payment>
+    <fieldset>
+        <legend>Card Details</legend>
+        <ol>
+            <li>
+            <fieldset>
+                <legend>Card Type</legend>
+                <ol>
+                    <li>
+                        <input id=visa name=cardtype type=radio />
+                        <label for=visa>VISA</label>
+                    </li>
+                    <li>
+                        <input id=amex name=cardtype type=radio />
+                        <label for=amex>AmEx</label>
+                    </li>
+                    <li>
+                        <input id=mastercard name=cardtype type=radio />
+                        <label for=mastercard>Mastercard</label>
+                    </li>
+                </ol>
+            </fieldset>
+            </li>
+            <li>
+                <label for=cardnumber>Card Number</label>
+                <input id=cardnumber name=cardnumber type=number required />
+            </li>
+            <li>
+                <label for=secure>Security Code</label>
+                <input id=secure name=secure type=number required />
+            </li>
+            <li>
+                <label for=namecard>Name on Card</label>
+                <input id=namecard name=namecard type=text placeholder="Exact name as on the card" required />
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <button type=submit>Submit </button>
+    </fieldset>
+</form>
 	<%@include file="material.jsp"%>
     </body>
 </html>
