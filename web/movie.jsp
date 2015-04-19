@@ -53,5 +53,6 @@
     }(document, new Date(), "script", "rating-widget.com/"));</script>
 
 <div class="rw-ui-container"></div>
+<%@include file="material.jsp"%>
     </body>
 </html>

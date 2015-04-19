@@ -1,10 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search Results</title>
-    </head>
+	<%@include file="header.jsp"%>
     <body>
         <script>
                 var movieId = <%=request.getParameter("MovieId")%>;
@@ -40,5 +37,6 @@
                 xhr.send();
         </script>
         <div id="Movie_Info"></div>
+		<%@include file="material.jsp"%>
     </body>
 </html>

@@ -36,5 +36,6 @@
                 </form>
             </div>
         </div>
+		<%@include file="material.jsp"%>
     </body>
 </html>
