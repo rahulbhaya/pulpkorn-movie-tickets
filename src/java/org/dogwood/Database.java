@@ -50,6 +50,7 @@ public class Database {
             return true;
         } 
         catch (SQLException ex) {
+            System.out.println(ex);
             return false;
         }
     }
@@ -73,6 +74,28 @@ public class Database {
             return movies;
         } 
         catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public Movie getMovie(String id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie WHERE Id = ?");
+            statement.setString(1, id);
+            ResultSet results = statement.executeQuery();
+            results.next();
+            String title = results.getString(2);
+            String mpaaRating = results.getString(3);
+            int runtime = results.getInt(4);
+            String releaseDate = results.getString(5);
+            String synopsis = results.getString(6);
+            String image = results.getString(7);
+            return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
             return null;
         }
     }
@@ -100,6 +123,7 @@ public class Database {
             return rating;
         } 
         catch (SQLException ex) {
+            System.out.println(ex);
             return 0;
         }
     }
@@ -123,6 +147,7 @@ public class Database {
             return movies;
         } 
         catch (SQLException ex) {
+            System.out.println(ex);
             return null;
         }
     }
@@ -136,6 +161,7 @@ public class Database {
             return statement.executeQuery().next();
         } 
         catch (SQLException ex) {
+            System.out.println(ex);
             return false;
         }
     }
@@ -151,6 +177,7 @@ public class Database {
             return true;
         }
         catch (SQLException ex) {
+            System.out.println(ex);
             return false;
         }
     }
@@ -166,6 +193,7 @@ public class Database {
             return true;
         }
         catch (SQLException ex) {
+            System.out.println(ex);
             return false;
         }
     }

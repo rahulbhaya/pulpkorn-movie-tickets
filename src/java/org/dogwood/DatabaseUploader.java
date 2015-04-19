@@ -2,7 +2,6 @@ package org.dogwood;
 
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.List;
 import static org.dogwood.Dogwood.API_KEY;
 import static org.dogwood.Dogwood.BASE_URL;
 import org.json.simple.JSONArray;

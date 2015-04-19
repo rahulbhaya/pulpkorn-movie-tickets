@@ -20,8 +20,8 @@
                         String image = movie.image;
                 %>
                 <div class="movie-card">
-                    <a href="movie.jsp?MovieId=<%=id%>"><img src="<%=image%>"></a>
-                    <p><a href="movie.jsp?MovieId=<%=id%>"><%=title%></a></p>
+                    <a href="movie.jsp?Id=<%=id%>"><img src="<%=image%>"></a>
+                    <p><a href="movie.jsp?Id=<%=id%>"><%=title%></a></p>
                 </div>
                 <%
                     }

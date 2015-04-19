@@ -24,6 +24,7 @@
                         }
                         else {
                     %>
+                <li><a href="account.jsp">Account</a></li>
                 <li><a href="LogOut">Log Out</a></li>
                     <%
                         }

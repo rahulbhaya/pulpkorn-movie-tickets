@@ -1,5 +1,9 @@
+<%@page import="org.dogwood.Movie"%>
+<%@page import="org.dogwood.Database"%>
 <%
-    String movieId = request.getParameter("MovieId");
+    Database db = new Database();
+    Movie movie = db.getMovie(request.getParameter("Id"));
+    db.close();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,19 +13,16 @@
         <div class="container-fluid">
             <%@include file="navbar.jsp"%>
             <div class="jumbotron">
-                <div id="movie"></div>
+                <div id="movie">
+                    <h1><%=movie.title%></h1>
+                    <img src="<%=movie.image%>">
+                    <h2>Release Date: <%=movie.releaseDate%></h2>
+                    <h3>MPAA Rating: <%=movie.mpaaRating%></h3>
+                    <h4>Synopsis:</h4>
+                    <h5><%=movie.synopsis%></h5>
+                </div>
             </div>
         </div>
-        <script>
-            //Retrieve in theaters movies as a JSON using the Rotten Tomatoes API and append the results to a container div.
-            getMovieInfo(<%=movieId%>, function(movie) {
-                var container = $("#movie");
-                container.append($("<h1>").text(movie.title));
-                container.append($("<img>").attr("src", movie.posters.original));
-                container.append($("<h2>").text("Release Date: " + movie.release_dates.theater));
-                container.append($("<h3>").text("MPAA Rating: " + movie.mpaa_rating));
-                container.append($("<h4>").text("Synopsis: " + movie.synopsis));
-            });
-        </script>
+
     </body>
 </html>

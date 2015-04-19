@@ -19,11 +19,11 @@
                 <form action="LogIn" method="POST" role="form">
                     <div class="form-group">
                         <label for="Name">Username:</label>
-                        <input type="text" class="form-control" name="Name" placeholder="Enter username" required>
+                        <input class="form-control" name="Name" placeholder="Enter username" required type="text">
                     </div>
                     <div class="form-group">
                         <label for="Password">Password:</label>
-                        <input type="password" class="form-control" name="Password" placeholder="Enter password" required>
+                        <input class="form-control" name="Password" placeholder="Enter password" required type="password">
                     </div>
                     <button class="btn btn-default" type="submit">Submit</button>
                 </form>
