@@ -6,6 +6,9 @@
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a class="navbar-brand">Project Pulpkorn</a>
+    </div>
     <ul class="nav navbar-nav">
         <li><a href="index.jsp">Home</a><li>
         <li><a href="upcoming.jsp">Upcoming Movies</a></li>
@@ -34,7 +37,7 @@
     </ul>
     <form action="theaters.jsp" class="navbar-form pull-right" method="POST" role="search">
         <div class="input-group">
-			<input class="form-control" name="Near" placeholder="Search City, ZIP..." type="text">
+	    <input class="form-control" name="Near" placeholder="Search City, ZIP..." type="text">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </div>

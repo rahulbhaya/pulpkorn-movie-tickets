@@ -1,10 +1,14 @@
-<%@include file="security.jsp"%>
+<%
+    if (session.getAttribute("LogIn") == null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp"%>
     <body>
-	    <%@include file="navbar.jsp"%>
+	<%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron">
                 <h1>Your Account</h1>
@@ -29,13 +33,13 @@
                         <input class="form-control" name="CurrentPassword" placeholder="Enter current password" required type="password">
                     </div>
                     <div class="form-group">
-                        <label for="New Password">New Password:</label>
+                        <label for="NewPassword">New Password:</label>
                         <input class="form-control" name="NewPassword" placeholder="Enter new password" required type="password">
                     </div>
                     <button class="btn btn-default" type="submit">Submit</button>
                 </form>
             </div>
         </div>
-		<%@include file="material.jsp"%>
+	<%@include file="material.jsp"%>
     </body>
 </html>

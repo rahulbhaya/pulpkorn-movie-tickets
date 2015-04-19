@@ -1,10 +1,14 @@
-<%@include file="security.jsp"%>
+<%
+    if (session.getAttribute("LogIn") != null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp"%>
     <body>
-	    <%@include file="navbar.jsp"%>
+	<%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron" style="width:512px;height:340px;margin-left:auto;margin-right:auto;">
                 <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Join Pulpkorn today</h1>
@@ -29,6 +33,6 @@
                 </form>
             </div>
         </div>
-		<%@include file="material.jsp"%>
+	<%@include file="material.jsp"%>
     </body>
 </html>

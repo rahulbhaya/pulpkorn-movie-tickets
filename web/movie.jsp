@@ -10,7 +10,7 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
-		<%@include file="navbar.jsp"%>
+	<%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron">
                 <div id="movie">
@@ -20,11 +20,11 @@
                     <h3>MPAA Rating: <%=movie.mpaaRating%></h3>
                     <h4>Synopsis:</h4>
                     <h5><%=movie.synopsis%></h5>
-					<div class="rw-ui-container"></div>
+                    <div class="rw-ui-container"></div>
                 </div>
             </div>
         </div>
-                <script type="text/javascript">(function(d, t, e, m){
+        <script type="text/javascript">(function(d, t, e, m){
     
     // Async Rating-Widget initialization.
     window.RW_Async_Init = function(){
@@ -51,8 +51,9 @@
     rw.id = id; rw.async = true; rw.type = "text/javascript";
     rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
     s.parentNode.insertBefore(rw, s);
-    }(document, new Date(), "script", "rating-widget.com/"));</script>
+    }(document, new Date(), "script", "rating-widget.com/"));
+        </script>
 
-<%@include file="material.jsp"%>
+        <%@include file="material.jsp"%>
     </body>
 </html>

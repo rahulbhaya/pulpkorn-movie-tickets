@@ -11,7 +11,7 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
-	    <%@include file="navbar.jsp"%>
+	<%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron">
                 <h1>THEATERS NEAR <%=near%></h1>
@@ -20,14 +20,14 @@
                         for (MovieTheater theater : theaters) {
                     %>
                     <div class="row">
-                        <%
-                            out.println("<h2>" + theater.name + "</h2>");
-                            out.println("<address>" + theater.address + "</address>");
-                        %>
+                        <h2><%=theater.name%></h2>
+                        <address><%=theater.address%></address>
                         <ul class="list-group">
                             <%
                                 for (Showtime movie : theater.movies) {
-                                    out.println("<li class=\"list-group-item\">" + movie.name + " " + movie.timesToString() + "</li>");
+                            %>
+                            <li class="list-group-item"><%=movie.name%> <%=movie.timesToString()%></li>
+                            <%
                                 }
                             %>
                         </ul>
@@ -38,6 +38,6 @@
                 </div>
             </div>
         </div>
-		<%@include file="material.jsp"%>
+	<%@include file="material.jsp"%>
     </body>
 </html>
