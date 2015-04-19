@@ -1,6 +1,6 @@
+<%@page import="org.dogwood.Showtime"%>
 <%@page import="java.util.List"%>
 <%@page import="org.dogwood.Dogwood"%>
-<%@page import="org.dogwood.Movie"%>
 <%@page import="org.dogwood.MovieTheater"%>
 <%
     String near = request.getParameter("Near");
@@ -26,7 +26,7 @@
                         %>
                         <ul class="list-group">
                             <%
-                                for (Movie movie : theater.movies) {
+                                for (Showtime movie : theater.movies) {
                                     out.println("<li class=\"list-group-item\">" + movie.name + " " + movie.timesToString() + "</li>");
                                 }
                             %>

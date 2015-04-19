@@ -32,4 +32,12 @@
             </ul>
         </li>
     </ul>
+    <form action="theaters.jsp" class="navbar-form pull-right" method="POST" role="search">
+        <div class="input-group">
+            <input class=form-control" name="Near" placeholder="Search" type="text">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+    </form>
 </nav>

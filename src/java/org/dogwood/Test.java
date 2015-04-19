@@ -10,7 +10,8 @@ public class Test {
         for (Movie movie : movies) {
             System.out.println(movie.title);
         }*/
-        System.out.println(db.getMovie("771270966").title);
+        System.out.println(db.getMovieById("771270966").title);
+        System.out.println(db.getMovieByTitle("Furious 7").title);
         db.close();
     }
     
