@@ -52,14 +52,17 @@
                     <li>
                         <input id=visa name=cardtype type=radio />
                         <label for=visa>VISA</label>
+                        <img src="images/visa.jpg">
                     </li>
                     <li>
                         <input id=amex name=cardtype type=radio />
                         <label for=amex>AmEx</label>
+                        <img src="images/amex.jpg" >
                     </li>
                     <li>
                         <input id=mastercard name=cardtype type=radio />
                         <label for=mastercard>Mastercard</label>
+                        <img src="images/mastercard.jpg"  >
                     </li>
                 </ol>
             </fieldset>
