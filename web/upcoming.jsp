@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <%@include file="navbar.jsp"%>
             <div class="jumbotron">
-                <h1>UPCOMING MOVIES</h1>
+                <h1>Upcoming Movies</h1>
                 <div id="movies"></div>
                 <%
                     Database db = new Database();

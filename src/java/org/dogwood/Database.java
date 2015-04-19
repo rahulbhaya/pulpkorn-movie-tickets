@@ -55,6 +55,21 @@ public class Database {
         }
     }
     
+    public boolean changePassword(String name, String currentPassword, String newPassword) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE User SET Password = ? WHERE Name = ? AND Password = ?");
+            statement.setString(1, newPassword);
+            statement.setString(2, name);
+            statement.setString(3, currentPassword);
+            return statement.executeUpdate() == 1;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
     public List<Movie> getInTheatersMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(

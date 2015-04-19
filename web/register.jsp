@@ -6,7 +6,7 @@
     <body>
         <div class="container-fluid">
             <%@include file="navbar.jsp"%>
-            <div class="well">
+            <div class="jumbotron">
                 <h1>Register</h1>
                 <%
                     if (session.getAttribute("RegisterFail") != null) {

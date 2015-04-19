@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
 
-@WebServlet(name = "RateMovie", urlPatterns = {"/RateMovie"})
-public class RateMovie extends HttpServlet {
+@WebServlet(name = "ChangePassword", urlPatterns = {"/ChangePassword"})
+public class ChangePassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,16 +24,19 @@ public class RateMovie extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("LogIn");
-        String movieId = request.getParameter("MovieId");
-        String rating = request.getParameter("Rating");
-        if (userName == null || movieId == null || rating == null) {
+        String name = (String) session.getAttribute("LogIn");
+        String currentPassword = request.getParameter("CurrentPassword");
+        String newPassword = request.getParameter("NewPassword");
+        if (name == null || currentPassword == null || newPassword == null) {
             response.sendRedirect("index.jsp");
         }
-        else if (!new Database().rateMovie(userName, movieId, rating)) {
-            session.setAttribute("RateMovieFail", true);
+        else if (!new Database().changePassword(name, currentPassword, newPassword)) {
+            session.setAttribute("ChangePasswordFail", true);
         }
-        response.sendRedirect("movie.jsp?Id=" + movieId);
+        else {
+            session.setAttribute("ChangePasswordSuccess", true);
+            response.sendRedirect("account.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

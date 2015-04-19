@@ -2,7 +2,7 @@
 <%@page import="org.dogwood.Database"%>
 <%
     Database db = new Database();
-    Movie movie = db.getMovie(request.getParameter("Id"));
+    Movie movie = db.getMovieById(request.getParameter("Id"));
     db.close();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
