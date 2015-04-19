@@ -12,11 +12,23 @@ CREATE TABLE User(
     CHECK (Type = 'NORMAL' OR Type = 'ADMIN')
 );
 
+CREATE TABLE Movie(
+    Id VARCHAR(25),
+    Title VARCHAR(100) NOT NULL,
+    MPAARating VARCHAR(5) DEFAULT 'NR',
+    Runtime INT NOT NULL,
+    ReleaseDate DATE NOT NULL,
+    Synopsis TEXT NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
 CREATE TABLE MovieRating(
     UserName VARCHAR(25),
     MovieId VARCHAR(25),
     Rating INT NOT NULL,
     PRIMARY KEY (UserName, MovieId),
     FOREIGN KEY (UserName) REFERENCES User(Name),
+    FOREIGN KEY (MovieId) REFERENCES Movie(Id),
     CHECK (Rating >= 1 AND Rating <= 5)
 );

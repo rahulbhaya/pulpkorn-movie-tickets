@@ -1,29 +1,19 @@
 package org.dogwood;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Movie {
     
-    public final String name;
+    public final String id, title, mpaaRating, releaseDate, synopsis, image;
     
-    public final List<String> times;
+    public final int runtime;
     
-    public Movie(String name) {
-        this.name = name;
-        times = new ArrayList<>();
-    }
-    
-    public String timesToString() {
-        StringBuilder builder = new StringBuilder();
-        for (String time : times) {
-            builder.append("\"" + time + "\", ");
-        }
-        return builder.substring(0, builder.lastIndexOf(", "));
-    }
-    
-    public String toString() {
-        return "{\"name\":\"" + name + "\", \"times\":[" + timesToString() + "]}";
+    public Movie(String id, String title, String mpaaRating, int runtime, String releaseDate, String synopsis, String image) {
+        this.id = id;
+        this.title = title;
+        this.mpaaRating = mpaaRating;
+        this.runtime = runtime;
+        this.releaseDate = releaseDate;
+        this.synopsis = synopsis;
+        this.image = image;
     }
     
 }

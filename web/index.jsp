@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="org.dogwood.Database"%>
+<%@page import="org.dogwood.Movie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,22 +11,22 @@
             <div class="jumbotron">
                 <h1>NOW PLAYING</h1>
                 <div id="movies"></div>
+                <%
+                    Database db = new Database();
+                    List<Movie> movies = db.getInTheatersMovies();
+                    for (Movie movie : movies) {
+                        String id = movie.id;
+                        String title = movie.title;
+                        String image = movie.image;
+                %>
+                <div class="movie-card">
+                    <a href="movie.jsp?MovieId=<%=id%>"><img src="<%=image%>"></a>
+                    <p><a href="movie.jsp?MovieId=<%=id%>"><%=title%></a></p>
+                </div>
+                <%
+                    }
+                %>
             </div>
         </div>
-        <script>
-            //Retrieve in theaters movies as a JSON using the Rotten Tomatoes API and append the results to a container div.
-            getInTheatersMovies(function(data) {
-                var container = $("#movies");
-                var movies = data.movies;
-                for (var i in movies) {
-                    var movie = movies[i];
-                    var movieCard = $("<div>").addClass("movie-card");
-                    var movieImg = $("<img>").attr("src", movie.posters.original);
-                    var movieLink = $("<a>").attr("href", "movie.jsp?MovieId=" + movie.id);
-                    movieCard.append(movieLink.clone().append(movieImg)).append($("<p>").append(movieLink.text(movie.title)));
-                    container.append(movieCard);
-                }
-            });
-        </script>
     </body>
 </html>

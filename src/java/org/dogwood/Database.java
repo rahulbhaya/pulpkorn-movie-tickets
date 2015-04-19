@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+import org.json.simple.JSONObject;
 
 public class Database {
     
@@ -32,6 +35,48 @@ public class Database {
         }
     }
     
+    public boolean addMovie(JSONObject json) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO Movie VALUES(?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1, (String) json.get("id"));
+            statement.setString(2, (String) json.get("title"));
+            statement.setString(3, (String) json.get("mpaa_rating"));
+            statement.setInt(4, (int) (long) json.get("runtime"));
+            statement.setString(5, (String) ((JSONObject) json.get("release_dates")).get("theater"));
+            statement.setString(6, (String) json.get("synopsis"));
+            statement.setString(7, (String) ((JSONObject) json.get("posters")).get("thumbnail"));
+            statement.executeUpdate();
+            return true;
+        } 
+        catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public List<Movie> getInTheatersMovies() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie WHERE ReleaseDate <= CURDATE()");
+            ResultSet results = statement.executeQuery();
+            List<Movie> movies = new LinkedList<>();
+            while (results.next()) {
+                String id = results.getString(1);
+                String title = results.getString(2);
+                String mpaaRating = results.getString(3);
+                int runtime = results.getInt(4);
+                String releaseDate = results.getString(5);
+                String synopsis = results.getString(6);
+                String image = results.getString(7);
+                movies.add(new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image));
+            }
+            return movies;
+        } 
+        catch (SQLException ex) {
+            return null;
+        }
+    }
+    
     public double getMovieRating(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -56,6 +101,29 @@ public class Database {
         } 
         catch (SQLException ex) {
             return 0;
+        }
+    }
+    
+    public List<Movie> getUpcomingMovies() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie WHERE ReleaseDate > CURDATE()");
+            ResultSet results = statement.executeQuery();
+            List<Movie> movies = new LinkedList<>();
+            while (results.next()) {
+                String id = results.getString(1);
+                String title = results.getString(2);
+                String mpaaRating = results.getString(3);
+                int runtime = results.getInt(4);
+                String releaseDate = results.getString(5);
+                String synopsis = results.getString(6);
+                String image = results.getString(7);
+                movies.add(new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image));
+            }
+            return movies;
+        } 
+        catch (SQLException ex) {
+            return null;
         }
     }
     

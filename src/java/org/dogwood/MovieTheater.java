@@ -7,7 +7,7 @@ public class MovieTheater {
     
     public final String name, address;
     
-    public final List<Movie> movies;
+    public final List<Showtime> movies;
     
     public MovieTheater(String name, String address) {
         this.name = name;
