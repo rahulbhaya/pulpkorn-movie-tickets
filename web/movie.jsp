@@ -20,6 +20,7 @@
                     <h3>MPAA Rating: <%=movie.mpaaRating%></h3>
                     <h4>Synopsis:</h4>
                     <h5><%=movie.synopsis%></h5>
+					<div class="rw-ui-container"></div>
                 </div>
             </div>
         </div>
@@ -52,7 +53,6 @@
     s.parentNode.insertBefore(rw, s);
     }(document, new Date(), "script", "rating-widget.com/"));</script>
 
-<div class="rw-ui-container"></div>
 <%@include file="material.jsp"%>
     </body>
 </html>
