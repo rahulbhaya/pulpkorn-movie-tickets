@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONObject;
 
 public class Database {
@@ -195,6 +197,21 @@ public class Database {
         catch (SQLException ex) {
             System.out.println(ex);
             return false;
+        }
+    }
+    public String getTomatoesID(String name){
+         String id = "poop";
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT Id from movie WHERE Title = "+name);
+            ResultSet results = statement.executeQuery();
+            while(results.next()){
+                id=results.getString(1);
+            }
+            System.out.println(id);
+            return id;
+        } catch (SQLException ex) {
+            System.out.println(id);
+            return id;
         }
     }
     
