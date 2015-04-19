@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.simple.JSONObject;
 
 public class Database {
@@ -81,7 +79,7 @@ public class Database {
         }
     }
     
-    public Movie getMovie(String id) {
+    public Movie getMovieById(String id) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM Movie WHERE Id = ?");
@@ -89,6 +87,27 @@ public class Database {
             ResultSet results = statement.executeQuery();
             results.next();
             String title = results.getString(2);
+            String mpaaRating = results.getString(3);
+            int runtime = results.getInt(4);
+            String releaseDate = results.getString(5);
+            String synopsis = results.getString(6);
+            String image = results.getString(7);
+            return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public Movie getMovieByTitle(String title){
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie WHERE Title = ?");
+            statement.setString(1, title);
+            ResultSet results = statement.executeQuery();
+            results.next();
+            String id = results.getString(1);
             String mpaaRating = results.getString(3);
             int runtime = results.getInt(4);
             String releaseDate = results.getString(5);
@@ -197,21 +216,6 @@ public class Database {
         catch (SQLException ex) {
             System.out.println(ex);
             return false;
-        }
-    }
-    public String getTomatoesID(String name){
-         String id = "poop";
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT Id from movie WHERE Title = "+name);
-            ResultSet results = statement.executeQuery();
-            while(results.next()){
-                id=results.getString(1);
-            }
-            System.out.println(id);
-            return id;
-        } catch (SQLException ex) {
-            System.out.println(id);
-            return id;
         }
     }
     
