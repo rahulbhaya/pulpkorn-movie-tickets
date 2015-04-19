@@ -10,8 +10,8 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
+		<%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <%@include file="navbar.jsp"%>
             <div class="jumbotron">
                 <div id="movie">
                     <h1><%=movie.title%></h1>

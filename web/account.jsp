@@ -4,8 +4,8 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
+	    <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <%@include file="navbar.jsp"%>
             <div class="jumbotron">
                 <h1>Your Account</h1>
                 <h2>Change Password</h2>
