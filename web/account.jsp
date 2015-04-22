@@ -14,15 +14,17 @@
                 <h1>Your Account</h1>
                 <h2>Change Password</h2>
                 <%
-                    if (session.getAttribute("ChangePasswordSuccess") != null) {
+                    String changePassword = (String) session.getAttribute("ChangePasswordSuccess");
+                    if (changePassword != null) {
                 %>
-                <p class="bg-success">Successfully changed password!</p>
+                <p class="bg-success"><%=changePassword%></p>
                 <%
                         session.removeAttribute("ChangePasswordSuccess");
                     }
-                    else if (session.getAttribute("ChangePasswordFail") != null) {
+                    changePassword = (String) session.getAttribute("ChangePasswordFail");
+                    if (changePassword != null) {
                 %>
-                <p class="bg-danger">Incorrect password</p>
+                <p class="bg-danger"><%=changePassword%></p>
                 <%
                         session.removeAttribute("ChangePasswordFail");
                     }

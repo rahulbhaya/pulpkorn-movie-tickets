@@ -30,13 +30,13 @@ public class ChangePassword extends HttpServlet {
         if (name == null || currentPassword == null || newPassword == null) {
             response.sendRedirect("index.jsp");
         }
-        else if (!new Database().changePassword(name, currentPassword, newPassword)) {
-            session.setAttribute("ChangePasswordFail", true);
+        if (!new Database().changePassword(name, currentPassword, newPassword)) {
+            session.setAttribute("ChangePasswordFail", "Incorrect password.");
         }
         else {
-            session.setAttribute("ChangePasswordSuccess", true);
-            response.sendRedirect("account.jsp");
+            session.setAttribute("ChangePasswordSuccess", "Successfully changed password.");   
         }
+        response.sendRedirect("account.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
