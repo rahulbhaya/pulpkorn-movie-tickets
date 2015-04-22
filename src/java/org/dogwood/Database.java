@@ -188,17 +188,33 @@ public class Database {
         }
     }
     
-    public boolean logIn(String name, String password) {
+    /*
+    Returns:
+    - 0 if username doesn't exist in User table (failed logIn)
+    - 1 if password isn't correct (also failed logIn)
+    - 2 if something else fails (catchs SQLException)
+    - 3 if successful logIn
+    */
+    public int logIn(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM User WHERE Name = ?");
+            statement.setString(1, name);
+            if (!statement.executeQuery().next()) {
+                return 0;
+            }
+            statement = connection.prepareStatement(
                     "SELECT * FROM User WHERE Name = ? AND Password = ?");
             statement.setString(1, name);
             statement.setString(2, password);
-            return statement.executeQuery().next();
+            if (!statement.executeQuery().next()) {
+                return 1;
+            }
+            return 3;
         } 
         catch (SQLException ex) {
             System.out.println(ex);
-            return false;
+            return 2;
         }
     }
     

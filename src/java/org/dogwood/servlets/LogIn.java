@@ -24,13 +24,26 @@ public class LogIn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        if (session.getAttribute("LogIn") != null) {
+            response.sendRedirect("index.jsp");
+        }
         String name = request.getParameter("Name");
-        if (session.getAttribute("LogIn") == null && new Database().logIn(name, request.getParameter("Password"))) {
+        int logIn = new Database().logIn(name, request.getParameter("Password"));        
+        if (logIn == 3) {
             session.setAttribute("LogIn", name);
             response.sendRedirect("index.jsp");
         }
         else {
-            session.setAttribute("LogInFail", true);
+            switch (logIn) {
+                case 0:
+                    session.setAttribute("LogInFail", "Incorrect username.");
+                    break;
+                case 1:
+                    session.setAttribute("LogInFail", "Incorrect password.");
+                    break;
+                default:
+                    session.setAttribute("LogInFail", "Something went wrong.");
+            }
             response.sendRedirect("login.jsp");
         }
     }

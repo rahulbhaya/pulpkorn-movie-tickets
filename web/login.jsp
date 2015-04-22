@@ -13,9 +13,10 @@
             <div class="jumbotron" style="width:512px;height:340px;margin-left:auto;margin-right:auto;">
                 <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Log In</h1>
                 <%
-                    if (session.getAttribute("LogInFail") != null) {
+                    String logInFail = (String) session.getAttribute("LogInFail");
+                    if (logInFail != null) {
                 %>
-                <p class="bg-danger">Incorrect email or password</p>
+                <p class="bg-danger"><%=logInFail%></p>
                 <%
                         session.removeAttribute("LogInFail");
                     }
