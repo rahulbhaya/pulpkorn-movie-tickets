@@ -5,17 +5,21 @@
     <%@include file="header.jsp"%>
     <body>
 	<%@include file="navbar.jsp"%>
-        <div class="container-fluid">
+        <div class="container-fluid" horizontal="" center="" layout="" style="width: 768px;">
             <div class="jumbotron">
-                <div id="movie">
+                <div id="movie" horizontal="" center="" layout="">
                     <c:set var="movie" value="${sessionScope.MovieById}"/>
+                    <div style="max-width: 512px;margin-right: 50px;">
                     <h1><c:out value="${movie.title}"/></h1>
-                    <img src="<c:out value='${movie.image}'/>">
+                    <img src="<c:out value='${movie.image}'/>" style="width:100%;">
+                    </div>
+                    <div>
                     <h2>Release Date: <c:out value="${movie.releaseDate}"/></h2>
                     <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                     <h4>Synopsis:</h4>
                     <h5><c:out value="${movie.synopsis}"/></h5>
                     <div class="rw-ui-container"></div>
+                    </div>
                 </div>
             </div>
         </div>

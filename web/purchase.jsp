@@ -115,7 +115,7 @@
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                     </fieldset>
                     <fieldset>
-                         <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31; float:right;"></button>
                     </fieldset>
                     </div>
