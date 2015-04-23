@@ -186,7 +186,7 @@ a {
 }
 
 .movie-card{
-    display: block !important;position: relative;padding: 10px;max-width: 300px;font-weight: 300;
+    display: block !important;position: relative;padding: 10px;width: 320px;font-weight: 300;
 }
 
 .movie-card > a > img{
@@ -198,11 +198,11 @@ a {
 }
 
 .movie-card-inner>.h2{
-    max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
+    max-width: 320px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
 }
 
 .movie-card-inner>p{
-    max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
+    max-width: 320px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
 }
 
 .theater-card{
@@ -218,11 +218,11 @@ a {
 }
 
 .movie-card-inner>.h2{
-    max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
+    max-width: 320px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
 }
 
 .movie-card-inner>p{
-    max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
+    max-width: 320px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
 }
 
 .login-card{

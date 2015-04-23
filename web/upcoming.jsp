@@ -16,6 +16,11 @@
                             </a>
                             <div class="movie-card-inner">
                                 <div class="h2"><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
+                                <p>
+                                    Release Date: <c:out value="${movie.releaseDate}"/>
+                                    <br/>
+                                    MPAA Rating: <c:out value="${movie.mpaaRating}"/>
+                                </p>
                             </div>
                         </div>
                     </c:forEach>
