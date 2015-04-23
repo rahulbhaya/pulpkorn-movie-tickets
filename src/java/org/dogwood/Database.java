@@ -45,7 +45,9 @@ public class Database {
             statement.setInt(4, (int) (long) json.get("runtime"));
             statement.setString(5, (String) ((JSONObject) json.get("release_dates")).get("theater"));
             statement.setString(6, (String) json.get("synopsis"));
-            statement.setString(7, (String) ((JSONObject) json.get("posters")).get("thumbnail"));
+            String thumbnail = (String) ((JSONObject) json.get("posters")).get("thumbnail");
+            String poster = "http://content6.flixster.com"+thumbnail.substring(thumbnail.indexOf("/movie/"));
+            statement.setString(7, poster);
             statement.executeUpdate();
             return true;
         } 
