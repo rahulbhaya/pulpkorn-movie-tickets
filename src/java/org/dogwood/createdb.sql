@@ -19,8 +19,8 @@ CREATE TABLE User(
 CREATE TABLE Movie(
     Id VARCHAR(25),
     Title VARCHAR(100) NOT NULL,
-    MPAARating VARCHAR(5) DEFAULT 'NR',
-    Runtime INT NOT NULL,
+    MPAARating VARCHAR(7) DEFAULT 'Unrated',
+    Runtime VARCHAR(3) NOT NULL,
     ReleaseDate DATE NOT NULL,
     Synopsis TEXT NOT NULL,
     Image TEXT NOT NULL,

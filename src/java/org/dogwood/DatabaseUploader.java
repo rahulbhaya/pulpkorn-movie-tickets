@@ -23,7 +23,7 @@ public class DatabaseUploader {
             }
         } 
         catch (Exception ex) {
-            System.out.println("Failed uploading of in theaters movies.");
+            ex.printStackTrace();
         }
         try {
             url = new URL(BASE_URL + "/lists/movies/upcoming.json?apikey=" + API_KEY);
@@ -34,7 +34,7 @@ public class DatabaseUploader {
             }
         }
         catch (Exception ex) {
-            System.out.println("Failed uploading of upcoming movies.");
+            ex.printStackTrace();
         }
     }
     

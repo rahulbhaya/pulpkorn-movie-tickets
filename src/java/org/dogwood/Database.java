@@ -42,11 +42,18 @@ public class Database {
             statement.setString(1, (String) json.get("id"));
             statement.setString(2, (String) json.get("title"));
             statement.setString(3, (String) json.get("mpaa_rating"));
-            statement.setInt(4, (int) (long) json.get("runtime"));
+            statement.setString(4, json.get("runtime").toString());
             statement.setString(5, (String) ((JSONObject) json.get("release_dates")).get("theater"));
             statement.setString(6, (String) json.get("synopsis"));
             String thumbnail = (String) ((JSONObject) json.get("posters")).get("thumbnail");
-            String poster = "http://content6.flixster.com"+thumbnail.substring(thumbnail.indexOf("/movie/"));
+            int index = thumbnail.indexOf("/movie/");
+            String poster;
+            if (index == -1) {
+                poster = "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif";
+            }
+            else {
+                poster = "http://content6.flixster.com" + thumbnail.substring(index);
+            }
             statement.setString(7, poster);
             statement.executeUpdate();
             return true;
