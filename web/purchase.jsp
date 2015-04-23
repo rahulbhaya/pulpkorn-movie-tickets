@@ -68,9 +68,10 @@
                     </div>
                 </form>
                 <div class="form-group">
-                    <filedset>
+                    <div horizontal center layout>
+                        <div flex></div>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-trending-neutral login-submit-btn" onclick="nextStep();"></button>
-                    </filedset>
+                    </div>
                 </div>
             </div>
             <div id="card-info" class="jumbotron" style="display: none;">
@@ -110,12 +111,25 @@
                     <div class="form-group">
                         <fieldset>
                             <h1 class="payment-info-h1">Payment method</h1>
-                            <label for="cardnumber">Card Number</label>
-                            <input id="cardnumber" class="form-control" name="cardnumber" type="number" required pattern="[0-9]{16}"/>
-                            <label for="secure">Security Code</label>
-                            <input id="secure" class="form-control" name="secure" type="number" required pattern="[0-9]{3}([0-9])*">
-                            <label for="namecard">Name on Card</label>
-                            <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
+                            <span>
+                                <label for="cardnumber">Card Number</label>
+                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required pattern="[0-9]{16}"/>
+                            </span>
+                            <span>
+                                <label for="expdate">Expiration Date</label>
+                                <div style="display:flex;">
+                                    <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" required pattern="((1[01])|[1-9])"/>
+                                    <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" required pattern="[0-9]{2}"/>
+                                </div>
+                            </span>
+                            <span>
+                                <label for="secure">Security Code (CVV)</label>
+                                <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" required pattern="[0-9]{3}([0-9])*"/>
+                            </span>
+                            <span>
+                                <label for="namecard">Name on Card</label>
+                                <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
+                            </span>
                         </fieldset>
                         <fieldset>
                             <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
