@@ -4,7 +4,7 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
-	<%@include file="navbar.jsp"%>
+        <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron">
                 <h1>Theaters Near <c:out value="${param.Near}"/></h1>
@@ -27,6 +27,6 @@
                 </div>
             </div>
         </div>
-	<%@include file="material.jsp"%>
+        <%@include file="material.jsp"%>
     </body>
 </html>

@@ -7,10 +7,10 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
-	<%@include file="navbar.jsp"%>
+        <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <div class="jumbotron" style="width:512px;height:340px;margin-left:auto;margin-right:auto;">
-                <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Log In</h1>
+            <div class="jumbotron login-card">
+                <h1>Log In</h1>
                 <c:set var="logInFail" value="${sessionScope.LogInFail}"/>
                 <c:if test="${logInFail != null}">
                     <p class="bg-danger"><c:out value="${logInFail}"/></p>
@@ -25,10 +25,10 @@
                         <label for="Password">Password</label>
                         <input class="form-control" name="Password" placeholder="Password" required type="password">
                     </div>
-                    <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;float:right;"></button>
+                    <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                 </form>
             </div>
         </div>
-	<%@include file="material.jsp"%>
+        <%@include file="material.jsp"%>
     </body>
 </html>
