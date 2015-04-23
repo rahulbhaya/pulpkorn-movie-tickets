@@ -7,6 +7,10 @@ USE dogwood;
 CREATE TABLE User(
     Name VARCHAR(25),
     Password VARCHAR(25) NOT NULL,
+    CardType VARCHAR(25),
+    CardNumber VARCHAR(16),
+    SecurityCode VARCHAR(4),
+    CardName VARCHAR(25),
     Type VARCHAR(25) DEFAULT 'NORMAL',
     PRIMARY KEY (Name),
     CHECK (Type = 'NORMAL' OR Type = 'ADMIN')

@@ -249,5 +249,20 @@ public class Database {
             return false;
         }
     }
+    public boolean saveCardInfo(String cardType, String cardNumber, String securityCode, String cardName, String acctName){
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE User SET CardType=?, CardNumber=?, SecurityCode=?,"
+                    + " CardName=? WHERE Name=?");
+            statement.setString(1, cardType);
+            statement.setString(2, cardNumber);
+            statement.setString(3, securityCode);
+            statement.setString(4, cardName);
+            statement.setString(5, acctName);
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
     
 }

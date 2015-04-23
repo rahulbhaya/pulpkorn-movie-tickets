@@ -35,7 +35,7 @@
                 </form>
             </div>
         </div> 
-        <form id=payment>
+        <form id=payment method="post" action="SaveCardInfo">
             <fieldset>
                 <legend>Card Details</legend>
                 <ol>
