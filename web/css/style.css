@@ -189,7 +189,7 @@ a {
     display: block !important;position: relative;padding: 10px;max-width: 300px;font-weight: 300;
 }
 
-.movie-card > img{
+.movie-card > a > img{
     width: 100%;
 }
 
