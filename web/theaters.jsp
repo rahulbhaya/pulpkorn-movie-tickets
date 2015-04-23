@@ -7,7 +7,7 @@
 	<%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="jumbotron">
-                <h1>THEATERS NEAR <c:out value="${requestScope.Near}"/></h1>
+                <h1>Theaters Near <c:out value="${param.Near}"/></h1>
                 <div id="theaters">
                     <c:forEach var="theater" items="${sessionScope.TheatersNear}">
                         <div class="row">
