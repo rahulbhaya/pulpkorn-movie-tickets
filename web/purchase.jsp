@@ -30,7 +30,6 @@
                     <div class="form-group">
                         <label>Senior Tickets:</label>
                         <select class="form-control">
-                        <select class="form-control">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -48,7 +47,6 @@
                     </div>
                     <div class="form-group">
                         <label>Child Tickets:</label>
-                        <select class="form-control">
                         <select class="form-control">
                             <option>1</option>
                             <option>2</option>
@@ -68,7 +66,7 @@
                 </form>
                 <div class="form-group">
                                     <filedset>
-                     <button class="btn btn-danger btn-fab btn-raised mdi-action-done" style="background-color: #d23f31;float:right;" onclick="nextStep();"></button>
+                     <button class="btn btn-danger btn-fab btn-raised mdi-action-trending-neutral" style="background-color: #d23f31;float:right;" onclick="nextStep();"></button>
                     </filedset>
                     </div>
             </div>
@@ -117,7 +115,7 @@
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                     </fieldset>
                     <fieldset>
-                         <button class="btn btn-fab btn-raised mdi-action-done" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
+                         <button class="btn btn-fab btn-raised mdi-hardware-keyboard-backspace" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31; float:right;"></button>
                     </fieldset>
                     </div>
