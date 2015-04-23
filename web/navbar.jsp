@@ -18,7 +18,7 @@
                 <c:out value="${name}"/>
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" style="font-size: 1em;">
                 <c:choose>
                     <c:when test="${name == 'Guest'}">
                         <li><a href="login.jsp">Log In</a></li>
@@ -34,7 +34,7 @@
     </ul>
     <form action="GetTheatersNear" class="navbar-form pull-right" method="POST" role="search">
         <div class="input-group">
-	    <input class="form-control" name="Near" placeholder="Search City, ZIP..." type="text">
+	    <input class="form-control" name="Near" placeholder="Search City, ZIP..." type="text" style="font-size: 1.6rem;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </div>
