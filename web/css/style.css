@@ -1,4 +1,4 @@
-.jumbotron, main {
+.jumbotron, .main {
     margin-top: 2160px;
     -webkit-transition: margin 0.318s ease-in-out, opacity 0s ease-in;
     transition: margin 0.318s ease-in-out, opacity 0s ease-in;

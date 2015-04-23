@@ -7,6 +7,8 @@
 		setTimeout(function () {
 			$(".jumbotron").css("opacity", "1");
 			$(".jumbotron").css("margin-top", "0");
+                        $(".main").css("opacity", "1");
+			$(".main").css("margin-top", "0");
 		}, 500);
     });
 </script>
