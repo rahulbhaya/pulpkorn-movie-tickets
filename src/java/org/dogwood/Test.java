@@ -10,8 +10,8 @@ public class Test {
         for (Movie movie : movies) {
             System.out.println(movie.title);
         }*/
-        System.out.println(db.getMovieById("771270966").title);
-        System.out.println(db.getMovieByTitle("Furious 7").title);
+        System.out.println(db.getMovieById("771270966").getTitle());
+        System.out.println(db.getMovieByTitle("Furious 7").getTitle());
         System.out.println(db.changePassword("Test", "Test", "Test"));
         db.close();
     }

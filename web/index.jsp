@@ -1,12 +1,5 @@
-<%@page import="java.util.List"%>
-<%@page import="org.dogwood.Database"%>
-<%@page import="org.dogwood.Movie"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    Database db = new Database();
-    List<Movie> movies = db.getInTheatersMovies();
-    db.close();
-%>
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp"%>
@@ -16,16 +9,12 @@
             <div class="jumbotron">
                 <h1>Now Playing</h1>
                 <div id="movies">
-                    <%
-                        for (Movie movie : movies) {
-                    %>
-                    <div class="movie-card">
-                        <a href="movie.jsp?Id=<%=movie.id%>"><img src="<%=movie.image%>"></a>
-                        <p><a href="movie.jsp?Id=<%=movie.id%>"><%=movie.title%></a></p>
-                    </div>
-                    <%
-                        }
-                    %>
+                    <c:forEach var="movie" items="${sessionScope.InTheatersMovies}">
+                        <div class="movie-card">
+                            <a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><img src="<c:out value='${movie.image}'/>"></a>
+                            <p><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></p>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

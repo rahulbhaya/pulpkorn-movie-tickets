@@ -1,8 +1,6 @@
-<%
-    if (session.getAttribute("LogIn") != null) {
-        response.sendRedirect("index.jsp");
-    }
-%>
+<c:if test="${sessionScope.LogIn != null}">
+    <c:redirect url="GetInTheatersMovies"/>
+</c:if>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,14 +10,11 @@
         <div class="container-fluid">
             <div class="jumbotron" style="width:512px;height:340px;margin-left:auto;margin-right:auto;">
                 <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Join Pulpkorn today</h1>
-                <%
-                    if (session.getAttribute("RegisterFail") != null) {
-                %>
-                <p class="bg-danger">Username was either entered incorrectly or it already exists</p>
-                <%
-                        session.removeAttribute("RegisterFail");
-                    }
-                %>
+                <c:set var="registerFail" value="${sessionScope.RegisterFail}"/>
+                <c:if test="${registerFail != null}">
+                    <p class="bg-danger"><c:out value="${registerFail}"/></p>
+                </c:if>
+                <c:remove var="RegisterFail" scope="session"/>
                 <form action="Register" method="POST" role="form">
                     <div class="form-group">
                         <label for="Name">Email address</label>

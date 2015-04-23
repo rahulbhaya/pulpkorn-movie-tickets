@@ -1,10 +1,4 @@
-<%@page import="org.dogwood.Movie"%>
-<%@page import="org.dogwood.Database"%>
-<%
-    Database db = new Database();
-    Movie movie = db.getMovieById(request.getParameter("Id"));
-    db.close();
-%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,12 +8,13 @@
         <div class="container-fluid">
             <div class="jumbotron">
                 <div id="movie">
-                    <h1><%=movie.title%></h1>
-                    <img src="<%=movie.image%>">
-                    <h2>Release Date: <%=movie.releaseDate%></h2>
-                    <h3>MPAA Rating: <%=movie.mpaaRating%></h3>
+                    <c:set var="movie" value="${sessionScope.MovieById}"/>
+                    <h1><c:out value="${movie.title}"/></h1>
+                    <img src="<c:out value='${movie.image}'/>">
+                    <h2>Release Date: <c:out value="${movie.releaseDate}"/></h2>
+                    <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                     <h4>Synopsis:</h4>
-                    <h5><%=movie.synopsis%></h5>
+                    <h5><c:out value="${movie.synopsis}"/></h5>
                     <div class="rw-ui-container"></div>
                 </div>
             </div>

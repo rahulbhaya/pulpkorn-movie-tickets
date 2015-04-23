@@ -1,13 +1,16 @@
 package org.dogwood;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieTheater {
+public class MovieTheater implements Serializable {
     
-    public final String name, address;
+    private String name, address;
     
-    public final List<Showtime> movies;
+    private List<Showtime> movies;
+    
+    public MovieTheater() {}
     
     public MovieTheater(String name, String address) {
         this.name = name;
@@ -17,6 +20,30 @@ public class MovieTheater {
     
     public String toString() {
         return "{\"name\":\"" + name + "\", \"address\":\"" + address + "\", \"movies\":" + movies + "}";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Showtime> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Showtime> movies) {
+        this.movies = movies;
     }
     
 }

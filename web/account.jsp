@@ -1,8 +1,7 @@
-<%
-    if (session.getAttribute("LogIn") == null) {
-        response.sendRedirect("index.jsp");
-    }
-%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${sessionScope.LogIn == null}">
+    <c:redirect url="GetInTheatersMovies"/>
+</c:if>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,22 +12,16 @@
             <div class="jumbotron">
                 <h1>Your Account</h1>
                 <h2>Change Password</h2>
-                <%
-                    String changePassword = (String) session.getAttribute("ChangePasswordSuccess");
-                    if (changePassword != null) {
-                %>
-                <p class="bg-success"><%=changePassword%></p>
-                <%
-                        session.removeAttribute("ChangePasswordSuccess");
-                    }
-                    changePassword = (String) session.getAttribute("ChangePasswordFail");
-                    if (changePassword != null) {
-                %>
-                <p class="bg-danger"><%=changePassword%></p>
-                <%
-                        session.removeAttribute("ChangePasswordFail");
-                    }
-                %>
+                <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
+                <c:if test="${changePassword != null}">
+                    <p class="bg-success"><c:out value="${changePassword}"/></p>
+                </c:if>
+                <c:set var="changePassword" value="${sessionScope.ChangePasswordFail}"/>
+                <c:if test="${changePassword != null}">
+                    <p class="bg-danger"><c:out value="${changePassword}"/></p>
+                </c:if>
+                <c:remove var="ChangePasswordSuccess" scope="session"/>
+                <c:remove var="ChangePasswordFail" scope="session"/>
                 <form action="ChangePassword" method="POST" role="form">
                     <div class="form-group">
                         <label for="CurrentPassword">Current Password:</label>
@@ -41,52 +34,51 @@
                     <button class="btn btn-default" type="submit">Submit</button>
                 </form>
             </div>
-        </div>
-           
-       <form id=payment>
-    <fieldset>
-        <legend>Card Details</legend>
-        <ol>
-            <li>
+        </div> 
+        <form id=payment>
             <fieldset>
-                <legend>Card Type</legend>
+                <legend>Card Details</legend>
                 <ol>
                     <li>
-                        <input id=visa name=cardtype type=radio />
-                        <label for=visa>VISA</label>
-                        <img src="images/visa.jpg">
+                        <fieldset>
+                            <legend>Card Type</legend>
+                            <ol>
+                                <li>
+                                    <input id=visa name=cardtype type=radio />
+                                    <label for=visa>VISA</label>
+                                    <img src="images/visa.jpg">
+                                </li>
+                                <li>
+                                    <input id=amex name=cardtype type=radio />
+                                    <label for=amex>AmEx</label>
+                                    <img src="images/amex.jpg" >
+                                </li>
+                                <li>
+                                    <input id=mastercard name=cardtype type=radio />
+                                    <label for=mastercard>Mastercard</label>
+                                    <img src="images/mastercard.jpg"  >
+                                </li>
+                            </ol>
+                        </fieldset>
                     </li>
                     <li>
-                        <input id=amex name=cardtype type=radio />
-                        <label for=amex>AmEx</label>
-                        <img src="images/amex.jpg" >
+                        <label for=cardnumber>Card Number</label>
+                        <input id=cardnumber name=cardnumber type=number required />
                     </li>
                     <li>
-                        <input id=mastercard name=cardtype type=radio />
-                        <label for=mastercard>Mastercard</label>
-                        <img src="images/mastercard.jpg"  >
+                        <label for=secure>Security Code</label>
+                        <input id=secure name=secure type=number required />
+                    </li>
+                    <li>
+                        <label for=namecard>Name on Card</label>
+                        <input id=namecard name=namecard type=text placeholder="Exact name as on the card" required />
                     </li>
                 </ol>
             </fieldset>
-            </li>
-            <li>
-                <label for=cardnumber>Card Number</label>
-                <input id=cardnumber name=cardnumber type=number required />
-            </li>
-            <li>
-                <label for=secure>Security Code</label>
-                <input id=secure name=secure type=number required />
-            </li>
-            <li>
-                <label for=namecard>Name on Card</label>
-                <input id=namecard name=namecard type=text placeholder="Exact name as on the card" required />
-            </li>
-        </ol>
-    </fieldset>
-    <fieldset>
-        <button type=submit>Submit </button>
-    </fieldset>
-</form>
+            <fieldset>
+                <button type=submit>Submit </button>
+            </fieldset>
+        </form>
 	<%@include file="material.jsp"%>
     </body>
 </html>

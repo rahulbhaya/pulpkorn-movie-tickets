@@ -1,13 +1,16 @@
 package org.dogwood;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Showtime {
+public class Showtime implements Serializable {
     
-    public final String name;
+    private String name;
     
-    public final List<String> times;
+    private List<String> times;
+    
+    public Showtime() {}
     
     public Showtime(String name) {
         this.name = name;
@@ -24,6 +27,22 @@ public class Showtime {
     
     public String toString() {
         return "{\"name\":\"" + name + "\", \"times\":[" + timesToString() + "]}";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getTimes() {
+        return times;
+    }
+
+    public void setTimes(List<String> times) {
+        this.times = times;
     }
     
 }

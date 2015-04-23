@@ -28,9 +28,9 @@ public class Dogwood {
                 for (Element movie : theater.select(".showtimes .movie")) {
                     Showtime m = new Showtime(movie.select("div.name").text());
                     for (Element time : movie.select(".times > span")) {
-                        m.times.add(time.text());
+                        m.getTimes().add(time.text());
                     }
-                    mt.movies.add(m);
+                    mt.getMovies().add(m);
                 }
                 theaterList.add(mt);
             }
