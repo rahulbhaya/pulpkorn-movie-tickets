@@ -1,15 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<nav class="navbar navbar-default" style="
-    background-image: url('images/Banner.png');    background-size: cover;    min-height: 120px;    transition: all 0.18s ease-in;
-">
-    <div class="navbar-header" style="margin: 8px 8px;">
-        <img id="site-logo" class="shake" src="images/Logo_icon.png" style="height: 120px; margin-right: 25px; display: inline-block;">
+<nav class="navbar navbar-default nav-with-logo" style="background-image: url('images/Banner.png');">
+    <div class="navbar-header nav-header-logo">
+        <img id="site-logo" class="shake" src="images/Logo_icon.png">
     </div>
-    <ul class="nav navbar-nav" style="margin: 8px 8px;">
-        <h1 style="margin: 0;display: block;font-size: 2em;-webkit-margin-before: 0.67em;-webkit-margin-after: 0.67em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;font-weight: bold;">Pulpkorn</h1>
-        <li style="font-size: 1.6em;"><a href="GetInTheatersMovies">Home</a><li>
-        <li style="font-size: 1.6em;"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
-        <li class="dropdown" style="font-size: 1.6em;">
+    <ul class="nav navbar-nav">
+        <h1>Pulpkorn</h1>
+        <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
+        <li class="nav-list-item"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
+        <li class="dropdown nav-list-item">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <c:set var="name" value="${sessionScope.LogIn}"/>
                 <c:if test="${name == null}">
@@ -18,7 +16,7 @@
                 <c:out value="${name}"/>
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu" style="font-size: 1em;">
+            <ul class="dropdown-menu nav-drop-down" role="menu">
                 <c:choose>
                     <c:when test="${name == 'Guest'}">
                         <li><a href="login.jsp">Log In</a></li>
@@ -34,7 +32,7 @@
     </ul>
     <form action="GetTheatersNear" class="navbar-form pull-right" method="POST" role="search">
         <div class="input-group">
-	    <input class="form-control" name="Near" placeholder="Search City, ZIP..." type="text" style="font-size: 1.6rem;">
+            <input class="form-control nav-list-item" name="Near" placeholder="Search City, ZIP..." type="text">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </div>

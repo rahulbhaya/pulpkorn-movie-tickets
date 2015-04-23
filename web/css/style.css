@@ -22,24 +22,6 @@ img {
     transition: margin 0.318s ease-in-out, opacity 0s ease-in;
 }
 
-.movie-card {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 50px;
-    width: 200px;
-}
-
-.movie-card img {
-    display: block;
-}
-
-.movie-card p {
-    background-color: white;
-    font-size: 20px;
-    margin: 0;
-}
-
 .card-header {
     margin-bottom: 10px;
 }
@@ -185,4 +167,104 @@ a {
     transform-origin: 50% 50%;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+.account-card-h1{
+    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+}
+
+.account-card-h2{
+    font-size: 1.2em;font-weight: lighter;
+}
+
+.account-card-main{
+    width:550px;
+}
+
+.submit-button{
+    background-color: #d23f31;
+}
+
+.movie-card{
+    display: block !important;position: relative;padding: 10px;max-width: 300px;font-weight: 300;
+}
+
+.movie-card > img{
+    width: 100%;
+}
+
+.movie-card-inner{
+    background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;
+}
+
+.movie-card-inner>.h2{
+    max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
+}
+
+.movie-card-inner>p{
+    max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
+}
+
+.login-card{
+    width:512px;height:340px;margin-left:auto;margin-right:auto;
+}
+
+.login-card>h1{
+    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+}
+
+.login-submit-btn{
+    background-color: #d23f31;float:right;
+}
+
+.movie-detail-container{
+    width: 768px;
+}
+
+.movie-detail-card{
+    max-width: 512px;margin-right: 50px;
+}
+
+.movie-detail-card>img{
+    width: 100%;
+}
+
+.nav-with-logo{
+    background-size: cover;    min-height: 120px;    transition: all 0.18s ease-in;
+}
+
+.nav-header-logo, .nav.navbar-nav{
+    margin: 8px 8px;
+}
+
+.nav-header-logo>img{
+    height: 120px; margin-right: 25px; display: inline-block;
+}
+
+.nav-list-item{
+    font-size: 1.6em;
+}
+
+.nav.navbar-nav>h1{
+    margin: 0;display: block;font-size: 2em;-webkit-margin-before: 0.67em;-webkit-margin-after: 0.67em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;font-weight: bold;
+}
+
+.nav-drop-down{
+    font-size: 1em;
+}
+
+#ticket-info, #card-info{
+    width:512px;margin-left:auto;margin-right:auto;
+}
+
+#ticket-info>h1, #card-info>h1{
+    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+}
+
+.payment-info-h1{
+    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+}
+
+.payment-goback-btn{
+    background-color: #d23f31; float:left;
 }
