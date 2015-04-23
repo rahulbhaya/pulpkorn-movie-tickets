@@ -14,6 +14,13 @@
                         <select class="form-control">
                             <option>1</option>
                             <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
                         </select>
                         <span> x </span>
                         <span class="cost">$19.50</span>
@@ -23,8 +30,16 @@
                     <div class="form-group">
                         <label>Senior Tickets:</label>
                         <select class="form-control">
+                        <select class="form-control">
                             <option>1</option>
                             <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
                         </select>
                         <span> x </span>
                         <span class="cost">$16.50</span>
@@ -34,8 +49,16 @@
                     <div class="form-group">
                         <label>Child Tickets:</label>
                         <select class="form-control">
+                        <select class="form-control">
                             <option>1</option>
                             <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
                         </select>
                         <span> x </span>
                         <span class="cost">$16.50</span>
