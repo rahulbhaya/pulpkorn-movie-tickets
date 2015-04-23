@@ -5,7 +5,7 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <div class="container-fluid" horizontal center layout>
+        <div class="container-fluid movie-detail-container" horizontal center layout>
             <div class="jumbotron">
                 <div id="movie" horizontal center layout>
                     <c:set var="movie" value="${sessionScope.MovieById}"/>

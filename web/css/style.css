@@ -170,11 +170,11 @@ a {
 }
 
 .account-card-h1{
-    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+    font-size: 1.5em !important;color: #00BCD4 !important;font-weight: lighter;
 }
 
 .account-card-h2{
-    font-size: 1.2em;font-weight: lighter;
+    font-size: 1.2em !important;font-weight: lighter;
 }
 
 .account-card-main{
@@ -182,7 +182,7 @@ a {
 }
 
 .submit-button{
-    background-color: #d23f31;
+    background-color: #d23f31 !important;
 }
 
 .movie-card{
@@ -205,16 +205,36 @@ a {
     max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
 }
 
+.theater-card{
+    display: block !important;position: relative;padding: 10px;width: 768px;font-weight: 300;
+}
+
+.theater-card > img{
+    width: 100%;
+}
+
+.movie-card-inner{
+    background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;
+}
+
+.movie-card-inner>.h2{
+    max-width: 300px;margin-left: auto;margin-right: auto;padding-left: 10px;margin-top:0px;padding-right: 10px;font-weight: 300;
+}
+
+.movie-card-inner>p{
+    max-width: 300px;margin-left: auto;margin-right: auto;line-height: 1.6;padding-left: 10px;  padding-right: 10px;
+}
+
 .login-card{
     width:512px;height:340px;margin-left:auto;margin-right:auto;
 }
 
 .login-card>h1{
-    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+    font-size: 1.5em !important;color: #00BCD4 !important;font-weight: lighter;
 }
 
 .login-submit-btn{
-    background-color: #d23f31;float:right;
+    background-color: #d23f31 !important;float:right;
 }
 
 .movie-detail-container{
@@ -258,13 +278,13 @@ a {
 }
 
 #ticket-info>h1, #card-info>h1{
-    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+    font-size: 1.5em !important;color: #00BCD4 !important;font-weight: lighter;
 }
 
 .payment-info-h1{
-    font-size: 1.5em;color: #00BCD4;font-weight: lighter;
+    font-size: 1.5em !important;color: #00BCD4 !important;font-weight: lighter;
 }
 
 .payment-goback-btn{
-    background-color: #d23f31; float:left;
+    background-color: #d23f31 !important; float:left;
 }

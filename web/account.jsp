@@ -37,7 +37,7 @@
                     </div>
                 </form>
             </div>
-            <div class="jumbotron" class="account-card-main">
+            <div class="jumbotron account-card-main">
                 <form id="payment" method="post" action="SaveCardInfo">
                     <fieldset>
                         <div class="form-group">
