@@ -49,7 +49,7 @@ CREATE TABLE Purchase(
     Adults INT NOT NULL,
     Children INT NOT NULL,
     Seniors INT NOT NULL,
-    PRIMARY KEY(UserName, MovieId, Theater)
+    PRIMARY KEY(UserName, MovieId, Theater),
     FOREIGN KEY(UserName) REFERENCES User(Name),
     FOREIGN KEY(MovieId) REFERENCES Movie(Id)
 );
