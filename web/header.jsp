@@ -2,6 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Project Pulpkorn</title>
+    <link rel="import" href="layout.html">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/roboto.min.css" rel="stylesheet">
     <link href="css/material.min.css" rel="stylesheet">

@@ -1,4 +1,4 @@
-.jumbotron {
+.jumbotron, main {
     margin-top: 2160px;
     -webkit-transition: margin 0.318s ease-in-out, opacity 0s ease-in;
     transition: margin 0.318s ease-in-out, opacity 0s ease-in;
@@ -20,4 +20,18 @@
     background-color: white;
     font-size: 20px;
     margin: 0;
+}
+
+.card-header {
+    margin-bottom: 10px;
+}
+
+.card-header ::content h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+.card-header ::content img {
+    width: 100%;
 }
