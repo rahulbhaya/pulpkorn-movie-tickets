@@ -8,10 +8,10 @@
     <%@include file="header.jsp"%>
     <body>
 	<%@include file="navbar.jsp"%>
-        <div class="container-fluid">
-            <div class="jumbotron">
-                <h1>Your Account</h1>
-                <h2>Change Password</h2>
+        <div class="container-fluid" layout="" vertical="" center="">
+            <div class="jumbotron" style="width:550px;">
+                <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Your Account</h1>
+                <h2 style="font-size: 1.2em;font-weight: lighter;">Change Password</h2>
                 <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
                 <c:if test="${changePassword != null}">
                     <p class="bg-success"><c:out value="${changePassword}"/></p>
@@ -31,54 +31,65 @@
                         <label for="NewPassword">New Password:</label>
                         <input class="form-control" name="NewPassword" placeholder="Enter new password" required type="password">
                     </div>
-                    <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;"></button>
+                    <div horizontal center layout>
+                        <div flex></div>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;"></button>
+                    </div>
                 </form>
-
             </div>
-            <div class="jumbotron">
+            <div class="jumbotron" style="width:550px;">
                 <form id="payment" method="post" action="SaveCardInfo">
                     <fieldset>
-                        <legend>Card Details</legend>
-                        <ol>
-                            <li>
-                                <fieldset>
-                                    <legend>Card Type</legend>
-                                    <ol>
-                                        <li>
-                                            <input id="visa" name="cardtype" type="radio" />
-                                            <label for="visa">VISA</label>
-                                            <img src="images/visa.jpg">
-                                        </li>
-                                        <li>
-                                            <input id="amex" name="cardtype" type="radio" />
-                                            <label for="amex">AmEx</label>
-                                            <img src="images/amex.jpg" >
-                                        </li>
-                                        <li>
-                                            <input id="mastercard" name="cardtype" type="radio" />
-                                            <label for="mastercard">Mastercard</label>
-                                            <img src="images/mastercard.jpg"  >
-                                        </li>
-                                    </ol>
-                                </fieldset>
-                            </li>
-                            <li>
+                                <div class="form-group">
+                                    <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Card Details</h1>
+                        <h2 style="font-size: 1.2em;font-weight: lighter;">Card Type</h2>
+                          <div class="radio radio-primary">
+                            <label>
+                              <input id="visa" type="radio" name="cardtype" value="VISA" checked>
+                              VISA
+                            </label>
+                            <img src="images/visa.jpg">
+                          </div>
+                        <div class="radio radio-primary">
+                            <label>
+                              <input id="mastercard" type="radio" name="cardtype" value="MASTERCARD">
+                              MasterCard
+                            </label>
+                            <img src="images/mastercard.jpg"  >
+                          </div>
+                    <div class="radio radio-primary">
+                            <label>
+                              <input id="amex" type="radio" name="cardtype" value="AMEX">
+                              American Express
+                            </label>
+                        <img src="images/amex.jpg" >
+                          </div>
+                    </div>
+                            </span>
+                            <span>
                                 <label for="cardnumber">Card Number</label>
-                                <input id="cardnumber" class="form-control" name="cardnumber" type="number" required />
-                            </li>
-                            <li>
-                                <label for="secure">Security Code</label>
-                                <input id="secure" class="form-control" name="secure" type="number" required />
-                            </li>
-                            <li>
+                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required pattern="[0-9]{16}"/>
+                            </span>
+                            <span>
+                                <label for="expdate">Expiration Date</label>
+                                <div style="display:flex;">
+                                <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" required pattern="((1[01])|[1-9])"/>
+                                <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" required pattern="[0-9]{2}"/>
+                                </div>
+                            </span>
+                            <span>
+                                <label for="secure">Security Code (CVV)</label>
+                                <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" required pattern="[0-9]{3}([0-9])*"/>
+                            </span>
+                            <span>
                                 <label for="namecard">Name on Card</label>
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
-                            </li>
-                        </ol>
+                            </span>
                     </fieldset>
-                    <fieldset>
+                    <div horizontal center layout>
+                        <div flex></div>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;"></button>
-                    </fieldset>
+                    </div>
                 </form>
             </div>
         </div>
