@@ -239,7 +239,7 @@ public class Database {
     public boolean register(String name, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User VALUES(?, ?, ?)");
+                    "INSERT INTO User VALUES(?, ?, NULL, NULL, NULL, NULL, ?)");
             statement.setString(1, name);
             statement.setString(2, password);
             statement.setString(3, type);
