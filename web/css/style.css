@@ -250,7 +250,7 @@ a {
 }
 
 .nav-with-logo{
-    background-size: cover;    min-height: 120px;    transition: all 0.18s ease-in;
+    background-size: cover;    min-height: 120px;    transition: all 0.18s ease-in; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .nav-header-logo, .nav.navbar-nav{
