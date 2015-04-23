@@ -108,14 +108,14 @@
                         <fieldset>
                         <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Payment method</h1>
                                 <label for="cardnumber">Card Number</label>
-                                <input id="cardnumber" class="form-control" name="cardnumber" type="number" required />
+                                <input id="cardnumber" class="form-control" name="cardnumber" type="number" required pattern="[0-9]{16}"/>
                                 <label for="secure">Security Code</label>
-                                <input id="secure" class="form-control" name="secure" type="number" required />
+                                <input id="secure" class="form-control" name="secure" type="number" required pattern="[0-9]{3}([0-9])*">
                                 <label for="namecard">Name on Card</label>
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                     </fieldset>
                     <fieldset>
-                         <button class="btn btn-fab btn-raised mdi-hardware-keyboard-backspace" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
+                         <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace" onclick="goBack();" style="background-color: #d23f31; float:left;"></button>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31; float:right;"></button>
                     </fieldset>
                     </div>
