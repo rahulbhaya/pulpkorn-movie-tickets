@@ -11,7 +11,7 @@ import org.json.simple.JSONValue;
 public class DatabaseUploader {
     
     public static void main(String[] args) {
-        Database db = new Database();
+        Database db = Database.getInstance();
         JSONObject json;
         URL url;
         try {

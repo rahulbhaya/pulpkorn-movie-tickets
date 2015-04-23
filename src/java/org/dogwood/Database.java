@@ -1,29 +1,46 @@
 package org.dogwood;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.json.simple.JSONObject;
 
 public class Database {
     
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/dogwood?zeroDateTimeBehavior=convertToNull";
     private static final String USER = "root", PASSWORD = "root";
     
+    private static final Database db = new Database();
+    
+    private final DataSource dataSource;
+    
     private Connection connection;
-
-    public Database() {
+    
+    public static Database getInstance() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");       
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            if (db.connection != null) {
+                db.connection.close();
+            }
+            db.connection = db.dataSource.getConnection();
+            return db;
         } 
-        catch (Exception ex) {
-           System.out.println(ex);
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
+    }
+
+    private Database() {
+        dataSource = new DataSource();
+        dataSource.setDriverClassName(DRIVER);
+        dataSource.setUrl(URL);
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
     }
     
     public void close() {

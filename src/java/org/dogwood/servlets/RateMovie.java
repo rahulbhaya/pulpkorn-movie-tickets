@@ -30,7 +30,7 @@ public class RateMovie extends HttpServlet {
         if (userName == null || movieId == null || rating == null) {
             response.sendRedirect("index.jsp");
         }
-        else if (!new Database().rateMovie(userName, movieId, rating)) {
+        else if (!Database.getInstance().rateMovie(userName, movieId, rating)) {
             session.setAttribute("RateMovieFail", true);
         }
         response.sendRedirect("movie.jsp?Id=" + movieId);

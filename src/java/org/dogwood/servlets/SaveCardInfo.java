@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.dogwood.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +25,7 @@ public class SaveCardInfo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Database db = new Database();
+        Database db = Database.getInstance();
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("LogIn");
         Boolean success = db.saveCardInfo(request.getParameter("cardtype"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), name);

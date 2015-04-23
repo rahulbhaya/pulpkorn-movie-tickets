@@ -22,7 +22,7 @@ public class GetMovieById extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("MovieById", new Database().getMovieById(request.getParameter("Id")));
+        request.getSession().setAttribute("MovieById", Database.getInstance().getMovieById(request.getParameter("Id")));
         request.getRequestDispatcher("movie.jsp").forward(request, response);
     }
 

@@ -28,7 +28,7 @@ public class LogIn extends HttpServlet {
             response.sendRedirect("index.jsp");
         }
         String name = request.getParameter("Name");
-        int logIn = new Database().logIn(name, request.getParameter("Password"));        
+        int logIn = Database.getInstance().logIn(name, request.getParameter("Password"));        
         if (logIn == 3) {
             session.setAttribute("LogIn", name);
             response.sendRedirect("index.jsp");

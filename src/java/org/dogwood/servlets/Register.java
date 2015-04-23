@@ -25,7 +25,7 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String name = request.getParameter("Name");
-        if (session.getAttribute("LogIn") == null && new Database().register(name, request.getParameter("Password"), "NORMAL")) {
+        if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, request.getParameter("Password"), "NORMAL")) {
             session.setAttribute("LogIn", name);
             response.sendRedirect("index.jsp");
         }
