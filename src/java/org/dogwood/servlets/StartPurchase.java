@@ -6,11 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.dogwood.Database;
 
-@WebServlet(name = "ChangePassword", urlPatterns = {"/ChangePassword"})
-public class ChangePassword extends HttpServlet {
+@WebServlet(name = "StartPurchase", urlPatterns = {"/StartPurchase"})
+public class StartPurchase extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -23,20 +21,7 @@ public class ChangePassword extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String name = (String) session.getAttribute("LogIn");
-        String currentPassword = request.getParameter("CurrentPassword");
-        String newPassword = request.getParameter("NewPassword");
-        if (name == null || currentPassword == null || newPassword == null) {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
-        if (!Database.getInstance().changePassword(name, currentPassword, newPassword)) {
-            session.setAttribute("ChangePasswordFail", "Incorrect password.");
-        }
-        else {
-            session.setAttribute("ChangePasswordSuccess", "Successfully changed password.");   
-        }
-        request.getRequestDispatcher("account.jsp").forward(request, response);
+        request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -29,7 +29,7 @@ public class SaveCardInfo extends HttpServlet {
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("LogIn");
         Boolean success = db.saveCardInfo(request.getParameter("cardtype"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), name);
-        response.sendRedirect("account.jsp");
+        request.getRequestDispatcher("account.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

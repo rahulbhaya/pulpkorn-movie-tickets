@@ -1,6 +1,7 @@
 package org.dogwood.servlets;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,14 +25,15 @@ public class LogIn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         if (session.getAttribute("LogIn") != null) {
-            response.sendRedirect("index.jsp");
+            dispatcher.forward(request, response);
         }
         String name = request.getParameter("Name");
         int logIn = Database.getInstance().logIn(name, request.getParameter("Password"));        
         if (logIn == 3) {
             session.setAttribute("LogIn", name);
-            response.sendRedirect("index.jsp");
+            dispatcher.forward(request, response);
         }
         else {
             switch (logIn) {
@@ -44,7 +46,7 @@ public class LogIn extends HttpServlet {
                 default:
                     session.setAttribute("LogInFail", "Something went wrong.");
             }
-            response.sendRedirect("login.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

@@ -28,12 +28,12 @@ public class RateMovie extends HttpServlet {
         String movieId = request.getParameter("MovieId");
         String rating = request.getParameter("Rating");
         if (userName == null || movieId == null || rating == null) {
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         else if (!Database.getInstance().rateMovie(userName, movieId, rating)) {
             session.setAttribute("RateMovieFail", true);
         }
-        response.sendRedirect("movie.jsp?Id=" + movieId);
+        request.getRequestDispatcher("movie.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
