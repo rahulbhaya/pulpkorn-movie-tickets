@@ -239,7 +239,7 @@ public class Database {
     public boolean register(String name, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User VALUES(?, ?, NULL, NULL, NULL, NULL, ?)");
+                    "INSERT INTO User VALUES(?, ?, ?)");
             statement.setString(1, name);
             statement.setString(2, password);
             statement.setString(3, type);
@@ -253,13 +253,12 @@ public class Database {
     }
     public boolean saveCardInfo(String cardType, String cardNumber, String securityCode, String cardName, String acctName){
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE User SET CardType=?, CardNumber=?, SecurityCode=?,"
-                    + " CardName=? WHERE Name=?");
-            statement.setString(1, cardType);
-            statement.setString(2, cardNumber);
-            statement.setString(3, securityCode);
-            statement.setString(4, cardName);
-            statement.setString(5, acctName);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?");
+            statement.setString(1, acctName);
+            statement.setString(2, cardType);
+            statement.setString(3, cardNumber);
+            statement.setString(4, securityCode);
+            statement.setString(5, cardName);
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
