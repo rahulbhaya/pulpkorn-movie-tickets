@@ -27,7 +27,7 @@ public class Register extends HttpServlet {
         String name = request.getParameter("Name");
         if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, request.getParameter("Password"), "NORMAL")) {
             session.setAttribute("LogIn", name);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
         else {
             session.setAttribute("RegisterFail", true);

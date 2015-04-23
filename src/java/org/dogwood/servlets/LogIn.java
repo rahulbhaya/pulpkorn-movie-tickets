@@ -25,7 +25,7 @@ public class LogIn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("GetInTheatersMovies");
         if (session.getAttribute("LogIn") != null) {
             dispatcher.forward(request, response);
         }
@@ -46,7 +46,7 @@ public class LogIn extends HttpServlet {
                 default:
                     session.setAttribute("LogInFail", "Something went wrong.");
             }
-            dispatcher.forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

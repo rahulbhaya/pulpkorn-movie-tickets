@@ -84,7 +84,7 @@ public class Database {
     public boolean changePassword(String name, String currentPassword, String newPassword) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE User SET Password = ? WHERE Name = ? AND Password = ?");
+                    "UPDATE User SET Password = MD5(?) WHERE Name = ? AND Password = MD5(?)");
             statement.setString(1, newPassword);
             statement.setString(2, name);
             statement.setString(3, currentPassword);
@@ -230,7 +230,7 @@ public class Database {
                 return 0;
             }
             statement = connection.prepareStatement(
-                    "SELECT * FROM User WHERE Name = ? AND Password = ?");
+                    "SELECT * FROM User WHERE Name = ? AND Password = MD5(?)");
             statement.setString(1, name);
             statement.setString(2, password);
             if (!statement.executeQuery().next()) {
@@ -263,7 +263,7 @@ public class Database {
     public boolean register(String name, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User VALUES(?, ?, ?)");
+                    "INSERT INTO User VALUES(?, MD5(?), ?)");
             statement.setString(1, name);
             statement.setString(2, password);
             statement.setString(3, type);

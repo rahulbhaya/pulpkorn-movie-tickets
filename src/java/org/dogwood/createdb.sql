@@ -6,7 +6,7 @@ USE dogwood;
 
 CREATE TABLE User(
     Name VARCHAR(25),
-    Password VARCHAR(25) NOT NULL,
+    Password VARCHAR(32) NOT NULL,
     Type VARCHAR(25) DEFAULT 'NORMAL',
     PRIMARY KEY (Name),
     CHECK (Type = 'NORMAL' OR Type = 'ADMIN')

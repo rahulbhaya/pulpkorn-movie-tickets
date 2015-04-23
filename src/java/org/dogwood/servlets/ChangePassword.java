@@ -28,7 +28,7 @@ public class ChangePassword extends HttpServlet {
         String currentPassword = request.getParameter("CurrentPassword");
         String newPassword = request.getParameter("NewPassword");
         if (name == null || currentPassword == null || newPassword == null) {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
         if (!Database.getInstance().changePassword(name, currentPassword, newPassword)) {
             session.setAttribute("ChangePasswordFail", "Incorrect password.");
