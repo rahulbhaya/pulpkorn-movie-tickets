@@ -7,10 +7,6 @@ USE dogwood;
 CREATE TABLE User(
     Name VARCHAR(25),
     Password VARCHAR(25) NOT NULL,
-    CardType VARCHAR(25),
-    CardNumber VARCHAR(16),
-    SecurityCode VARCHAR(4),
-    CardName VARCHAR(25),
     Type VARCHAR(25) DEFAULT 'NORMAL',
     PRIMARY KEY (Name),
     CHECK (Type = 'NORMAL' OR Type = 'ADMIN')
@@ -35,4 +31,13 @@ CREATE TABLE MovieRating(
     FOREIGN KEY (UserName) REFERENCES User(Name),
     FOREIGN KEY (MovieId) REFERENCES Movie(Id),
     CHECK (Rating >= 1 AND Rating <= 5)
+);
+CREATE TABLE CreditCardInfo(
+    Name VARCHAR(25),
+    CardType VARCHAR(25),
+    CardNumber VARCHAR(16),
+    SecurityCode VARCHAR(4),
+    CardName VARCHAR(25),
+    PRIMARY KEY (Name),
+    FOREIGN KEY (Name) REFERENCES User(Name)
 );
