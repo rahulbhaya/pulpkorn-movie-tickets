@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Showtime implements Serializable {
+public class Showtimes implements Serializable {
     
     private String name;
     
+    private Movie movie;
+    
     private List<String> times;
     
-    public Showtime() {}
+    public Showtimes() {}
     
-    public Showtime(String name) {
+    public Showtimes(String name) {
         this.name = name;
         times = new ArrayList<>();
     }
@@ -35,6 +37,14 @@ public class Showtime implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public Movie getMovie() {
+        return movie;
+    }
+    
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     public List<String> getTimes() {

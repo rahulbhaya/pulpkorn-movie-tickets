@@ -8,18 +8,18 @@ public class MovieTheater implements Serializable {
     
     private String name, address;
     
-    private List<Showtime> movies;
+    private List<Showtimes> showtimes;
     
     public MovieTheater() {}
     
     public MovieTheater(String name, String address) {
         this.name = name;
         this.address = address;
-        movies = new ArrayList<>();
+        showtimes = new ArrayList<>();
     }
     
     public String toString() {
-        return "{\"name\":\"" + name + "\", \"address\":\"" + address + "\", \"movies\":" + movies + "}";
+        return "{\"name\":\"" + name + "\", \"address\":\"" + address + "\", \"movies\":" + showtimes + "}";
     }
 
     public String getName() {
@@ -38,12 +38,12 @@ public class MovieTheater implements Serializable {
         this.address = address;
     }
 
-    public List<Showtime> getMovies() {
-        return movies;
+    public List<Showtimes> getShowtimes() {
+        return showtimes;
     }
 
-    public void setMovies(List<Showtime> movies) {
-        this.movies = movies;
+    public void setShowtimes(List<Showtimes> showtimes) {
+        this.showtimes = showtimes;
     }
     
 }

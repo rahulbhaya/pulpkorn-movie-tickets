@@ -26,11 +26,12 @@ public class Dogwood {
                 String movieTheaterAddress = theater.select("div.info").text();
                 MovieTheater mt = new MovieTheater(movieTheaterName, movieTheaterAddress);
                 for (Element movie : theater.select(".showtimes .movie")) {
-                    Showtime m = new Showtime(movie.select("div.name").text());
+                    Showtimes m = new Showtimes(movie.select("div.name").text());
                     for (Element time : movie.select(".times > span")) {
                         m.getTimes().add(time.text());
                     }
-                    mt.getMovies().add(m);
+                    m.setMovie(Database.getInstance().getMovieByTitle(m.getName()));
+                    mt.getShowtimes().add(m);
                 }
                 theaterList.add(mt);
             }
