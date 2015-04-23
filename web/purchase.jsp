@@ -85,7 +85,7 @@
                         </div>
                     <div class="form-group">
                         <fieldset>
-                        <legend>Payment method</legend>
+                        <h1 style="font-size: 1.5em;color: #00BCD4;font-weight: lighter;">Payment method</h1>
                                 <label for="cardnumber">Card Number</label>
                                 <input id="cardnumber" class="form-control" name="cardnumber" type="number" required />
                                 <label for="secure">Security Code</label>
