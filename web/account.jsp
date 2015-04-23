@@ -31,11 +31,12 @@
                         <label for="NewPassword">New Password:</label>
                         <input class="form-control" name="NewPassword" placeholder="Enter new password" required type="password">
                     </div>
-                    <button class="btn btn-default" type="submit">Submit</button>
+                    <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;"></button>
                 </form>
+
             </div>
-        </div> 
-        <form id=payment method="post" action="SaveCardInfo">
+                <div class="jumbotron">
+                                    <form id="payment" method="post" action="SaveCardInfo">
             <fieldset>
                 <legend>Card Details</legend>
                 <ol>
@@ -44,41 +45,43 @@
                             <legend>Card Type</legend>
                             <ol>
                                 <li>
-                                    <input id=visa name=cardtype type=radio />
-                                    <label for=visa>VISA</label>
+                                    <input id="visa" name="cardtype" type="radio" />
+                                    <label for="visa">VISA</label>
                                     <img src="images/visa.jpg">
                                 </li>
                                 <li>
-                                    <input id=amex name=cardtype type=radio />
-                                    <label for=amex>AmEx</label>
+                                    <input id="amex" name="cardtype" type="radio" />
+                                    <label for="amex">AmEx</label>
                                     <img src="images/amex.jpg" >
                                 </li>
                                 <li>
-                                    <input id=mastercard name=cardtype type=radio />
-                                    <label for=mastercard>Mastercard</label>
+                                    <input id="mastercard" name="cardtype" type="radio" />
+                                    <label for="mastercard">Mastercard</label>
                                     <img src="images/mastercard.jpg"  >
                                 </li>
                             </ol>
                         </fieldset>
                     </li>
                     <li>
-                        <label for=cardnumber>Card Number</label>
-                        <input id=cardnumber name=cardnumber type=number required />
+                        <label for="cardnumber">Card Number</label>
+                        <input id="cardnumber" class="form-control" name="cardnumber" type="number" required />
                     </li>
                     <li>
-                        <label for=secure>Security Code</label>
-                        <input id=secure name=secure type=number required />
+                        <label for="secure">Security Code</label>
+                        <input id="secure" class="form-control" name="secure" type="number" required />
                     </li>
                     <li>
-                        <label for=namecard>Name on Card</label>
-                        <input id=namecard name=namecard type=text placeholder="Exact name as on the card" required />
+                        <label for="namecard">Name on Card</label>
+                        <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                     </li>
                 </ol>
             </fieldset>
             <fieldset>
-                <button type=submit>Submit </button>
+                <button class="btn btn-danger btn-fab btn-raised mdi-action-done" type="submit" style="background-color: #d23f31;"></button>
             </fieldset>
         </form>
+                </div>
+        </div>
 	<%@include file="material.jsp"%>
     </body>
 </html>
