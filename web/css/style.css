@@ -292,3 +292,7 @@ a {
 .payment-goback-btn{
     background-color: #d23f31 !important; float:left;
 }
+
+.container-fluid{
+    min-height: 100%;
+}
