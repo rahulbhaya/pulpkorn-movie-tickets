@@ -109,7 +109,7 @@
                             <input class="form-control" name="Password" placeholder="Password" required type="password">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group payment-info" style="display: none;">
                         <fieldset>
                             <h1 class="payment-info-h1">Payment method</h1>
                             <span>
@@ -132,11 +132,11 @@
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                             </span>
                         </fieldset>
-                        <fieldset>
+                    </div>
+                    <fieldset>
                             <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
                             <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
-                        </fieldset>
-                    </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -148,6 +148,7 @@
                 <c:if test="${sessionScope.LogIn != null}">
                     $(".status-info").hide();
                     $(".user-info").hide();
+                    $(".payment-info").show();
                 </c:if>
             });
             
@@ -162,14 +163,17 @@
                 if (this.value == 'option1') {
                     $("#email-group").show();
                     $("#password-group").show();
+                    $(".payment-info").hide();
                 }
                 else if (this.value == 'option2') {
                     $("#email-group").show();
                     $("#password-group").show();
+                    $(".payment-info").hide();
                 }
                 else if (this.value == 'option3') {
                     $("#email-group").hide();
                     $("#password-group").hide();
+                    $(".payment-info").show();
                 }
             });
 
