@@ -194,7 +194,7 @@ a {
 }
 
 .movie-card-outer{
-    box-shadow: 5px 5px 5px #d3d1d1;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .movie-card-outer > a > img{
