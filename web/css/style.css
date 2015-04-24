@@ -193,12 +193,16 @@ a {
     display: block !important;position: relative;padding: 10px;width: 320px;font-weight: 300;
 }
 
-.movie-card > a > img{
+.movie-card-outer{
+    box-shadow: 5px 5px 5px #d3d1d1;
+}
+
+.movie-card-outer > a > img{
     width: 100%;
 }
 
 .movie-card-inner{
-    background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;
+    background-color:white;padding-bottom: 10px;
 }
 
 .movie-card-inner>.h2{
@@ -218,7 +222,7 @@ a {
 }
 
 .movie-card-inner{
-    background-color:white;padding-bottom: 10px;box-shadow: 3px 3px 3px #d3d1d1;
+    background-color:white;padding-bottom: 10px;
 }
 
 .movie-card-inner>.h2{

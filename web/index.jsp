@@ -11,16 +11,18 @@
                 <div id="movies" horizontal layout wrap center-justified>
                     <c:forEach var="movie" items="${sessionScope.InTheatersMovies}">
                         <div class="card-header movie-card" layout horizontal center>
-                            <a href="GetMovieById?Id=<c:out value='${movie.id}'/>">
-                                <img src="<c:out value='${movie.image}'/>">
-                            </a>
-                            <div class="movie-card-inner">
-                                <div class="h2"><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
-                                <p>
-                                    Release Date: <c:out value="${movie.releaseDate}"/>
-                                    <br/>
-                                    MPAA Rating: <c:out value="${movie.mpaaRating}"/>
-                                </p>
+                            <div class="movie-card-outer">
+                                <a href="GetMovieById?Id=<c:out value='${movie.id}'/>">
+                                    <img src="<c:out value='${movie.image}'/>">
+                                </a>
+                                <div class="movie-card-inner">
+                                    <div class="h2"><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
+                                    <p>
+                                        Release Date: <c:out value="${movie.releaseDate}"/>
+                                        <br/>
+                                        MPAA Rating: <c:out value="${movie.mpaaRating}"/>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </c:forEach>
