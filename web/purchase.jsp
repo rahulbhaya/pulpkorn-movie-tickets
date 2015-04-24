@@ -165,7 +165,7 @@
                 }
                 else if (this.value == 'option2') {
                     $("#email-group").show();
-                    $("#password-group").hide();
+                    $("#password-group").show();
                 }
                 else if (this.value == 'option3') {
                     $("#email-group").hide();
