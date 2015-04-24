@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
+import org.dogwood.Database.Login;
 
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 public class LogIn extends HttpServlet {
@@ -30,17 +31,17 @@ public class LogIn extends HttpServlet {
             dispatcher.forward(request, response);
         }
         String name = request.getParameter("Name");
-        int logIn = Database.getInstance().logIn(name, request.getParameter("Password"));        
-        if (logIn == 3) {
+        Login login = Database.getInstance().logIn(name, request.getParameter("Password"));        
+        if (login == Login.CORRRECT) {
             session.setAttribute("LogIn", name);
             dispatcher.forward(request, response);
         }
         else {
-            switch (logIn) {
-                case 0:
+            switch (login) {
+                case INCORRECT_USERNAME:
                     session.setAttribute("LogInFail", "Incorrect username.");
                     break;
-                case 1:
+                case INCORRECT_PASSWORD:
                     session.setAttribute("LogInFail", "Incorrect password.");
                     break;
                 default:

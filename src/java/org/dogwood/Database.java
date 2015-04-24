@@ -15,6 +15,10 @@ public class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/dogwood?zeroDateTimeBehavior=convertToNull";
     private static final String USER = "root", PASSWORD = "root";
     
+    public static enum Login {
+        INCORRECT_USERNAME, INCORRECT_PASSWORD, SQL_ERROR, CORRRECT
+    }
+    
     private static final Database db = new Database();
     
     private final DataSource dataSource;
@@ -221,34 +225,27 @@ public class Database {
         }
     }
     
-    /*
-    Returns:
-    - 0 if username doesn't exist in User table (failed logIn)
-    - 1 if password isn't correct (also failed logIn)
-    - 2 if something else fails (catchs SQLException)
-    - 3 if successful logIn
-    */
-    public int logIn(String name, String password) {
+    public Login logIn(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM User WHERE Name = ?");
             statement.setString(1, name);
             if (!statement.executeQuery().next()) {
-                return 0;
+                return Login.INCORRECT_USERNAME;
             }
             statement = connection.prepareStatement(
                     "SELECT * FROM User WHERE Name = ? AND Password = MD5(?)");
             statement.setString(1, name);
             statement.setString(2, password);
             if (!statement.executeQuery().next()) {
-                return 1;
+                return Login.INCORRECT_PASSWORD;
             }
             connection.close();
-            return 3;
+            return Login.CORRRECT;
         } 
         catch (SQLException ex) {
             System.out.println(ex);
-            return 2;
+            return Login.SQL_ERROR;
         }
     }
     
