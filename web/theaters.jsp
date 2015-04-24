@@ -12,29 +12,31 @@
                     <c:forEach var="theater" items="${sessionScope.TheatersNear}">
                         <div class="card-header theater-card" layout horizontal center>
                             <img src="">
-                            <div class="movie-card-inner">
-                                <div class="h2"><c:out value="${theater.name}"/></div>
-                                <div>
-                                    <address><c:out value="${theater.address}"/></address>
-                                    <ul class="list-group">
-                                        <c:forEach var="showtimes" items="${theater.showtimes}">
-                                            <li class="list-group-item"><c:out value="${showtimes.name}"/> 
-                                                <c:forEach var="time" items="${showtimes.times}">
-                                                    <c:set var="movieObj" value="${showtimes.movie}"/>
-                                                    <c:choose>
-                                                        <c:when test="${movieObj != null}">
-                                                            <a href="StartPurchase?MovieId=<c:out value='${movieObj.id}'/>">
+                            <div class="movie-card-outer">
+                                <div class="movie-card-inner">
+                                    <div class="h2"><c:out value="${theater.name}"/></div>
+                                    <div>
+                                        <address><c:out value="${theater.address}"/></address>
+                                        <ul class="list-group">
+                                            <c:forEach var="showtimes" items="${theater.showtimes}">
+                                                <li class="list-group-item"><c:out value="${showtimes.name}"/> 
+                                                    <c:forEach var="time" items="${showtimes.times}">
+                                                        <c:set var="movieObj" value="${showtimes.movie}"/>
+                                                        <c:choose>
+                                                            <c:when test="${movieObj != null}">
+                                                                <a href="StartPurchase?MovieId=<c:out value='${movieObj.id}'/>">
+                                                                    <c:out value="${time}"/>
+                                                                </a>
+                                                            </c:when>
+                                                            <c:otherwise>
                                                                 <c:out value="${time}"/>
-                                                            </a>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <c:out value="${time}"/>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:forEach>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
