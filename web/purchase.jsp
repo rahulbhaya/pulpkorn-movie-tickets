@@ -134,8 +134,8 @@
                         </fieldset>
                     </div>
                     <fieldset>
-                            <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
-                            <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                     </fieldset>
                 </form>
             </div>
@@ -143,34 +143,32 @@
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
         <script>
-            
-            $(document).ready(function() {
-                <c:if test="${sessionScope.LogIn != null}">
-                    $(".status-info").hide();
-                    $(".user-info").hide();
-                    $(".payment-info").show();
-                </c:if>
+
+            $(document).ready(function () {
+            <c:if test="${sessionScope.LogIn != null}">
+                $(".status-info").hide();
+                $(".user-info").hide();
+                $(".payment-info").show();
+            </c:if>
             });
-            
+
             $("select").change(function () {
                 var self = $(this);
                 self.siblings(".total").text("$" +
                         new Number(parseFloat(self.siblings(".cost").text().substring(1)) *
                                 self.val()).toFixed(2));
             });
-            
-            $('input[type=radio][name=status]').change(function() {
+
+            $('input[type=radio][name=status]').change(function () {
                 if (this.value == 'option1') {
                     $("#email-group").show();
                     $("#password-group").show();
                     $(".payment-info").hide();
-                }
-                else if (this.value == 'option2') {
+                } else if (this.value == 'option2') {
                     $("#email-group").show();
                     $("#password-group").show();
                     $(".payment-info").hide();
-                }
-                else if (this.value == 'option3') {
+                } else if (this.value == 'option3') {
                     $("#email-group").hide();
                     $("#password-group").hide();
                     $(".payment-info").show();
