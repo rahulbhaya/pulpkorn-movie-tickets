@@ -55,7 +55,7 @@
                 s.parentNode.insertBefore(rw, s);
             }(document, new Date(), "script", "rating-widget.com/"));
         </script>
-
+        <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>
 </html>

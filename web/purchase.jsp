@@ -139,6 +139,7 @@
                 </form>
             </div>
         </div>
+        <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
         <script>
             $("select").change(function () {

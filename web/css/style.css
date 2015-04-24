@@ -57,6 +57,10 @@ footer, header, section {
     width: 96px;
 }
 
+.logo>img{
+    padding-left: 30px;height: 120px;
+}
+
 footer ul {
     margin: 0;
     padding: 51px 30px 0;
@@ -287,4 +291,8 @@ a {
 
 .payment-goback-btn{
     background-color: #d23f31 !important; float:left;
+}
+
+.container-fluid{
+    min-height: 100%;
 }

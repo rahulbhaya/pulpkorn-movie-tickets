@@ -93,6 +93,7 @@
                 </form>
             </div>
         </div>
+        <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>
 </html>
