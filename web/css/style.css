@@ -250,7 +250,7 @@ a {
 }
 
 .movie-detail-card{
-    max-width: 512px;margin-right: 50px;
+    max-width: 512px;margin-right: 50px;width: 100%;
 }
 
 .movie-detail-card>img{
