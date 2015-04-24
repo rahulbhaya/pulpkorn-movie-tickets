@@ -23,7 +23,7 @@ public class Database {
     
     public static Database getInstance() {
         try {
-            if (db.connection != null) {
+            if (db.connection != null && !db.connection.isClosed()) {
                 db.connection.close();
             }
             db.connection = db.dataSource.getConnection();
@@ -73,6 +73,7 @@ public class Database {
             }
             statement.setString(7, poster);
             statement.executeUpdate();
+            connection.close();
             return true;
         } 
         catch (SQLException ex) {
@@ -88,6 +89,7 @@ public class Database {
             statement.setString(1, newPassword);
             statement.setString(2, name);
             statement.setString(3, currentPassword);
+            connection.close();
             return statement.executeUpdate() == 1;
         }
         catch (SQLException ex) {
@@ -112,6 +114,7 @@ public class Database {
                 String image = results.getString(7);
                 movies.add(new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image));
             }
+            connection.close();
             return movies;
         } 
         catch (SQLException ex) {
@@ -133,6 +136,7 @@ public class Database {
             String releaseDate = results.getString(5);
             String synopsis = results.getString(6);
             String image = results.getString(7);
+            connection.close();
             return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
         } 
         catch (SQLException ex) {
@@ -154,6 +158,7 @@ public class Database {
             String releaseDate = results.getString(5);
             String synopsis = results.getString(6);
             String image = results.getString(7);
+            connection.close();
             return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
         } 
         catch (SQLException ex) {
@@ -182,6 +187,7 @@ public class Database {
             else {
                 rating = 0;
             }
+            connection.close();
             return rating;
         } 
         catch (SQLException ex) {
@@ -206,6 +212,7 @@ public class Database {
                 String image = results.getString(7);
                 movies.add(new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image));
             }
+            connection.close();
             return movies;
         } 
         catch (SQLException ex) {
@@ -236,6 +243,7 @@ public class Database {
             if (!statement.executeQuery().next()) {
                 return 1;
             }
+            connection.close();
             return 3;
         } 
         catch (SQLException ex) {
@@ -252,6 +260,7 @@ public class Database {
             statement.setString(2, movieId);
             statement.setInt(3, Integer.parseInt(rating));
             statement.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException ex) {
@@ -268,6 +277,7 @@ public class Database {
             statement.setString(2, password);
             statement.setString(3, type);
             statement.executeUpdate();
+            connection.close();
             return true;
         }
         catch (SQLException ex) {
@@ -284,6 +294,7 @@ public class Database {
             statement.setString(4, securityCode);
             statement.setString(5, cardName);
             statement.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException ex) {
             return false;
