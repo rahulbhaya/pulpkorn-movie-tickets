@@ -250,7 +250,7 @@ a {
 }
 
 .movie-detail-card>img{
-    width: 100%;
+    width: 384px !important;
 }
 
 .nav-with-logo{
