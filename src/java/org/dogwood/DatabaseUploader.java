@@ -11,7 +11,6 @@ import org.json.simple.JSONValue;
 public class DatabaseUploader {
     
     public static void main(String[] args) {
-        Database db = Database.getInstance();
         JSONObject json;
         URL url;
         try {
@@ -19,7 +18,7 @@ public class DatabaseUploader {
             json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
             JSONArray movies = (JSONArray) json.get("movies");
             for (Object movie : movies) {
-                db.addMovie((JSONObject) movie);
+                Database.getInstance().addMovie((JSONObject) movie);
             }
         } 
         catch (Exception ex) {
@@ -30,7 +29,7 @@ public class DatabaseUploader {
             json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
             JSONArray movies = (JSONArray) json.get("movies");
             for (Object movie : movies) {
-                db.addMovie((JSONObject) movie);
+                Database.getInstance().addMovie((JSONObject) movie);
             }
         }
         catch (Exception ex) {
