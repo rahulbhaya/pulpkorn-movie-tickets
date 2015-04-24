@@ -37,6 +37,7 @@
             xhr.send();
         </script>
         <div id="Movie_Info"></div>
+        <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>
 </html>
