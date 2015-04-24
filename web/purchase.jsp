@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -77,7 +78,7 @@
             <div id="card-info" class="jumbotron" style="display: none;">
                 <h1>Checkout</h1>
                 <form role="form">
-                    <div class="form-group">
+                    <div class="form-group status-info">
                         <label>Checkout as:</label>
                         <div class="radio radio-primary">
                             <label>
@@ -99,11 +100,11 @@
                         </div>
                     </div>
                     <div class="user-info">
-                        <div class="form-group">
+                        <div id="email-group" class="form-group">
                             <label for="Name">Email address</label>
                             <input class="form-control" name="Name" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
                         </div>
-                        <div class="form-group">
+                        <div id="password-group" class="form-group">
                             <label for="Password">Password</label>
                             <input class="form-control" name="Password" placeholder="Password" required type="password">
                         </div>
@@ -142,11 +143,34 @@
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
         <script>
+            
+            $(document).ready(function() {
+                <c:if test="${sessionScope.LogIn != null}">
+                    $(".status-info").hide();
+                    $(".user-info").hide();
+                </c:if>
+            });
+            
             $("select").change(function () {
                 var self = $(this);
                 self.siblings(".total").text("$" +
                         new Number(parseFloat(self.siblings(".cost").text().substring(1)) *
                                 self.val()).toFixed(2));
+            });
+            
+            $('input[type=radio][name=status]').change(function() {
+                if (this.value == 'option1') {
+                    $("#email-group").show();
+                    $("#password-group").show();
+                }
+                else if (this.value == 'option2') {
+                    $("#email-group").show();
+                    $("#password-group").hide();
+                }
+                else if (this.value == 'option3') {
+                    $("#email-group").hide();
+                    $("#password-group").hide();
+                }
             });
 
             function goBack() {
