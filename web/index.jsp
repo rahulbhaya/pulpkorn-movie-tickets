@@ -5,7 +5,6 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <%@include file="ad.jsp"%>
         <div class="container-fluid">
             <div class="main">
                 <h1>Now Playing</h1>
@@ -28,6 +27,7 @@
                 </div>
             </div>
         </div>
+        <%@include file="ad.jsp"%>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>
