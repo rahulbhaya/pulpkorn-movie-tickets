@@ -18,43 +18,28 @@
                         <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                         <h4>Synopsis:</h4>
                         <h5><c:out value="${movie.synopsis}"/></h5>
-                        <div class="rw-ui-container"></div>
+                        <!--This script should be places anywhere on a page you want to see rating box-->
+<div style="width:100%;height:430px;">
+<script type="text/javascript">
+var r_obj = {
+"Company": { "CompanyId": 5196 },
+"RatingboxId": 13074,
+"ProductCode": encodeURIComponent(window.location.href),
+"SearchText": "",
+"SortExpression": "",
+"PageIndex": 1,
+"MaxpageDisplay": 10,
+"User": { "UserId": "1" }
+};
+var r_rspage = "rsratingbox";
+</script>
+<script type="text/javascript" src="http://www.rating-system.com/widget/rsiframe.js"></script>
+</div>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript">(function (d, t, e, m) {
-
-                // Async Rating-Widget initialization.
-                window.RW_Async_Init = function () {
-
-                    RW.init({
-                        huid: "231447",
-                        uid: "45da1f49755606614115b385764dc9fe",
-                        source: "website",
-                        options: {
-                            "size": "medium",
-                            "style": "oxygen"
-                        }
-                    });
-                    RW.render();
-                };
-                // Append Rating-Widget JavaScript library.
-                var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
-                        l = d.location, ck = "Y" + t.getFullYear() +
-                        "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
-                        f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
-                        a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
-                if (d.getElementById(id))
-                    return;
-                rw = d.createElement(e);
-                rw.id = id;
-                rw.async = true;
-                rw.type = "text/javascript";
-                rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
-                s.parentNode.insertBefore(rw, s);
-            }(document, new Date(), "script", "rating-widget.com/"));
-        </script>
+                                
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>
