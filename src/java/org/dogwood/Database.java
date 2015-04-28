@@ -359,18 +359,27 @@ public class Database {
         }
     }
     
-    public boolean saveCardInfo(String cardType, String cardNumber, String securityCode, String cardName, String acctName){
+    public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM){
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, acctName);
-            statement.setString(2, cardType);
-            statement.setString(3, cardNumber);
-            statement.setString(4, securityCode);
-            statement.setString(5, cardName);
+            statement.setString(2, cardNumber);
+            statement.setString(3, securityCode);
+            statement.setString(4, cardName);
+            statement.setString(5, billingAddress);
+            statement.setString(6, expDateM);
+            statement.setString(7, expDateY);
             statement.executeUpdate();
             connection.close();
             return true;
         } catch (SQLException ex) {
+            System.out.println(billingAddress);
+            System.out.println(cardNumber);
+            System.out.println(securityCode);
+            System.out.println(cardName);
+            System.out.println(expDateY);
+            System.out.println(expDateM);
+            System.out.println(acctName);
             return false;
         }
     }

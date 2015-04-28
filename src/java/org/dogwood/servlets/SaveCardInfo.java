@@ -13,7 +13,7 @@ import org.dogwood.Database;
  *
  * @author Brian
  */
-@WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
+@WebServlet(name = "SaveCardInfo", urlPatterns = {"/SaveCardInfo"})
 public class SaveCardInfo extends HttpServlet {
 
     /**
@@ -30,7 +30,13 @@ public class SaveCardInfo extends HttpServlet {
         Database db = Database.getInstance();
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("LogIn");
-        Boolean success = db.saveCardInfo(request.getParameter("cardtype"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), name);
+        Boolean success = db.saveCardInfo(request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), name, request.getParameter("expdate-yy"), request.getParameter("expdate-mm"));
+        if(success){
+            session.setAttribute("SaveCardSuccess", "Card Information Successfully Saved.");
+        }
+        else{
+            session.setAttribute("SaveCardFailure", "Error:Card Information Not Saved.");
+        }
         request.getRequestDispatcher("account.jsp").forward(request, response);
     }
 
