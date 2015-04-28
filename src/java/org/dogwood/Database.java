@@ -324,6 +324,25 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean removeComment(String userName, String movieId, String dateCommented) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM Comment WHERE UserName = ? AND MovieId = ? "
+                            + "AND DateCommented = ?");
+            statement.setString(1, userName);
+            statement.setString(2, movieId);
+            statement.setString(3, dateCommented);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
     public boolean saveCardInfo(String cardType, String cardNumber, String securityCode, String cardName, String acctName){
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?");
