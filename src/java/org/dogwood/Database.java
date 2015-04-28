@@ -201,7 +201,6 @@ public class Database {
             return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
         } 
         catch (SQLException ex) {
-            System.out.println(ex);
             return null;
         }
     }
