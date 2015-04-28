@@ -105,7 +105,8 @@ public class Database {
     public boolean comment(String userName, String movieId, String message) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Comment VALUES(?, ?, ?, NOW())");
+                    "INSERT INTO Comment VALUES((SELECT Name FROM User WHERE Name = ?),"
+                            + " (SELECT Id FROM Movie WHERE Id = ?), ?, NOW())");
             statement.setString(1, userName);
             statement.setString(2, movieId);
             statement.setString(3, message);

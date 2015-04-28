@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,27 +23,26 @@
                 </div>
                 <div class="row">
                     <h3>Comments</h3>
-                    <div class="media">
-                        <img class="media-object pull-left" src="https://github.com/identicons/placeholder.png" width="64" height="64">
-                        <div class="media-body">
-                            <h3 class="media-heading">Username on Date</h3>
-                            <p>Comment text goes here.</p>
+                    <c:forEach var="comment" items="${sessionScope.Comments}">
+                        <c:set var="name" value="${comment.userName}"/>
+                        <div class="media">
+                            <img class="media-object pull-left" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png" width="64" height="64">
+                            <div class="media-body">
+                                <h3 class="media-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h3>
+                                <p><c:out value="${comment.message}"/></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="media">
-                        <img class="media-object pull-left" src="https://github.com/identicons/placeholder.png" width="64" height="64">
-                        <div class="media-body">
-                            <h3 class="media-heading">Username on Date</h3>
-                            <p>Comment text goes here.</p>
-                        </div>
-                    </div>
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" name="comment" rows="5"></textarea>
-                        </div>
-                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
-                    </form>
+                    </c:forEach>
+                    <c:if test="${sessionScope.LogIn != null}">
+                        <form action="Comment" method="POST" role="form">
+                            <div class="form-group">
+                                <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
+                                <label for="Message">Comment:</label>
+                                <textarea class="form-control" maxlength="140" name="Message" rows="5"></textarea>
+                            </div>
+                            <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
+                        </form> 
+                    </c:if>
                 </div>        
             </div>
         </div>                        

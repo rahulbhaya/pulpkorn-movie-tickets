@@ -26,7 +26,7 @@ CREATE TABLE Movie(
 CREATE TABLE Comment(
     Commenter VARCHAR(25),
     MovieId VARCHAR(25),
-    Message TEXT NOT NULL,
+    Message VARCHAR(140) NOT NULL,
     DateCommented DATETIME NOT NULL,
     PRIMARY KEY (Commenter, MovieId, DateCommented),
     FOREIGN KEY (Commenter) REFERENCES User(Name),

@@ -31,7 +31,7 @@ public class Comment extends HttpServlet {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
         Database.getInstance().comment(name, movieId, message);
-        request.getRequestDispatcher("movie.jsp").forward(request, response);
+        request.getRequestDispatcher("GetMovieById").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
