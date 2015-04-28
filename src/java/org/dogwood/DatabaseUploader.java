@@ -14,6 +14,17 @@ public class DatabaseUploader {
         JSONObject json;
         URL url;
         try {
+            url = DatabaseUploader.class.getResource("/org/dogwood/faqs.json");
+            json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            JSONArray faqs = (JSONArray) json.get("faqs");
+            for (Object faq : faqs) {
+                Database.getInstance().addFAQ((JSONObject) faq);
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        try {
             url = new URL(BASE_URL + "/lists/movies/in_theaters.json?apikey=" + API_KEY);
             json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
             JSONArray movies = (JSONArray) json.get("movies");

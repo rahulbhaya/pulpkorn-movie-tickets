@@ -42,6 +42,7 @@ CREATE TABLE MovieRating(
     FOREIGN KEY (MovieId) REFERENCES Movie(Id),
     CHECK (Rating >= 1 AND Rating <= 5)
 );
+
 CREATE TABLE CreditCardInfo(
     Name VARCHAR(25),
     CardType VARCHAR(25),
@@ -51,6 +52,7 @@ CREATE TABLE CreditCardInfo(
     PRIMARY KEY (Name),
     FOREIGN KEY (Name) REFERENCES User(Name)
 );
+
 CREATE TABLE Purchase(
     UserName VARCHAR(25),
     MovieId VARCHAR(25),
@@ -62,4 +64,10 @@ CREATE TABLE Purchase(
     PRIMARY KEY(UserName, MovieId, Theater),
     FOREIGN KEY(UserName) REFERENCES User(Name),
     FOREIGN KEY(MovieId) REFERENCES Movie(Id)
+);
+
+CREATE TABLE FAQ(
+    Question VARCHAR(255),
+    Answer TEXT NOT NULL,
+    PRIMARY KEY (Question)
 );

@@ -56,6 +56,22 @@ public class Database {
         }
     }
     
+    public boolean addFAQ(JSONObject json) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO FAQ VALUES(?, ?)");
+            statement.setString(1, (String) json.get("question"));
+            statement.setString(2, (String) json.get("answer"));
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }    
+    
     public boolean addMovie(JSONObject json) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -93,8 +109,9 @@ public class Database {
             statement.setString(1, newPassword);
             statement.setString(2, name);
             statement.setString(3, currentPassword);
+            boolean retValue = statement.executeUpdate() == 1;
             connection.close();
-            return statement.executeUpdate() == 1;
+            return retValue;
         }
         catch (SQLException ex) {
             System.out.println(ex);

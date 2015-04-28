@@ -1,0 +1,12 @@
+{
+    "faqs": [
+        {
+            "question": "QUESTION TEXT GOES HERE",
+            "answer": "ANSWER TEXT GOES HERE"
+        },
+        {
+            "question": "ANOTHER QUESTION GOES HERE",
+            "answer": "ANOTHER ANSWER GOES HERE"
+        }
+    ]
+}
