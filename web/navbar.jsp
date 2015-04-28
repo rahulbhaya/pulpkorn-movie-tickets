@@ -7,7 +7,8 @@
         <h1>Pulpkorn</h1>
         <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
         <li class="nav-list-item"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
-        <li class="nav-list-item"><a href="GetUpcomingMovies">Gift Cards</a></li>
+        <li class="nav-list-item"><a href="BuyGiftCards">Gift Cards</a></li>
+        <li class="nav-list-item"><a href="GetSpecialOffers">Special Offers</a></li>
         <li class="dropdown nav-list-item">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <c:set var="name" value="${sessionScope.LogIn}"/>
