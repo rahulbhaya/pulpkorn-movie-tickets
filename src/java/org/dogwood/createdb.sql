@@ -23,6 +23,16 @@ CREATE TABLE Movie(
     PRIMARY KEY (Id)
 );
 
+CREATE TABLE Comment(
+    Commenter VARCHAR(25),
+    MovieId VARCHAR(25),
+    Message TEXT NOT NULL,
+    DateCommented DATETIME NOT NULL,
+    PRIMARY KEY (Commenter, MovieId, DateCommented),
+    FOREIGN KEY (Commenter) REFERENCES User(Name),
+    FOREIGN KEY (MovieId) REFERENCES Movie(Id)
+);
+
 CREATE TABLE MovieRating(
     UserName VARCHAR(25),
     MovieId VARCHAR(25),

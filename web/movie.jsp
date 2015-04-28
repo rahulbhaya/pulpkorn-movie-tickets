@@ -18,28 +18,34 @@
                         <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                         <h4>Synopsis:</h4>
                         <h5><c:out value="${movie.synopsis}"/></h5>
-                        <!--This script should be places anywhere on a page you want to see rating box-->
-<div style="width:100%;height:430px;">
-<script type="text/javascript">
-var r_obj = {
-"Company": { "CompanyId": 5196 },
-"RatingboxId": 13074,
-"ProductCode": encodeURIComponent(window.location.href),
-"SearchText": "",
-"SortExpression": "",
-"PageIndex": 1,
-"MaxpageDisplay": 10,
-"User": { "UserId": "1" }
-};
-var r_rspage = "rsratingbox";
-</script>
-<script type="text/javascript" src="http://www.rating-system.com/widget/rsiframe.js"></script>
-</div>
                     </div>
                 </div>
+                <div class="row">
+                    <h3>Comments</h3>
+                    <div class="media">
+                        <img class="media-object pull-left" src="https://github.com/identicons/placeholder.png" width="64" height="64">
+                        <div class="media-body">
+                            <h3 class="media-heading">Username on Date</h3>
+                            <p>Comment text goes here.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <img class="media-object pull-left" src="https://github.com/identicons/placeholder.png" width="64" height="64">
+                        <div class="media-body">
+                            <h3 class="media-heading">Username on Date</h3>
+                            <p>Comment text goes here.</p>
+                        </div>
+                    </div>
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" name="comment" rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
+                    </form>
+                </div>        
             </div>
-        </div>
-                                
+        </div>                        
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
     </body>

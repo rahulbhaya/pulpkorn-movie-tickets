@@ -102,6 +102,45 @@ public class Database {
         }
     }
     
+    public boolean comment(String userName, String movieId, String message) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO Comment VALUES(?, ?, ?, NOW())");
+            statement.setString(1, userName);
+            statement.setString(2, movieId);
+            statement.setString(3, message);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
+    public List<Comment> getComments(String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Comment WHERE MovieId = ? ORDER BY DateCommented");
+            statement.setString(1, movieId);
+            ResultSet results = statement.executeQuery();
+            List<Comment> comments = new LinkedList<>();
+            while (results.next()) {
+                String commenter = results.getString(1);
+                String message = results.getString(3);
+                String dateCommented = results.getString(4);
+                comments.add(new Comment(commenter, movieId, message, dateCommented));
+            }
+            connection.close();
+            return comments;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
     public List<Movie> getInTheatersMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(

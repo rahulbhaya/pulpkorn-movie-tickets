@@ -6,10 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
 
-@WebServlet(name = "GetMovieById", urlPatterns = {"/GetMovieById"})
-public class GetMovieById extends HttpServlet {
+@WebServlet(name = "Comment", urlPatterns = {"/Comment"})
+public class Comment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -22,7 +23,14 @@ public class GetMovieById extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("MovieById", Database.getInstance().getMovieById(request.getParameter("MovieId")));
+        HttpSession session = request.getSession();
+        String name = (String) session.getAttribute("LogIn");
+        String movieId = request.getParameter("MovieId");
+        String message = request.getParameter("Message");
+        if (name == null || movieId == null || message == null) {
+            request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
+        }
+        Database.getInstance().comment(name, movieId, message);
         request.getRequestDispatcher("movie.jsp").forward(request, response);
     }
 
