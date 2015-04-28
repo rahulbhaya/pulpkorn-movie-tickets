@@ -6,20 +6,16 @@
         </div>
         <ul>
             <li>
-                <a href="/">Project PULPKORN</a>
+                <a href="aboutus.html">About PULPKORN</a>
             </li>
+            
             <li>
-                <a href="/">&nbsp;/&nbsp;</a>
+                <a href="privacypolicy.html">Privacy Policy</a>
             </li>
-            <li>
-                <a href="">Privacy</a>
+             <li>
+                <a href="help.html">Help</a>
             </li>
-            <li>
-                <a href="/">&nbsp;/&nbsp;</a>
-            </li>
-            <li>
-                <a href="/about/">About Us</a>
-            </li>
+            
         </ul>
     </div>
 </footer>

@@ -1,0 +1,17 @@
+<manifest alg="2" build="11" opt="true" iceEnabled="true" iceMarkupVersion="2" exportTarget="other" resolutions="1x" timestamp="1430182288300">
+  <folder name="css">
+    <file name="site_global.css" crc="422415861"/>
+    <file name="index.css" crc="4150447411" ref="index"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="3880902115" ref="index"/>
+    <file name="museutils.js" crc="521960461" ref="index"/>
+    <file name="jquery.watch.js" crc="56779320" ref="index"/>
+  </folder>
+  <folder name="images">
+    <file name="michael.jpg" crc="3961587623" ref="index"/>
+    <file name="10865818_10205954127558933_4122616811492680157_o.jpg" crc="3996978347" ref="index"/>
+    <file name="facebook-default-no-profile-pic.jpg" crc="3778232781" ref="index"/>
+  </folder>
+  <file name="index.html" crc="334664273" mt="1430182276622" redirect="true"/>
+</manifest>
