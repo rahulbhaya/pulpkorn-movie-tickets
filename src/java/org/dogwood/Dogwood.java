@@ -59,7 +59,7 @@ public class Dogwood {
             }
             return movies;
         } 
-        catch (IOException ex) {
+        catch (Exception ex) {
             System.out.println(ex);
             return null;
         }
