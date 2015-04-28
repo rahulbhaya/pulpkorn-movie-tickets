@@ -21,7 +21,7 @@
                         <h5><c:out value="${movie.synopsis}"/></h5>
                     </div>
                 </div>
-                <div class="row">
+                <div>
                     <h3>Comments</h3>
                     <c:forEach var="comment" items="${sessionScope.Comments}">
                         <c:set var="name" value="${comment.userName}"/>
@@ -37,10 +37,12 @@
                         <form action="Comment" method="POST" role="form">
                             <div class="form-group">
                                 <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
-                                <label for="Message">Comment:</label>
-                                <textarea class="form-control" maxlength="140" name="Message" rows="5"></textarea>
+                                <textarea class="form-control floating-label" maxlength="140" name="Message" rows="1" placeholder="Write a new comment..."></textarea>
+                                <div horizontal center layout>
+                                    <div flex></div>
+                                    <button class="btn btn-flat btn-primary mdi-content-send" type="submit"></button>
+                                </div>
                             </div>
-                            <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                         </form> 
                     </c:if>
                 </div>        
