@@ -45,6 +45,9 @@
                             </div>
                         </form> 
                     </c:if>
+                    <c:if test="${sessionScope.LogIn == null}">
+                        <label>Commenting disabled for guests. <a href="login.jsp">Sign in</a> to comment.</label>
+                    </c:if>
                 </div>        
             </div>
         </div>                        
