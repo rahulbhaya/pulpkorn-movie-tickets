@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.jsoup.Jsoup;
@@ -43,13 +45,21 @@ public class Dogwood {
         }
     }
     
-    public static JSONObject getMovieInfo(String movieId) {
+    public static List<Movie> searchMovies(String title) {
         try {
-            URL url = new URL(BASE_URL + "/movies/" + movieId + 
-                    ".json?apikey=" + API_KEY);
-            return (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
+            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            JSONArray array = (JSONArray) json.get("movies");
+            List<Movie> movies = new LinkedList<>();
+            for (Object obj : array) {
+                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
+                if (movie != null) {
+                    movies.add(movie);
+                }
+            }
+            return movies;
         } 
-        catch (Exception ex) {
+        catch (IOException ex) {
             System.out.println(ex);
             return null;
         }

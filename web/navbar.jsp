@@ -36,6 +36,14 @@
             </ul>
         </li>
     </ul>
+    <form action="SearchMovies" class="navbar-form pull-right" method="POST" role="search">
+        <div class="input-group">
+            <input class="form-control nav-list-item" name="Title" placeholder="Enter Movie Title..." type="text">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+    </form>
     <form action="GetTheatersNear" class="navbar-form pull-right" method="POST" role="search">
         <div class="input-group">
             <input class="form-control nav-list-item" name="Near" placeholder="Enter City, State or ZIP..." type="text">
