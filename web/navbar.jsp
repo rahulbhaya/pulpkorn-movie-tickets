@@ -25,6 +25,9 @@
                     </c:when>
                     <c:otherwise>
                         <li><a href="account.jsp">Account</a></li>
+                        <c:if test="${sessionScope.IsAdmin != null}">
+                            <li><a href="admin/index.jsp">Admin</a></li>
+                        </c:if>
                         <li><a href="LogOut">Log Out</a></li>
                     </c:otherwise>
                 </c:choose>

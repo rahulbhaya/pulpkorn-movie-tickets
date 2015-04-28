@@ -16,7 +16,7 @@ public class Database {
     private static final String USER = "root", PASSWORD = "root";
     
     public static enum Login {
-        INCORRECT_USERNAME, INCORRECT_PASSWORD, SQL_ERROR, CORRRECT
+        INCORRECT_USERNAME, INCORRECT_PASSWORD, SQL_ERROR, CORRRECT_NORMAL, CORRECT_ADMIN
     }
     
     private static final Database db = new Database();
@@ -237,11 +237,13 @@ public class Database {
                     "SELECT * FROM User WHERE Name = ? AND Password = MD5(?)");
             statement.setString(1, name);
             statement.setString(2, password);
-            if (!statement.executeQuery().next()) {
+            ResultSet results = statement.executeQuery();
+            if (!results.next()) {
                 return Login.INCORRECT_PASSWORD;
             }
+            Login login = results.getString(3).equals("NORMAL") ? Login.CORRRECT_NORMAL : Login.CORRECT_ADMIN;
             connection.close();
-            return Login.CORRRECT;
+            return login;
         } 
         catch (SQLException ex) {
             System.out.println(ex);

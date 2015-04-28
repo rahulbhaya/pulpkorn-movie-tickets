@@ -32,8 +32,13 @@ public class LogIn extends HttpServlet {
         }
         String name = request.getParameter("Name");
         Login login = Database.getInstance().logIn(name, request.getParameter("Password"));        
-        if (login == Login.CORRRECT) {
+        if (login == Login.CORRRECT_NORMAL) {
             session.setAttribute("LogIn", name);
+            dispatcher.forward(request, response);
+        }
+        else if (login == Login.CORRECT_ADMIN) {
+            session.setAttribute("LogIn", name);
+            session.setAttribute("IsAdmin", true);
             dispatcher.forward(request, response);
         }
         else {

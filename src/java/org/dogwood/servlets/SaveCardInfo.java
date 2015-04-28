@@ -2,6 +2,7 @@ package org.dogwood.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.dogwood.Database;
  *
  * @author Brian
  */
+@WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 public class SaveCardInfo extends HttpServlet {
 
     /**
