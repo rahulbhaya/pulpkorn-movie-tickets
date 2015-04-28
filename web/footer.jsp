@@ -6,13 +6,13 @@
         </div>
                         <ul>
                     <li>
-                        <a href="aboutus.html">About</a>
+                        <a href="about.jsp">About</a>
                     </li>
                     <li>
                         <a href="">&nbsp;/&nbsp;</>
                     </li>
                     <li>
-                        <a href="privacypolicy.html">Privacy</a>
+                        <a href="privacy_policy.jsp">Privacy</a>
                     </li>
                     <li>
                         <a href="">&nbsp;/&nbsp;</a>
