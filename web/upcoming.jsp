@@ -12,7 +12,7 @@
                     <c:forEach var="movie" items="${sessionScope.UpcomingMovies}">
                         <div class="card-header movie-card" layout horizontal center>
                             <div class="movie-card-outer">
-                                <a href="GetMovieById?Id=<c:out value='${movie.id}'/>">
+                                <a href="GetMovieById?MovieId=<c:out value='${movie.id}'/>">
                                     <img src="<c:out value='${movie.image}'/>">
                                 </a>
                                 <div class="movie-card-inner">
