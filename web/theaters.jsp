@@ -13,7 +13,7 @@
                         <div class="card-header theater-card" layout horizontal center>
                             <img src="">
                             <div class="movie-card-outer">
-                                <div class="movie-card-inner">
+                                <div class="movie-card-inner" style="padding:20px;">
                                     <div class="h2"><c:out value="${theater.name}"/></div>
                                     <div>
                                         <address><c:out value="${theater.address}"/></address>

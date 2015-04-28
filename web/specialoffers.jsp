@@ -9,7 +9,7 @@
             <div class="main">
                 <h1>Special Offers</h1>
                 <div id="offers" horizontal layout wrap center-justified>
-                    <iframe src="http://slickdeals.net/coupons/fandango/" width="100%" height="1000">
+                    <iframe src="http://slickdeals.net/coupons/fandango/" width="100%" height="1000" style="border:none;">
                     </iframe>
                 </div>
             </div>
