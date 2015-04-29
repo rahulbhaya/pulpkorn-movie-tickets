@@ -46,8 +46,9 @@
     </form>
     <form action="GetTheatersNear" class="navbar-form pull-right" method="POST" role="search">
         <div class="input-group">
-            <input class="form-control nav-list-item" name="Near" placeholder="Enter City, State or ZIP..." type="text">
+            <input class="form-control nav-list-item" name="Near" id="searchbar-theater" placeholder="Enter City, State or ZIP..." type="text">
             <div class="input-group-btn">
+                <button class="btn btn-default" onclick="getGeoLocation();" type="button"><span class="glyphicon mdi-device-gps-fixed"></span></button>
                 <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>

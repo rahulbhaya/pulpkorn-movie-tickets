@@ -14,4 +14,5 @@
     <script src="js/ripples.min.js"></script>
     <script src="js/material.min.js"></script>
     <script src="js/dogwood.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,visualization&sensor=false"></script>
 </head>
