@@ -9,6 +9,7 @@
         <div class="container-fluid movie-detail-container" horizontal center>
             <div class="jumbotron">
                 <div id="movie" horizontal center layout>
+                    <c:set var="isAdmin" value="${sessionScope.IsAdmin}"/>
                     <c:set var="movie" value="${sessionScope.MovieById}"/>
                     <div class="movie-detail-card">
                         <h1><c:out value="${movie.title}"/></h1>
@@ -19,11 +20,20 @@
                         <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                         <h4>Synopsis:</h4>
                         <h5><c:out value="${movie.synopsis}"/></h5>
+                        <c:if test="${isAdmin != null}">
+                            <form action="DeleteMovie" method="POST" role="form">
+                                <div class="form-group">
+                                    <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
+                                    <button class="btn btn-danger pull-right" type="submit">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true">Delete Movie</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </c:if>
                     </div>
                 </div>
                 <div>
                     <h3>Comments</h3>
-                    <c:set var="isAdmin" value="${sessionScope.IsAdmin}"/>
                     <c:forEach var="comment" items="${sessionScope.Comments}">
                         <c:set var="name" value="${comment.userName}"/>
                         <div class="media">

@@ -157,6 +157,29 @@ public class Database {
         }
     }
     
+    public boolean deleteMovie(String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM Comment WHERE MovieId = ?");
+            statement.setString(1, movieId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "DELETE FROM CastMember WHERE MovieId = ?");
+            statement.setString(1, movieId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "DELETE FROM Movie WHERE Id = ?");
+            statement.setString(1, movieId);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }    
+    
     public List<String> getCardNumberByName(String name){
         List<String> cards=new LinkedList<>();
         try {
