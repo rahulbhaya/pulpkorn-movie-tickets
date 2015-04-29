@@ -1,5 +1,6 @@
 package org.dogwood;
 
+import org.dogwood.beans.Movie;
 import java.util.List;
 
 public class Test {

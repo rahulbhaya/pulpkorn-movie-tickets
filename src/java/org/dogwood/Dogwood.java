@@ -1,5 +1,8 @@
 package org.dogwood;
 
+import org.dogwood.beans.Showtimes;
+import org.dogwood.beans.Movie;
+import org.dogwood.beans.MovieTheater;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;

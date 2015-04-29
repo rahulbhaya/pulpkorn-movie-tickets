@@ -1,4 +1,4 @@
-package org.dogwood;
+package org.dogwood.beans;
 
 import java.io.Serializable;
 

@@ -22,7 +22,7 @@ public class ViewFAQs extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("UpcomingMovies", Database.getInstance().getUpcomingMovies());
+        request.getSession().setAttribute("FAQs", Database.getInstance().getFAQs());
         request.getRequestDispatcher("faqs.jsp").forward(request, response);
     }
 

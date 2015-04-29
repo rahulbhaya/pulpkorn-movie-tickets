@@ -1,5 +1,8 @@
 package org.dogwood;
 
+import org.dogwood.beans.Movie;
+import org.dogwood.beans.Comment;
+import org.dogwood.beans.FAQ;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -168,6 +171,26 @@ public class Database {
             }
             connection.close();
             return comments;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public List<FAQ> getFAQs() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM FAQ");
+            ResultSet results = statement.executeQuery();
+            List<FAQ> faqs = new LinkedList<>();
+            while (results.next()) {
+                String question = results.getString(1);
+                String answer = results.getString(2);
+                faqs.add(new FAQ(question, answer));
+            }
+            connection.close();
+            return faqs;
         } 
         catch (SQLException ex) {
             System.out.println(ex);
