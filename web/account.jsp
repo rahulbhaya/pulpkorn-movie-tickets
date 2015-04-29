@@ -37,7 +37,35 @@
                     </div>
                 </form>
             </div>
-
+             <div class="container-fluid" layout vertical center>
+            <div class="jumbotron account-card-main">
+           
+                <h2 class="account-card-h2">Change Email</h2>
+                <c:set var="changeEmail" value="${sessionScope.ChangeEmailSuccess}"/>
+                <c:if test="${changeEmail != null}">
+                    <p class="bg-success"><c:out value="${changeEmail}"/></p>
+                </c:if>
+                <c:set var="changeEmail" value="${sessionScope.ChangeEmailFail}"/>
+                <c:if test="${changeEmail != null}">
+                    <p class="bg-danger"><c:out value="${changeEmail}"/></p>
+                </c:if>
+                <c:remove var="ChangeEmailSuccess" scope="session"/>
+                <c:remove var="ChangeEmailFail" scope="session"/>
+                <form action="ChangeEmail" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="CurrentEmail">Current Email:</label>
+                        <input class="form-control" name="CurrentEmail" placeholder="Enter current email" required type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="NewEmail">New Email:</label>
+                        <input class="form-control" name="NewEmail" placeholder="Enter new email" required type="email">
+                    </div>
+                    <div horizontal center layout>
+                        <div flex></div>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
+                    </div>
+                </form>
+            </div>   
             <div class="jumbotron account-card-main">
                 <h1 class="account-card-h1">Saved Credit Cards</h1>
                 <div id="cc-info">

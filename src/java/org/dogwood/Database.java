@@ -138,6 +138,22 @@ public class Database {
             return false;
         }
     }
+//     public boolean changeEmail(String name, String currentEmail, String newEmail) {
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(
+//                    "UPDATE User SET Password = MD5(?) WHERE Name = ? AND Password = MD5(?)");
+//            statement.setString(1, newPassword);
+//            statement.setString(2, name);
+//            statement.setString(3, currentPassword);
+//            boolean retValue = statement.executeUpdate() == 1;
+//            connection.close();
+//            return retValue;
+//        }
+//        catch (SQLException ex) {
+//            System.out.println(ex);
+//            return false;
+//        }
+//    }
     
     public boolean comment(String userName, String movieId, String message) {
         try {
