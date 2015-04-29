@@ -33,7 +33,7 @@
                     </div>
                 </div>
             <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">
-                                Share on Facebook
+                    <img src="/images/fb_icon_325x325.png" height="20" width="20">         Share on Facebook
                         </a>
             </div>                 
             <div class="rw-ui-container"></div>
