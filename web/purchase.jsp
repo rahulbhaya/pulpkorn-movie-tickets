@@ -6,10 +6,10 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
+            <form role="form" method="post" action="SavePurchaseInfo">
             <div id="ticket-info" class="jumbotron">
                 <h1>Purchase Tickets for MOVIE at TIME</h1>
                 <p>THEATER</p>
-                <form role="form">
                     <div class="form-group">
                         <label>Adult Tickets:</label>
                         <select class="form-control">
@@ -67,7 +67,6 @@
                         <span> = </span>
                         <span class="total">$16.50</span>
                     </div>
-                </form>
                 <div class="form-group">
                     <div horizontal center layout>
                         <div flex></div>
@@ -77,7 +76,6 @@
             </div>
             <div id="card-info" class="jumbotron" style="display: none;">
                 <h1>Checkout</h1>
-                <form role="form">
                     <div class="form-group status-info">
                         <label>Checkout as:</label>
                         <div class="radio radio-primary">
@@ -131,14 +129,29 @@
                                 <label for="namecard">Name on Card</label>
                                 <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
                             </span>
+                            <span>
+                                <label for="billingaddress">Billing Address</label>
+                                <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card" required />
+                            </span>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    Existing payment method
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <c:forEach var="card" items="${sessionScope.CreditCards}">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">${card}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
                         </fieldset>
                     </div>
                     <fieldset>
                         <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                     </fieldset>
-                </form>
             </div>
+                </form>
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>

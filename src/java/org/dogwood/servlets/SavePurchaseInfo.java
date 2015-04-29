@@ -1,15 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.dogwood.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
 
-@WebServlet(name = "StartPurchase", urlPatterns = {"/StartPurchase"})
-public class StartPurchase extends HttpServlet {
+/**
+ *
+ * @author Brian
+ */
+public class SavePurchaseInfo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -22,8 +31,18 @@ public class StartPurchase extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("CreditCards", Database.getInstance().getCardNumberByName((String)request.getSession().getAttribute("LogIn")));
-        request.getRequestDispatcher("purchase.jsp").forward(request, response);
+        Database db = Database.getInstance();
+        HttpSession session = request.getSession();
+        if(request.getParameter("status").equals("option1")){
+            db.register(request.getParameter("Name"), request.getParameter("password"), "NORMAL");
+        }
+        if(request.getParameter("status").equals("option2")){
+            
+        }
+        if(request.getParameter("status").equals("option3")){
+            
+        }
+        String name = (String) session.getAttribute("LogIn");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

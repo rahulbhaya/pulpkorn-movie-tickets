@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.json.simple.JSONObject;
 
@@ -135,6 +137,20 @@ public class Database {
             System.out.println(ex);
             return false;
         }
+    }
+    
+    public List<String> getCardNumberByName(String name){
+        List<String> cards=new LinkedList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT CardNumber FROM CreditCardInfo WHERE Name=?");
+            statement.setString(1, name);
+            ResultSet results = statement.executeQuery();
+            while(results.next()){
+                cards.add(results.getString(1));
+            }
+        } catch (SQLException ex) {
+        }
+        return cards;
     }
     
     public List<Comment> getComments(String movieId) {
