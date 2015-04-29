@@ -70,6 +70,7 @@ function getGeoLocation() {
                 }
             }
             document.getElementById("searchbar-theater").value = location;
+            document.getElementById("searchbtn-search").click();
         });
     });
 }

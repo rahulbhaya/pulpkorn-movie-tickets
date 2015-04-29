@@ -49,7 +49,7 @@
             <input class="form-control nav-list-item" name="Near" id="searchbar-theater" placeholder="Enter City, State or ZIP..." type="text">
             <div class="input-group-btn">
                 <button class="btn btn-default" onclick="getGeoLocation();" type="button"><span class="glyphicon mdi-device-gps-fixed"></span></button>
-                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default" id="searchbtn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
     </form>
