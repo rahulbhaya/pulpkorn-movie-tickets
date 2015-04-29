@@ -11,7 +11,7 @@
                 <div id="theaters" vertical layout wrap center>
                     <c:forEach var="theater" items="${sessionScope.TheatersNear}">
                         <div class="card-header theater-card" layout horizontal center>
-                            <img src="">
+                            <img src="" style="display:none;">
                             <div class="movie-card-outer">
                                 <div class="movie-card-inner" style="padding:20px;line-height: 3.5rem;">
                                     <div class="h2"><c:out value="${theater.name}"/></div>
