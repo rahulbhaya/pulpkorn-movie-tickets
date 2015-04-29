@@ -23,6 +23,7 @@
                 </div>
                 <div>
                     <h3>Comments</h3>
+                    <c:set var="isAdmin" value="${sessionScope.IsAdmin}"/>
                     <c:forEach var="comment" items="${sessionScope.Comments}">
                         <c:set var="name" value="${comment.userName}"/>
                         <div class="media">
@@ -31,6 +32,18 @@
                                 <h3 class="media-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h3>
                                 <p><c:out value="${comment.message}"/></p>
                             </div>
+                            <c:if test="${isAdmin != null}">
+                                <form action="RemoveComment" method="POST" role="form">
+                                    <div class="form-group">
+                                        <input name="Commenter" type="hidden" value="<c:out value='${name}'/>">
+                                        <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
+                                        <input name="DateCommented" type="hidden" value="<c:out value='${comment.dateCommented}'/>">
+                                        <button class="btn btn-danger pull-right" type="submit">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true">Remove</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </c:if>
                         </div>
                     </c:forEach>
                     <c:if test="${sessionScope.LogIn != null}">

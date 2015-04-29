@@ -418,7 +418,7 @@ public class Database {
     public boolean removeComment(String userName, String movieId, String dateCommented) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM Comment WHERE UserName = ? AND MovieId = ? "
+                    "DELETE FROM Comment WHERE Commenter = ? AND MovieId = ? "
                             + "AND DateCommented = ?");
             statement.setString(1, userName);
             statement.setString(2, movieId);

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
 
-@WebServlet(name = "Comment", urlPatterns = {"/Comment"})
-public class Comment extends HttpServlet {
+@WebServlet(name = "RemoveComment", urlPatterns = {"/RemoveComment"})
+public class RemoveComment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,14 +24,14 @@ public class Comment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String name = (String) session.getAttribute("LogIn");
+        String commenter = request.getParameter("Commenter");
         String movieId = request.getParameter("MovieId");
-        String message = request.getParameter("Message");
-        if (name == null || movieId == null || message == null) {
+        String dateCommented = request.getParameter("DateCommented");
+        if (session.getAttribute("IsAdmin") == null || commenter == null || movieId == null || dateCommented == null) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
         else {
-            Database.getInstance().comment(name, movieId, message);
+            Database.getInstance().removeComment(commenter, movieId, dateCommented);
             request.getRequestDispatcher("GetMovieById").forward(request, response);
         }
     }
