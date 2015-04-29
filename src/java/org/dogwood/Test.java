@@ -1,16 +1,16 @@
 package org.dogwood;
 
-import org.dogwood.beans.Movie;
 import java.util.List;
+import org.dogwood.beans.CastMember;
 
 public class Test {
     
     public static void main(String[] args) {
-        for (Movie movie : Dogwood.searchMovies("H")) {
-            System.out.println(movie.getTitle());
-            
+        String movieId = Database.getInstance().getMovieByTitle("Home").getId();
+        List<CastMember> cast = Dogwood.getCast(movieId);
+        for (CastMember cm : cast) {
+            System.out.println(cm.getName());
         }
-        Database.getInstance().register("name","name", "ADMIN");
     }
     
 }

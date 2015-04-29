@@ -9,9 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
 
 public class Database {
@@ -60,6 +59,22 @@ public class Database {
             System.out.println(ex);
         }
     }
+    
+    public boolean addCastMember(String name, String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO CastMember VALUES(?, ?)");
+            statement.setString(1, name);
+            statement.setString(2, movieId);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }       
     
     public boolean addFAQ(JSONObject json) {
         try {
@@ -154,6 +169,26 @@ public class Database {
         } catch (SQLException ex) {
         }
         return cards;
+    }
+    
+    public List<CastMember> getCast(String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM CastMember WHERE MovieId = ?");
+            statement.setString(1, movieId);
+            ResultSet results = statement.executeQuery();
+            List<CastMember> cast = new LinkedList<>();
+            while (results.next()) {
+                String name = results.getString(1);
+                cast.add(new CastMember(name, movieId));
+            }
+            connection.close();
+            return cast;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
     }
     
     public List<Comment> getComments(String movieId) {

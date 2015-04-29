@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.dogwood.beans.CastMember;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -21,6 +22,23 @@ public class Dogwood {
     public static final String API_KEY = "gs2spwmu9dt6uqnaxhsadxp6";
     
     public static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    
+    public static List<CastMember> getCast(String movieId) {
+        try {
+            URL url = new URL(BASE_URL + "/movies/" + movieId + "/cast.json?apikey=" + API_KEY);
+            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            JSONArray cast = (JSONArray) json.get("cast");
+            for (Object obj : cast) {
+                JSONObject castMember = (JSONObject) obj;
+                Database.getInstance().addCastMember((String) castMember.get("name"), movieId);
+            }
+            return Database.getInstance().getCast(movieId);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
     
     public static List<MovieTheater> getTheaters(String near) {
         try {

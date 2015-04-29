@@ -23,6 +23,13 @@ CREATE TABLE Movie(
     PRIMARY KEY (Id)
 );
 
+CREATE TABLE CastMember(
+    Name VARCHAR(25),
+    MovieId VARCHAR(25),
+    PRIMARY KEY (Name, MovieId),
+    FOREIGN KEY (MovieId) REFERENCES Movie(Id)
+);
+
 CREATE TABLE Comment(
     Commenter VARCHAR(25),
     MovieId VARCHAR(25),

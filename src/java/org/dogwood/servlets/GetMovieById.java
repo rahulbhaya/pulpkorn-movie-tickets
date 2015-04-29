@@ -1,6 +1,7 @@
 package org.dogwood.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
+import org.dogwood.Dogwood;
+import org.dogwood.beans.CastMember;
 
 @WebServlet(name = "GetMovieById", urlPatterns = {"/GetMovieById"})
 public class GetMovieById extends HttpServlet {
@@ -29,6 +32,11 @@ public class GetMovieById extends HttpServlet {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
         session.setAttribute("MovieById", Database.getInstance().getMovieById(movieId));
+        List<CastMember> cast = Database.getInstance().getCast(movieId);
+        if (cast == null || cast.isEmpty()) {
+            cast = Dogwood.getCast(movieId);
+        }
+        session.setAttribute("Cast", cast);
         session.setAttribute("Comments", Database.getInstance().getComments(movieId));
         request.getRequestDispatcher("movie.jsp").forward(request, response);
     }
