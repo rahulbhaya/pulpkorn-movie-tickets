@@ -26,7 +26,7 @@
                         <li><a href="register.jsp">Register</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="account.jsp">Account</a></li>
+                        <li><a href="GetAccountInfo">Account</a></li>
                         <c:if test="${sessionScope.IsAdmin != null}">
                             <li><a href="admin/index.jsp">Admin</a></li>
                         </c:if>

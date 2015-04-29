@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.dogwood.Database;
 
-@WebServlet(name = "StartPurchase", urlPatterns = {"/StartPurchase"})
-public class StartPurchase extends HttpServlet {
+@WebServlet(name = "GetAccountInfo", urlPatterns = {"/GetAccountInfo"})
+public class GetAccountInfo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +48,7 @@ public class StartPurchase extends HttpServlet {
             creditCardList.add(ccString);
         }
         request.getSession().setAttribute("CreditCards", creditCardList);
-        request.getRequestDispatcher("purchase.jsp").forward(request, response);
+        request.getRequestDispatcher("account.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
