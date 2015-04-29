@@ -7,9 +7,9 @@
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <form role="form" method="post" action="SavePurchaseInfo">
-            <div id="ticket-info" class="jumbotron">
-                <h1>Purchase Tickets for MOVIE at TIME</h1>
-                <p>THEATER</p>
+                <div id="ticket-info" class="jumbotron">
+                    <h1>Purchase Tickets for MOVIE at TIME</h1>
+                    <p>THEATER</p>
                     <div class="form-group">
                         <label>Adult Tickets:</label>
                         <select class="form-control">
@@ -67,15 +67,15 @@
                         <span> = </span>
                         <span class="total">$16.50</span>
                     </div>
-                <div class="form-group">
-                    <div horizontal center layout>
-                        <div flex></div>
-                        <button class="btn btn-danger btn-fab btn-raised mdi-action-trending-neutral login-submit-btn" onclick="nextStep();"></button>
+                    <div class="form-group">
+                        <div horizontal center layout>
+                            <div flex></div>
+                            <button class="btn btn-danger btn-fab btn-raised mdi-action-trending-neutral login-submit-btn" onclick="nextStep();"></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="card-info" class="jumbotron" style="display: none;">
-                <h1>Checkout</h1>
+                <div id="card-info" class="jumbotron" style="display: none;">
+                    <h1>Checkout</h1>
                     <div class="form-group status-info">
                         <label>Checkout as:</label>
                         <div class="radio radio-primary">
@@ -138,9 +138,9 @@
                                     Existing payment method
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <ul class="dropdown-menu" id="cc-info" role="menu" aria-labelledby="dropdownMenu1">
                                     <c:forEach var="card" items="${sessionScope.CreditCards}">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">${card}</a></li>
+                                        <li role="presentation"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a></li>
                                     </c:forEach>
                                 </ul>
                             </div>
@@ -150,8 +150,8 @@
                         <button class="btn btn-danger btn-fab btn-raised mdi-hardware-keyboard-backspace payment-goback-btn" onclick="goBack();"></button>
                         <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                     </fieldset>
-            </div>
-                </form>
+                </div>
+            </form>
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
@@ -163,6 +163,21 @@
                 $(".user-info").hide();
                 $(".payment-info").show();
             </c:if>
+
+            var ccList = document.getElementById("cc-info");
+            for (var i = 0; i < ccList.childNodes.length; i++) {
+                if (ccList.childNodes[i].tagName === "LI") {
+                    var ccType = ccList.childNodes[i].childNodes[1].textContent;
+                    if (ccType.match("AMEX")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/amex.jpg";
+                    } else if (ccType.match("VISA")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/visa.jpg";
+                    } else if (ccType.match("MasterCard")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/mastercard.jpg";
+                    } else
+                        ccList.childNodes[i].childNodes[0].src = "/images/discover.jpg";
+                }
+            }
             });
 
             $("select").change(function () {
