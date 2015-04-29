@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <form role="form" method="post" action="SavePurchaseInfo">
                 <div id="ticket-info" class="jumbotron">
-                    <h1>Purchase Tickets for MOVIE at TIME</h1>
+                    <h1>Purchase Tickets for ${sessionScope.MovieTitle} at ${sessionScope.MovieTime}</h1>
                     <p>THEATER</p>
                     <div class="form-group">
                         <label>Adult Tickets:</label>

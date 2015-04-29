@@ -24,7 +24,7 @@
                                                         <c:set var="movieObj" value="${showtimes.movie}"/>
                                                         <c:choose>
                                                             <c:when test="${movieObj != null}">
-                                                                <a href="StartPurchase?MovieId=<c:out value='${movieObj.id}'/>">
+                                                                <a href="StartPurchase" onclick="<c:set var="MovieId" value="${movieObj.id}" scope="session"/>; <c:set var="MovieTime" value="${time}" scope="session"/>">
                                                                     <c:out value="${time}"/>
                                                                 </a>
                                                             </c:when>
