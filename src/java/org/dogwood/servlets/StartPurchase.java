@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.dogwood.Database;
+import org.dogwood.beans.Movie;
 
 @WebServlet(name = "StartPurchase", urlPatterns = {"/StartPurchase"})
 public class StartPurchase extends HttpServlet {
@@ -26,6 +27,10 @@ public class StartPurchase extends HttpServlet {
             throws ServletException, IOException {
         List<String> creditCardList = new ArrayList<String>() {
         };
+        String id = (String)request.getSession().getAttribute("MovieId");
+        Movie movie = Database.getInstance().getMovieById(id);
+        String name = movie.getTitle();
+        request.getSession().setAttribute("MovieTitle", name);
         for (String ccNumber : Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"))) {
             String ccType = "";
             String lastFour = ccNumber.substring(ccNumber.length() - 4);
