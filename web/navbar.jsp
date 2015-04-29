@@ -40,7 +40,7 @@
         <div class="input-group">
             <input class="form-control nav-list-item" name="Title" placeholder="Enter Movie Title..." type="text">
             <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default" type="submit" style="color:#FFF;"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
     </form>
@@ -48,8 +48,8 @@
         <div class="input-group">
             <input class="form-control nav-list-item" name="Near" id="searchbar-theater" placeholder="Enter City, State or ZIP..." type="text">
             <div class="input-group-btn">
-                <button class="btn btn-default" onclick="getGeoLocation();" type="button"><span class="glyphicon mdi-device-gps-fixed"></span></button>
-                <button class="btn btn-default" id="searchbtn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default" onclick="getGeoLocation();" type="button" style="color:#FFF;"><span class="glyphicon mdi-device-gps-fixed"></span></button>
+                <button class="btn btn-default" id="searchbtn-search" type="submit" style="color:#FFF;"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
     </form>
