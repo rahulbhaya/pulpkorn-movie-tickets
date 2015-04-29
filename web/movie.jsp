@@ -32,6 +32,10 @@
                         </c:if>
                     </div>
                 </div>
+                <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">
+                                Share on Facebook
+                     </a>
+                </div>
                 <div>
                     <h3>Comments</h3>
                     <c:forEach var="comment" items="${sessionScope.Comments}">
