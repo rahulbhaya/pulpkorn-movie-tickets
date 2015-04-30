@@ -28,7 +28,7 @@
                     <c:otherwise>
                         <li><a href="GetAccountInfo">Account</a></li>
                         <c:if test="${sessionScope.IsAdmin != null}">
-                            <li><a href="admin/index.jsp">Admin</a></li>
+                            <li><a href="admin.jsp">Admin Portal</a></li>
                         </c:if>
                         <li><a href="LogOut">Log Out</a></li>
                     </c:otherwise>

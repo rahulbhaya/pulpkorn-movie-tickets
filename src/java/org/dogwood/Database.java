@@ -92,7 +92,7 @@ public class Database {
             System.out.println(ex);
             return false;
         }
-    }    
+    }
     
     public boolean addMovie(JSONObject json) {
         try {
@@ -117,6 +117,25 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
+    public boolean addMovie(String id, String title, String releaseDate, String mpaaRating, String synopsis) {
+         try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO Movie VALUES(?, ?, ?, ?, ?)");
+            statement.setString(1, id);
+            statement.setString(2, title);
+            statement.setString(3, releaseDate);
+            statement.setString(4, mpaaRating);
+            statement.setString(5, synopsis);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
         } 
         catch (SQLException ex) {
             System.out.println(ex);
@@ -196,7 +215,26 @@ public class Database {
             System.out.println(ex);
             return false;
         }
-    }    
+    }
+    
+    public boolean editMovie(String id, String title, String releaseDate, String mpaaRating, String synopsis) {
+         try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE Movie SET Title = ?, ReleaseDate = ?, MPAARating = ?, Synopsis = ? WHERE Id = ?");
+            statement.setString(1, title);
+            statement.setString(2, releaseDate);
+            statement.setString(3, mpaaRating);
+            statement.setString(4, synopsis);
+            statement.setString(5, id);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
     
     public List<String> getCardNumberByName(String name){
         List<String> cards=new LinkedList<>();
@@ -277,7 +315,7 @@ public class Database {
     public List<Movie> getInTheatersMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM Movie WHERE ReleaseDate <= CURDATE()");
+                    "SELECT * FROM Movie WHERE ReleaseDate <= CURDATE() ORDER BY ReleaseDate");
             ResultSet results = statement.executeQuery();
             List<Movie> movies = new LinkedList<>();
             while (results.next()) {
@@ -374,7 +412,7 @@ public class Database {
     public List<Movie> getUpcomingMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM Movie WHERE ReleaseDate > CURDATE()");
+                    "SELECT * FROM Movie WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate");
             ResultSet results = statement.executeQuery();
             List<Movie> movies = new LinkedList<>();
             while (results.next()) {
