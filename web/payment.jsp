@@ -56,5 +56,22 @@
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
+        <script>
+        var ccList = document.getElementById("cc-info");
+            for (var i = 0; i < ccList.childNodes.length; i++) {
+                if (ccList.childNodes[i].tagName === "LI") {
+                    var ccType = ccList.childNodes[i].childNodes[1].textContent;
+                    if (ccType.match("AMEX")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/amex.jpg";
+                    } else if (ccType.match("VISA")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/visa.jpg";
+                    } else if (ccType.match("MasterCard")) {
+                        ccList.childNodes[i].childNodes[0].src = "/images/mastercard.jpg";
+                    } else
+                        ccList.childNodes[i].childNodes[0].src = "/images/discover.jpg";
+                }
+            }
+            });
+        </script>
     </body>
 </html>
