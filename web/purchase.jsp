@@ -6,13 +6,13 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <form role="form" method="post" action="SavePurchaseInfo">
+            <form role="form" method="post" action="SaveTickets">
                 <div id="ticket-info" class="jumbotron">
-                    <h1>Purchase Tickets for ${MovieTitle} at ${param.MovieTime}</h1>
-                    <p>${param.Theater}</p>
+                    <h1>Purchase Tickets for ${sessionScope.MovieTitle} at ${sessionScope.MovieTime}</h1>
+                    <p>${sessionScope.Theater}</p>
                     <div class="form-group">
                         <label>Adult Tickets:</label>
-                        <select class="form-control">
+                        <select class="form-control" name="adults">
                             <option>0</option>
                             <option>1</option>
                             <option>2</option>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label>Senior Tickets:</label>
-                        <select class="form-control">
+                        <select class="form-control" name="seniors">
                             <option>0</option>
                             <option>1</option>
                             <option>2</option>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label>Child Tickets:</label>
-                        <select class="form-control">
+                        <select class="form-control" name="children">
                             <option>0</option>
                             <option>1</option>
                             <option>2</option>

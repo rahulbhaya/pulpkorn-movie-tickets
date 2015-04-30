@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
@@ -582,15 +584,70 @@ public class Database {
             connection.close();
             return true;
         } catch (SQLException ex) {
-            System.out.println(billingAddress);
-            System.out.println(cardNumber);
-            System.out.println(securityCode);
-            System.out.println(cardName);
-            System.out.println(expDateY);
-            System.out.println(expDateM);
-            System.out.println(acctName);
+            ex.printStackTrace();
             return false;
         }
     }
     
+    public boolean savePrePurchase(String number, String name, String movie, String theater, String time, int adults, int seniors, int children){
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM CreditCardInfo WHERE CardNumber=?");
+            statement.setString(1, number);
+            ResultSet rs = statement.executeQuery();
+            String cardName="";
+            String securityCode="";
+            String billingAddress="";
+            String expDateM="";
+            String expDateY="";
+            while(rs.next()){
+                cardName = rs.getString(4);
+                securityCode=rs.getString(3);
+                billingAddress=rs.getString(5);
+                expDateM=rs.getString(6);
+                expDateY=rs.getString(7);
+            }
+            statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1, name);
+            statement.setString(2, movie);
+            statement.setString(3, theater);
+            statement.setString(4, time);
+            statement.setInt(5, adults);
+            statement.setInt(6, children);
+            statement.setInt(7, seniors);
+            statement.setString(8, number);
+            statement.setString(9, securityCode);
+            statement.setString(10, cardName);
+            statement.setString(11, billingAddress);
+            statement.setString(12, expDateM);
+            statement.setString(13, expDateY);
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM){
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1, name);
+            statement.setString(2, movie);
+            statement.setString(3, theater);
+            statement.setString(4, time);
+            statement.setInt(5, adults);
+            statement.setInt(6, children);
+            statement.setInt(7, seniors);
+            statement.setString(8, cardNumber);
+            statement.setString(9, securityCode);
+            statement.setString(10, cardName);
+            statement.setString(11, billingAddress);
+            statement.setString(12, expDateM);
+            statement.setString(13, expDateY);
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
