@@ -65,7 +65,7 @@ CREATE TABLE CreditCardInfo(
 CREATE TABLE Purchase(
     UserName VARCHAR(25),
     MovieId VARCHAR(25),
-    Theater VARCHAR(25),
+    Theater VARCHAR(50),
     ShowTime VARCHAR(10),
     Adults INT NOT NULL,
     Children INT NOT NULL,
@@ -76,9 +76,7 @@ CREATE TABLE Purchase(
     BillingAddress VARCHAR(25),
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2),
-    PRIMARY KEY(UserName, MovieId, Theater),
-    FOREIGN KEY(UserName) REFERENCES User(Name),
-    FOREIGN KEY(MovieId) REFERENCES Movie(Id)
+    PRIMARY KEY(UserName, MovieId, Theater)
 );
 
 CREATE TABLE FAQ(
