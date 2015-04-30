@@ -76,7 +76,7 @@ CREATE TABLE Purchase(
     BillingAddress VARCHAR(25),
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2),
-    PRIMARY KEY(UserName, MovieId, Theater)
+    PRIMARY KEY(UserName, MovieId, Theater, ShowTime)
 );
 
 CREATE TABLE FAQ(
