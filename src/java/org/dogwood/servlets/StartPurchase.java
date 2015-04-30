@@ -27,10 +27,9 @@ public class StartPurchase extends HttpServlet {
             throws ServletException, IOException {
         List<String> creditCardList = new ArrayList<String>() {
         };
-        String id = (String)request.getSession().getAttribute("MovieId");
+        String id = (String)request.getParameter("MovieId");
         Movie movie = Database.getInstance().getMovieById(id);
-        String name = movie.getTitle();
-        request.getSession().setAttribute("MovieTitle", name);
+        request.getSession().setAttribute("MovieTitle", movie.getTitle());
         for (String ccNumber : Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"))) {
             String ccType = "";
             String lastFour = ccNumber.substring(ccNumber.length() - 4);
