@@ -70,6 +70,12 @@ CREATE TABLE Purchase(
     Adults INT NOT NULL,
     Children INT NOT NULL,
     Seniors INT NOT NULL,
+    CardNumber VARCHAR(16),
+    SecurityCode VARCHAR(4),
+    CardName VARCHAR(25),
+    BillingAddress VARCHAR(25),
+    ExpDateM VARCHAR(2),
+    ExpDateY VARCHAR(2),
     PRIMARY KEY(UserName, MovieId, Theater),
     FOREIGN KEY(UserName) REFERENCES User(Name),
     FOREIGN KEY(MovieId) REFERENCES Movie(Id)

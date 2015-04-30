@@ -27,10 +27,15 @@ public class StartPurchase extends HttpServlet {
             throws ServletException, IOException {
         List<String> creditCardList = new ArrayList<String>() {
         };
+        List<String> creditCardListFull = Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"));
         String id = (String)request.getParameter("MovieId");
         Movie movie = Database.getInstance().getMovieById(id);
+        String theater = (String)request.getParameter("Theater");
+        request.getSession().setAttribute("Theater", theater);
         request.getSession().setAttribute("MovieTitle", movie.getTitle());
-        for (String ccNumber : Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"))) {
+        String time = (String)request.getParameter("MovieTime");
+        request.getSession().setAttribute("MovieTime", time);
+        for (String ccNumber : creditCardListFull) {
             String ccType = "";
             String lastFour = ccNumber.substring(ccNumber.length() - 4);
             char typeDigit = ccNumber.charAt(0);
@@ -52,12 +57,8 @@ public class StartPurchase extends HttpServlet {
             creditCardList.add(ccString);
         }
         request.getSession().setAttribute("CreditCards", creditCardList);
-        if(request.getSession().getAttribute("LogIn")!=null){
-            request.getRequestDispatcher("payment.jsp").forward(request,response);
-        }
-        else{
-            request.getRequestDispatcher("checkoutChoice.jsp").forward(request, response);
-        }
+        request.getSession().setAttribute("CreditCardsFull", creditCardListFull);
+        request.getRequestDispatcher("purchase.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

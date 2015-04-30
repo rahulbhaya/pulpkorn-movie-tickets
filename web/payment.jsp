@@ -6,43 +6,40 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <form role="form" method="post" action="GetInTheatersMovies">
+            <form role="form" method="post" action="LogPurchase">
                 <div class="form-group payment-info">
                         <fieldset>
                             <h1 class="payment-info-h1">Payment method</h1>
                             <span>
                                 <label for="cardnumber">Card Number</label>
-                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required pattern="[0-9]{16}"/>
+                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" pattern="[0-9]{16}"/>
                             </span>
                             <span>
                                 <label for="expdate">Expiration Date</label>
                                 <div style="display:flex;">
-                                    <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" required pattern="((1[01])|[1-9])"/>
-                                    <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" required pattern="[0-9]{2}"/>
+                                    <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" pattern="[1-9]{2}"/>
+                                    <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" pattern="[0-9]{2}"/>
                                 </div>
                             </span>
                             <span>
                                 <label for="secure">Security Code (CVV)</label>
-                                <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" required pattern="[0-9]{3}([0-9])*"/>
+                                <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" pattern="[0-9]{3}([0-9])*"/>
                             </span>
                             <span>
                                 <label for="namecard">Name on Card</label>
-                                <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" required />
+                                <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card"/>
                             </span>
                             <span>
                                 <label for="billingaddress">Billing Address</label>
-                                <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card" required />
+                                <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card"/>
                             </span>
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                    Existing payment method
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" id="cc-info" role="menu" aria-labelledby="dropdownMenu1">
+                                <select class="form-control" id="cc-info" name="creditcards">
+                                    <option selected="selected">Existing Payment Method</option>
                                     <c:forEach var="card" items="${sessionScope.CreditCards}">
-                                        <li role="presentation"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a></li>
+                                        <option value="${card}"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a></option>
                                     </c:forEach>
-                                </ul>
+                                </select>
                             </div>
                         </fieldset>
                     <div class="form-group">
@@ -58,6 +55,7 @@
         <%@include file="material.jsp"%>
         <script>
         var ccList = document.getElementById("cc-info");
+        var num = 0;
             for (var i = 0; i < ccList.childNodes.length; i++) {
                 if (ccList.childNodes[i].tagName === "LI") {
                     var ccType = ccList.childNodes[i].childNodes[1].textContent;
@@ -69,8 +67,8 @@
                         ccList.childNodes[i].childNodes[0].src = "/images/mastercard.jpg";
                     } else
                         ccList.childNodes[i].childNodes[0].src = "/images/discover.jpg";
+                    }
                 }
-            }
             });
         </script>
     </body>

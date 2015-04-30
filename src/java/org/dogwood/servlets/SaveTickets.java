@@ -12,15 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.dogwood.Database;
 
 /**
  *
- * @author Brian
+ * @author C15607
  */
-@WebServlet(name = "SavePurchaseInfo", urlPatterns = {"/SavePurchaseInfo"})
-public class SavePurchaseInfo extends HttpServlet {
+@WebServlet(name = "SaveTickets", urlPatterns = {"/SaveTickets"})
+public class SaveTickets extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +31,17 @@ public class SavePurchaseInfo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("status").equals("option1")){
-            request.getRequestDispatcher("purchaseRegister.jsp").forward(request, response);
-        }
-        if(request.getParameter("status").equals("option2")){
-            request.getRequestDispatcher("purchaseLogin.jsp").forward(request, response);
-        }
-        if(request.getParameter("status").equals("option3")){
+        String adults = request.getParameter("adults");
+        String seniors = request.getParameter("seniors");
+        String children = request.getParameter("children");
+        request.getSession().setAttribute("adults", adults);
+        request.getSession().setAttribute("seniors", seniors);
+        request.getSession().setAttribute("children", children);
+        if(request.getSession().getAttribute("LogIn")!=null){
             request.getRequestDispatcher("payment.jsp").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("checkoutChoice.jsp").forward(request, response);
         }
     }
 
