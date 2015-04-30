@@ -9,8 +9,8 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid" layout vertical center>
+            <h1>Your Account</h1>
             <div class="jumbotron account-card-main">
-                <h1 class="account-card-h1">Your Account</h1>
                 <h2 class="account-card-h2">Change Password</h2>
                 <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
                 <c:if test="${changePassword != null}">
@@ -37,7 +37,6 @@
                     </div>
                 </form>
             </div>
-             <div class="container-fluid" layout vertical center>
             <div class="jumbotron account-card-main">
            
                 <h2 class="account-card-h2">Change Email</h2>
