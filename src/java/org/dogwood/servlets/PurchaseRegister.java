@@ -19,8 +19,8 @@ import org.dogwood.Database;
  *
  * @author Brian
  */
-@WebServlet(name = "SavePurchaseInfo", urlPatterns = {"/SavePurchaseInfo"})
-public class SavePurchaseInfo extends HttpServlet {
+@WebServlet(name = "PurchaseRegister", urlPatterns = {"/PurchaseRegister"})
+public class PurchaseRegister extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +33,15 @@ public class SavePurchaseInfo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Database db = Database.getInstance();
         HttpSession session = request.getSession();
-        if(request.getParameter("status").equals("option1")){
-            request.getRequestDispatcher("purchaseRegister.jsp").forward(request, response);
-        }
-        if(request.getParameter("status").equals("option2")){
-            request.getRequestDispatcher("purchaseLogin.jsp").forward(request, response);
-        }
-        if(request.getParameter("status").equals("option3")){
+        String name = request.getParameter("Name");
+        if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, request.getParameter("Password"), "NORMAL")) {
+            session.setAttribute("LogIn", name);
             request.getRequestDispatcher("payment.jsp").forward(request, response);
+        }
+        else {
+            session.setAttribute("RegisterFail", true);
+            request.getRequestDispatcher("purchaseRegister.jsp").forward(request, response);
         }
     }
 

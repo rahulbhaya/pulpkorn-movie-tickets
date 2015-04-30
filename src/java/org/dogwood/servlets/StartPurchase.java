@@ -52,7 +52,12 @@ public class StartPurchase extends HttpServlet {
             creditCardList.add(ccString);
         }
         request.getSession().setAttribute("CreditCards", creditCardList);
-        request.getRequestDispatcher("purchase.jsp").forward(request, response);
+        if(request.getSession().getAttribute("LogIn")!=null){
+            request.getRequestDispatcher("payment.jsp").forward(request,response);
+        }
+        else{
+            request.getRequestDispatcher("checkoutChoice.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
