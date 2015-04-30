@@ -27,6 +27,7 @@
                     </div>
                     <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                 </form>
+                <p><a href="requestreset.jsp">Forgot your password?</a></p>
             </div>
         </div>
         <%@include file="footer.jsp"%>

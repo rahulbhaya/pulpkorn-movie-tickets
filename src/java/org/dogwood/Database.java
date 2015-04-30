@@ -432,6 +432,20 @@ public class Database {
         }
     }
     
+    public boolean hasUser(String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM User WHERE Name = ?"
+            );
+            statement.setString(1, email);
+            return statement.executeQuery().next();
+        }
+        catch (Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
     public Login logIn(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -509,6 +523,50 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean requestPasswordReset(String email, String resetPassword) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?)");
+            statement.setString(1, email);
+            if (statement.executeQuery().next()) {
+                statement = connection.prepareStatement(
+                        "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?)");
+                statement.setString(1, email);
+            }
+            statement = connection.prepareStatement(
+                    "INSERT INTO ResetPasswordRequest VALUES (?, MD5(?))");
+            statement.setString(1, email);
+            statement.setString(2, resetPassword);
+            connection.close();
+            return true;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
+    public boolean resetPassword(String email, String resetPassword, String password) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?) AND Password = MD5(?)");
+            statement.setString(1, email);
+            statement.setString(2, resetPassword);
+            statement = connection.prepareStatement(
+                    "UPDATE User SET Password = MD5(?) WHERE Name = ?"
+            );
+            statement.setString(1, password);
+            statement.setString(2, email);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }    
     
     public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM){
         try {

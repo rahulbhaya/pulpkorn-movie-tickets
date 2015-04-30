@@ -80,3 +80,10 @@ CREATE TABLE FAQ(
     Answer TEXT NOT NULL,
     PRIMARY KEY (Question)
 );
+
+CREATE TABLE ResetPasswordRequest(
+    Email VARCHAR(25),
+    Password VARCHAR(32),
+    PRIMARY KEY (Email),
+    FOREIGN KEY (Email) REFERENCES User(Name)
+);

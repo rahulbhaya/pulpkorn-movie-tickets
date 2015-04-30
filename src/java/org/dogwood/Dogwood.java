@@ -9,6 +9,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.dogwood.beans.CastMember;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,6 +31,10 @@ public class Dogwood {
     public static final String API_KEY = "gs2spwmu9dt6uqnaxhsadxp6";
     
     public static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    
+    public static final String GMAIL_EMAIL = "cse308teamdogwood@gmail.com";
+    
+    public static final String GMAIL_PASSWORD = "dogwood308";
     
     public static List<CastMember> getCast(String movieId) {
         try {
@@ -64,6 +77,41 @@ public class Dogwood {
             System.out.println(ex);
             return null;
         }
+    }
+    
+    public static boolean requestPasswordReset(String email) {
+        try {
+            String resetPassword = UUID.randomUUID().toString().replaceAll("-", "");
+            String link = "http://localhost:8080/resetpassword.jsp?ResetPassword=" + resetPassword;
+            Properties properties = System.getProperties();
+            properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+            properties.setProperty("mail.smtp.port", "587");
+            properties.setProperty("mail.smtp.auth", "true");
+            properties.setProperty("mail.smtp.starttls.enable", "true");
+            MimeMessage message = new MimeMessage(Session.getDefaultInstance(properties, new Authenticator() {
+                
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(GMAIL_EMAIL, GMAIL_PASSWORD);
+                }
+                
+            }));
+            message.setFrom("admin@pulpkorn.com");
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            message.setSubject("Your Pulpkorn Password Reset Request");
+            message.setText("Go <a href='" + link + "'>here</a> to reset your password: " + link, "UTF-8", "html");
+            if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
+                Transport.send(message);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+
     }
     
     public static List<Movie> searchMovies(String title) {
