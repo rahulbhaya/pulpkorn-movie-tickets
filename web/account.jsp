@@ -128,13 +128,16 @@
                     if (ccList.childNodes[i].tagName === "LI") {
                         var ccType = ccList.childNodes[i].childNodes[1].textContent;
                         if (ccType.match("AMEX")) {
-                            ccList.childNodes[i].childNodes[0].src = "/images/amex.jpg";
+                            ccList.childNodes[i].childNodes[0].src = "/images/AMEX.png";
                         } else if (ccType.match("VISA")) {
-                            ccList.childNodes[i].childNodes[0].src = "/images/visa.jpg";
+                            ccList.childNodes[i].childNodes[0].src = "/images/VISA.png";
                         } else if (ccType.match("MasterCard")) {
-                            ccList.childNodes[i].childNodes[0].src = "/images/mastercard.jpg";
-                        } else
-                            ccList.childNodes[i].childNodes[0].src = "/images/discover.jpg";
+                            ccList.childNodes[i].childNodes[0].src = "/images/MasterCard.png";
+                        } else if (ccType.match("Discover")) {
+                            ccList.childNodes[i].childNodes[0].src = "/images/Discover.png";
+                        }
+                        else
+                            ccList.childNodes[i].childNodes[0].src = "/images/default-credit-card.png";
                     }
                 }
             });

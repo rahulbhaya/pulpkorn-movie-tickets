@@ -78,5 +78,30 @@
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
+        
+         <script>
+            $("select").change(function () {
+                var self = $(this);
+                self.siblings(".total").text("$" +
+                        new Number(parseFloat(self.siblings(".cost").text().substring(1)) *
+                                self.val()).toFixed(2));
+            });
+
+            $('input[type=radio][name=status]').change(function () {
+                if (this.value == 'option1') {
+                    $("#email-group").show();
+                    $("#password-group").show();
+                    $(".payment-info").hide();
+                } else if (this.value == 'option2') {
+                    $("#email-group").show();
+                    $("#password-group").show();
+                    $(".payment-info").hide();
+                } else if (this.value == 'option3') {
+                    $("#email-group").hide();
+                    $("#password-group").hide();
+                    $(".payment-info").show();
+                }
+            });
+        </script>
     </body>
 </html>
