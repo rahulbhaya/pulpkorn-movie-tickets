@@ -69,7 +69,7 @@
                     <h1 class="account-card-h1">Saved Credit Cards</h1>
                     <div id="cc-info">
                         <c:forEach var="card" items="${sessionScope.CreditCards}">
-                            <li role="presentation"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a><a href="javascript:void(0)" class="btn btn-flat btn-danger">Remove</a></li>
+                            <li role="presentation" style="list-style-type: none;"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a><a href="javascript:void(0)" class="btn btn-flat btn-danger">Remove</a></li>
                                 </c:forEach>
                     </div>
                 </div>
