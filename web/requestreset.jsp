@@ -9,7 +9,7 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <div class="jumbotron login-card">
+            <div class="jumbotron login-card" style="height:250px;">
                 <h1>Reset Your Password</h1>
                 <c:set var="requestResetSuccess" value="${sessionScope.RequestResetSuccess}"/>
                 <c:if test="${requestResetSuccess != null}">
@@ -24,7 +24,7 @@
                 <form action="RequestPasswordReset" method="POST" role="form">
                     <div class="form-group">
                         <label for="Email">Email address</label>
-                        <input class="form-control" name="Email" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
+                        <input class="form-control" name="Email" placeholder="Your Login Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
                     </div>
                     <button class="btn btn-danger btn-fab btn-raised mdi-action-done login-submit-btn" type="submit"></button>
                 </form>
