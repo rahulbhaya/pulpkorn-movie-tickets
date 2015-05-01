@@ -23,7 +23,7 @@
                                     <div class="form-group">
                                         <div class="input-group" style="width: 180px;">
                                             <span class="input-group-addon" style="font-size: 10rem;color: #FFF;">$</span>
-                                            <select class="form-control" id="cardamt" style="width: 180px;font-size: 10rem;height: 140px;color: #FFF;text-align: right;">
+                                            <select class="form-control dropdown-toggle" id="cardamt" style="width: 180px;font-size: 10rem;height: 140px;color: #FFF;text-align: right;">
                                                 <option class="gift-card-amount-item">20</option>
                                                 <option class="gift-card-amount-item">25</option>
                                                 <option class="gift-card-amount-item">30</option>
