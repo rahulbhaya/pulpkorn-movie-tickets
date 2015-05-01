@@ -1,10 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer>
-    <div class="section-wrapper" layout="" horizontal="">
+    <div class="section-wrapper" layout horizontal>
         <div class="logo">
             <img alt="Logo" src="images/Logo.png">
         </div>
-        <div flex="">
+        <div flex>
         </div>
         <script>
             var subscribe = function(email) {
@@ -18,8 +18,8 @@
                 });
             };
         </script>
-        <div class="fanmail-module" style="margin-top: auto;margin-bottom: auto;padding-top: 5px;color:#FFF;">
-            <input class="form-control" name="Name" onchange="subscribe(this.value)" placeholder="Enter email to subscribe our newsletter" type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+" style="width: 260px;">
+        <div class="fanmail-module" style="margin-top: auto;margin-bottom: auto;padding-top: 5px;">
+            <input class="form-control" name="Name" onkeydown="if (event.keyCode == 13) subscribe(this.value)" placeholder="Enter email to subscribe our newsletter" type="text" required pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+" style="width: 260px;color:#FFF;">
         </div>
         <ul>
             <li>
