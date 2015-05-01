@@ -198,6 +198,10 @@ a {
     float: right;
 }
 
+.gift-card-amount-item{
+    color:#000;
+}
+
 .gift-card-quantity{
     float: right;
 }
