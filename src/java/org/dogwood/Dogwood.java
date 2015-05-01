@@ -81,6 +81,25 @@ public class Dogwood {
         try {
             String resetPassword = UUID.randomUUID().toString().replaceAll("-", "");
             String link = "http://localhost:8080/resetpassword.jsp?ResetPassword=" + resetPassword;
+            String subject = "Your Pulpkorn Password Reset Request";
+            String text = "Go <a href='" + link + "'>here</a> to reset your password: " + link;
+            if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
+                sendEmail(email, subject, text);
+                return true;
+            } 
+            else {
+                return false;
+            }
+        } 
+        catch (Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+
+    }
+    
+    public static boolean sendEmail(String to, String subject, String text) {
+        try {
             Properties properties = System.getProperties();
             properties.setProperty("mail.smtp.host", "smtp.gmail.com");
             properties.setProperty("mail.smtp.port", "587");
@@ -94,20 +113,16 @@ public class Dogwood {
 
             }));
             message.setFrom("admin@pulpkorn.com");
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-            message.setSubject("Your Pulpkorn Password Reset Request");
-            message.setText("Go <a href='" + link + "'>here</a> to reset your password: " + link, "UTF-8", "html");
-            if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
-                Transport.send(message);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception ex) {
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(subject);
+            message.setText(text, "UTF-8", "html");
+            Transport.send(message);
+            return true;
+        } 
+        catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
-
     }
 
     public static List<Movie> searchMovies(String title) {
@@ -126,6 +141,17 @@ public class Dogwood {
         } catch (Exception ex) {
             System.out.println(ex);
             return null;
+        }
+    }
+    
+    public static boolean subscribe(String email) {
+        if (Database.getInstance().subscribe(email)) {
+            sendEmail(email, "Thank you for subscribing to Pulpkorn",
+                    "You can look forward to our newsletters which release at the end of each month.");
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

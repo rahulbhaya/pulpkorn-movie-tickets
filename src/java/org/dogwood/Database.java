@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
@@ -624,4 +622,20 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean subscribe(String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO Subscriber VALUES (?)");
+            statement.setString(1, email);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }    
+    
 }

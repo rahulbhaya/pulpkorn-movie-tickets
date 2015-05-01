@@ -91,3 +91,8 @@ CREATE TABLE ResetPasswordRequest(
     PRIMARY KEY (Email),
     FOREIGN KEY (Email) REFERENCES User(Name)
 );
+
+CREATE TABLE Subscriber(
+    Email VARCHAR(25),
+    PRIMARY KEY (Email)
+);

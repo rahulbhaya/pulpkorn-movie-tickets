@@ -6,10 +6,20 @@
         </div>
         <div flex="">
         </div>
+        <script>
+            var subscribe = function(email) {
+                $.post("Subscribe", {Email: email}, function(text) {
+                    if (text === "Success") {
+                        $(".fanmail-module input").prop("disabled", true).val("Thanks for subscribing");
+                    }
+                    else {
+                        $(".fanmail-module input").prop("disabled", true).val("This email is already subscribed");
+                    }
+                });
+            };
+        </script>
         <div class="fanmail-module" style="margin-top: auto;margin-bottom: auto;padding-top: 5px;">
-            <form>
-                <input class="form-control" name="Name" placeholder="Enter email to subscribe our newsletter" required="" type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+" style="width: 260px;">
-            </form> 
+            <input class="form-control" name="Name" onchange="subscribe(this.value)" placeholder="Enter email to subscribe our newsletter" type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+" style="width: 260px;">
         </div>
         <ul>
             <li>
