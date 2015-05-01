@@ -77,14 +77,6 @@
                         <label>Commenting disabled for guests. <a href="login.jsp">Sign in</a> to comment.</label>
                     </c:if>
                 </div>
-                <div>
-                    <div class="fanmail-module">
-                        <form>
-                            <label class="fanmail-label" for="e">Subscribe our newsletter for updates on this movie:</label>
-                            <input class="form-control" name="Name" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
-                        </form> 
-                    </div>
-                </div>
             </div>
         </div>                        
         <%@include file="footer.jsp"%>
@@ -120,7 +112,7 @@
                 rw.type = "text/javascript";
                 rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
                 s.parentNode.insertBefore(rw, s);
-            }(document, new Date(), "script", "rating-widget.com/"));</script>
-
+            }(document, new Date(), "script", "rating-widget.com/"));
+        </script>
     </body>
 </html>
