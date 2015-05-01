@@ -42,7 +42,7 @@
                     <c:forEach var="comment" items="${sessionScope.Comments}">
                         <c:set var="name" value="${comment.userName}"/>
                         <div class="media">
-                            <img class="media-object pull-left" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png" width="64" height="64">
+                            <img class="media-object pull-left" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png" height="64">
                             <div class="media-body">
                                 <h3 class="media-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h3>
                                 <p><c:out value="${comment.message}"/></p>
