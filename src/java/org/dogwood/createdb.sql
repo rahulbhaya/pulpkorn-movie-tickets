@@ -58,7 +58,7 @@ CREATE TABLE CreditCardInfo(
     BillingAddress VARCHAR(25),
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2), 
-    PRIMARY KEY (Name),
+    PRIMARY KEY (CardNumber),
     FOREIGN KEY (Name) REFERENCES User(Name)
 );
 
