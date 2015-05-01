@@ -27,12 +27,10 @@ public class RequestPasswordReset extends HttpServlet {
         String email = request.getParameter("Email");
         if (email == null) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        }
-        else {
+        } else {
             if (Dogwood.requestPasswordReset(email)) {
                 session.setAttribute("RequestResetSuccess", "Sent an email containing a link to reset your password.");
-            }
-            else {
+            } else {
                 session.setAttribute("RequestResetFail", "Incorrect email.");
             }
             request.getRequestDispatcher("requestreset.jsp").forward(request, response);

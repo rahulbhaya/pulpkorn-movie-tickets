@@ -11,7 +11,7 @@
                 $("#accordion").accordion();
             });
             $("h3").hover(function () {
-                $(this).css("color","#009688");
+                $(this).css("color", "#009688");
             });
         </script>
         <div class="container-fluid">

@@ -38,7 +38,7 @@
                 </form>
             </div>
             <div class="jumbotron account-card-main">
-           
+
                 <h2 class="account-card-h2">Change Email</h2>
                 <c:set var="changeEmail" value="${sessionScope.ChangeEmailSuccess}"/>
                 <c:if test="${changeEmail != null}">
@@ -70,7 +70,7 @@
                 <div id="cc-info">
                     <c:forEach var="card" items="${sessionScope.CreditCards}">
                         <li role="presentation"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a><a href="javascript:void(0)" class="btn btn-flat btn-danger">Remove</a></li>
-                    </c:forEach>
+                            </c:forEach>
                 </div>
             </div>
 
@@ -111,6 +111,9 @@
                                 <label for="billingaddress">Billing Address</label>
                                 <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card" required />
                             </span>
+                            <div class="dropdown">
+                                <img id="cc-img" src="/images/default-credit-card.png">
+                            </div>
                         </fieldset>
                         <div horizontal center layout>
                             <div flex></div>
@@ -135,12 +138,35 @@
                             ccList.childNodes[i].childNodes[0].src = "/images/MasterCard.png";
                         } else if (ccType.match("Discover")) {
                             ccList.childNodes[i].childNodes[0].src = "/images/Discover.png";
-                        }
-                        else
+                        } else
                             ccList.childNodes[i].childNodes[0].src = "/images/default-credit-card.png";
                     }
                 }
+
+                $('#cardnumber').bind('input', detectCcType);
             });
+
+            function detectCcType() {
+                var ccNum = document.getElementById("cardnumber").value;
+                var typeDigit = ccNum.charAt(0);
+                switch (typeDigit) {
+                    case "3":
+                        document.getElementById("cc-img").src = "/images/AMEX.png";
+                        break;
+                    case "4":
+                        document.getElementById("cc-img").src = "/images/VISA.png";
+                        break;
+                    case "5":
+                        document.getElementById("cc-img").src = "/images/MasterCard.png";
+                        break;
+                    case "6":
+                        document.getElementById("cc-img").src = "/images/Discover.png";
+                        break;
+                    default:
+                        document.getElementById("cc-img").src = "/images/default-credit-card.png";
+                        break;
+                }
+            }
         </script>
     </body>
 </html>

@@ -3,11 +3,12 @@ package org.dogwood.beans;
 import java.io.Serializable;
 
 public class Comment implements Serializable {
-    
+
     private String userName, movieId, message, dateCommented;
-    
-    public Comment() {}
-    
+
+    public Comment() {
+    }
+
     public Comment(String userName, String movieId, String message, String dateCommented) {
         this.userName = userName;
         this.movieId = movieId;
@@ -46,5 +47,5 @@ public class Comment implements Serializable {
     public void setDateCommented(String dateCommented) {
         this.dateCommented = dateCommented;
     }
-    
+
 }

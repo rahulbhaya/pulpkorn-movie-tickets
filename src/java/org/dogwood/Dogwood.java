@@ -27,15 +27,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class Dogwood {
-    
+
     public static final String API_KEY = "gs2spwmu9dt6uqnaxhsadxp6";
-    
+
     public static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
-    
+
     public static final String GMAIL_EMAIL = "cse308teamdogwood@gmail.com";
-    
+
     public static final String GMAIL_PASSWORD = "dogwood308";
-    
+
     public static List<CastMember> getCast(String movieId) {
         try {
             URL url = new URL(BASE_URL + "/movies/" + movieId + "/cast.json?apikey=" + API_KEY);
@@ -46,13 +46,12 @@ public class Dogwood {
                 Database.getInstance().addCastMember((String) castMember.get("name"), movieId);
             }
             return Database.getInstance().getCast(movieId);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
     }
-    
+
     public static List<MovieTheater> getTheaters(String near) {
         try {
             Document doc = Jsoup.connect("http://www.google.com/movies?near=" + near).get();
@@ -72,13 +71,12 @@ public class Dogwood {
                 theaterList.add(mt);
             }
             return theaterList;
-        } 
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public static boolean requestPasswordReset(String email) {
         try {
             String resetPassword = UUID.randomUUID().toString().replaceAll("-", "");
@@ -89,11 +87,11 @@ public class Dogwood {
             properties.setProperty("mail.smtp.auth", "true");
             properties.setProperty("mail.smtp.starttls.enable", "true");
             MimeMessage message = new MimeMessage(Session.getDefaultInstance(properties, new Authenticator() {
-                
+
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(GMAIL_EMAIL, GMAIL_PASSWORD);
                 }
-                
+
             }));
             message.setFrom("admin@pulpkorn.com");
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
@@ -102,18 +100,16 @@ public class Dogwood {
             if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
                 Transport.send(message);
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
 
     }
-    
+
     public static List<Movie> searchMovies(String title) {
         try {
             URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
@@ -127,11 +123,10 @@ public class Dogwood {
                 }
             }
             return movies;
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
 }

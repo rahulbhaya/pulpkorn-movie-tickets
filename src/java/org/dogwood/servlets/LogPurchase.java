@@ -33,35 +33,32 @@ public class LogPurchase extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String choice = (String)request.getParameter("creditcards");
+        String choice = (String) request.getParameter("creditcards");
         System.out.println(choice);
-        if(!choice.equals("Existing Payment Method")){
-            List<String> cards = (List<String>)request.getSession().getAttribute("CreditCardsFull");
+        if (!choice.equals("Existing Payment Method")) {
+            List<String> cards = (List<String>) request.getSession().getAttribute("CreditCardsFull");
             String card = "";
-            for(int i=0; i<cards.size(); i++){
+            for (int i = 0; i < cards.size(); i++) {
                 card = cards.get(i);
-                if(card.substring(card.length()-4, card.length()-1).equals(choice.substring(choice.length()-4, choice.length()-1))){
+                if (card.substring(card.length() - 4, card.length() - 1).equals(choice.substring(choice.length() - 4, choice.length() - 1))) {
                     break;
                 }
             }
-            Boolean success = Database.getInstance().savePrePurchase(card, (String)request.getSession().getAttribute("LogIn"), (String)request.getSession().getAttribute("MovieTitle"), (String)request.getSession().getAttribute("Theater"), (String)request.getSession().getAttribute("MovieTime"), Integer.parseInt((String)request.getSession().getAttribute("adults")), Integer.parseInt((String)request.getSession().getAttribute("seniors")), Integer.parseInt((String)request.getSession().getAttribute("children")));
-            if(success){
+            Boolean success = Database.getInstance().savePrePurchase(card, (String) request.getSession().getAttribute("LogIn"), (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")));
+            if (success) {
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-            }
-            else{
+            } else {
                 request.getRequestDispatcher("payment.jsp").forward(request, response);
             }
-        }
-        else{
-            String name = (String)request.getSession().getAttribute("LogIn");
-            if(name==null){
-                name="Guest";
+        } else {
+            String name = (String) request.getSession().getAttribute("LogIn");
+            if (name == null) {
+                name = "Guest";
             }
-            Boolean success = Database.getInstance().saveRegularPurchase(name, (String)request.getSession().getAttribute("MovieTitle"), (String)request.getSession().getAttribute("Theater"), (String)request.getSession().getAttribute("MovieTime"), Integer.parseInt((String)request.getSession().getAttribute("adults")), Integer.parseInt((String)request.getSession().getAttribute("seniors")), Integer.parseInt((String)request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-yy"));
-            if(success){
+            Boolean success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-yy"));
+            if (success) {
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-            }
-            else{
+            } else {
                 request.getRequestDispatcher("payment.jsp").forward(request, response);
             }
         }

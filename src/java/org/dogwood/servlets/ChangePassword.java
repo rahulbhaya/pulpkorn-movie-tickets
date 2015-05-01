@@ -32,9 +32,8 @@ public class ChangePassword extends HttpServlet {
         }
         if (!Database.getInstance().changePassword(name, currentPassword, newPassword)) {
             session.setAttribute("ChangePasswordFail", "Incorrect password.");
-        }
-        else {
-            session.setAttribute("ChangePasswordSuccess", "Successfully changed password.");   
+        } else {
+            session.setAttribute("ChangePasswordSuccess", "Successfully changed password.");
         }
         request.getRequestDispatcher("account.jsp").forward(request, response);
     }

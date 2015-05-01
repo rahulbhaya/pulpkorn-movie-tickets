@@ -29,8 +29,7 @@ public class RateMovie extends HttpServlet {
         String rating = request.getParameter("Rating");
         if (userName == null || movieId == null || rating == null) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        }
-        else if (!Database.getInstance().rateMovie(userName, movieId, rating)) {
+        } else if (!Database.getInstance().rateMovie(userName, movieId, rating)) {
             session.setAttribute("RateMovieFail", true);
         }
         request.getRequestDispatcher("GetMovieById");

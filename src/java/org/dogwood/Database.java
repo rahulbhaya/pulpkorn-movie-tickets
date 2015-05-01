@@ -16,21 +16,21 @@ import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
 
 public class Database {
-    
+
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/dogwood?zeroDateTimeBehavior=convertToNull";
     private static final String USER = "root", PASSWORD = "root";
-    
+
     public static enum Login {
         INCORRECT_USERNAME, INCORRECT_PASSWORD, SQL_ERROR, CORRRECT_NORMAL, CORRECT_ADMIN
     }
-    
+
     private static final Database db = new Database();
-    
+
     private final DataSource dataSource;
-    
+
     private Connection connection;
-    
+
     public static Database getInstance() {
         try {
             if (db.connection != null && !db.connection.isClosed()) {
@@ -38,8 +38,7 @@ public class Database {
             }
             db.connection = db.dataSource.getConnection();
             return db;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
@@ -52,16 +51,15 @@ public class Database {
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
     }
-    
+
     public void close() {
         try {
             connection.close();
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
-    
+
     public boolean addCastMember(String name, String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -71,13 +69,12 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
-    }       
-    
+    }
+
     public boolean addFAQ(JSONObject json) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -87,13 +84,12 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean addMovie(JSONObject json) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -109,23 +105,21 @@ public class Database {
             String poster;
             if (index == -1) {
                 poster = "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif";
-            }
-            else {
+            } else {
                 poster = "http://content6.flixster.com" + thumbnail.substring(index);
             }
             statement.setString(7, poster);
             statement.executeUpdate();
             connection.close();
             return true;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean addMovie(String id, String title, String releaseDate, String mpaaRating, String synopsis) {
-         try {
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO Movie VALUES(?, ?, ?, ?, ?)");
             statement.setString(1, id);
@@ -136,13 +130,12 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean changePassword(String name, String currentPassword, String newPassword) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -153,8 +146,7 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -175,25 +167,24 @@ public class Database {
 //            return false;
 //        }
 //    }
-    
+
     public boolean comment(String userName, String movieId, String message) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO Comment VALUES((SELECT Name FROM User WHERE Name = ?),"
-                            + " (SELECT Id FROM Movie WHERE Id = ?), ?, NOW())");
+                    + " (SELECT Id FROM Movie WHERE Id = ?), ?, NOW())");
             statement.setString(1, userName);
             statement.setString(2, movieId);
             statement.setString(3, message);
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean deleteMovie(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -210,15 +201,14 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean editMovie(String id, String title, String releaseDate, String mpaaRating, String synopsis) {
-         try {
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE Movie SET Title = ?, ReleaseDate = ?, MPAARating = ?, Synopsis = ? WHERE Id = ?");
             statement.setString(1, title);
@@ -229,27 +219,26 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
-    public List<String> getCardNumberByName(String name){
-        List<String> cards=new LinkedList<>();
+
+    public List<String> getCardNumberByName(String name) {
+        List<String> cards = new LinkedList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT CardNumber FROM CreditCardInfo WHERE Name=?");
             statement.setString(1, name);
             ResultSet results = statement.executeQuery();
-            while(results.next()){
+            while (results.next()) {
                 cards.add(results.getString(1));
             }
         } catch (SQLException ex) {
         }
         return cards;
     }
-    
+
     public List<CastMember> getCast(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -263,13 +252,12 @@ public class Database {
             }
             connection.close();
             return cast;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public List<Comment> getComments(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -285,13 +273,12 @@ public class Database {
             }
             connection.close();
             return comments;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public List<FAQ> getFAQs() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -305,13 +292,12 @@ public class Database {
             }
             connection.close();
             return faqs;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public List<Movie> getInTheatersMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -330,13 +316,12 @@ public class Database {
             }
             connection.close();
             return movies;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public Movie getMovieById(String id) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -352,13 +337,12 @@ public class Database {
             String image = results.getString(7);
             connection.close();
             return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             return null;
         }
     }
-    
-    public Movie getMovieByTitle(String title){
+
+    public Movie getMovieByTitle(String title) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM Movie WHERE Title = ?");
@@ -373,13 +357,12 @@ public class Database {
             String image = results.getString(7);
             connection.close();
             return new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image);
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public double getMovieRating(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -396,19 +379,17 @@ public class Database {
             results = statement.executeQuery();
             if (results.next()) {
                 rating /= results.getInt(1);
-            }
-            else {
+            } else {
                 rating = 0;
             }
             connection.close();
             return rating;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return 0;
         }
     }
-    
+
     public List<Movie> getUpcomingMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -427,13 +408,12 @@ public class Database {
             }
             connection.close();
             return movies;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public boolean hasUser(String email) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -441,13 +421,12 @@ public class Database {
             );
             statement.setString(1, email);
             return statement.executeQuery().next();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public Login logIn(String name, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -467,13 +446,12 @@ public class Database {
             Login login = results.getString(3).equals("NORMAL") ? Login.CORRRECT_NORMAL : Login.CORRECT_ADMIN;
             connection.close();
             return login;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return Login.SQL_ERROR;
         }
     }
-    
+
     public boolean rateMovie(String userName, String movieId, String rating) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -484,13 +462,12 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean register(String name, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -501,31 +478,29 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean removeComment(String userName, String movieId, String dateCommented) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "DELETE FROM Comment WHERE Commenter = ? AND MovieId = ? "
-                            + "AND DateCommented = ?");
+                    + "AND DateCommented = ?");
             statement.setString(1, userName);
             statement.setString(2, movieId);
             statement.setString(3, dateCommented);
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean requestPasswordReset(String email, String resetPassword) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -542,13 +517,12 @@ public class Database {
             statement.setString(2, resetPassword);
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean resetPassword(String email, String resetPassword, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -563,14 +537,13 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
-    }    
-    
-    public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM){
+    }
+
+    public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, acctName);
@@ -588,23 +561,23 @@ public class Database {
             return false;
         }
     }
-    
-    public boolean savePrePurchase(String number, String name, String movie, String theater, String time, int adults, int seniors, int children){
+
+    public boolean savePrePurchase(String number, String name, String movie, String theater, String time, int adults, int seniors, int children) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM CreditCardInfo WHERE CardNumber=?");
             statement.setString(1, number);
             ResultSet rs = statement.executeQuery();
-            String cardName="";
-            String securityCode="";
-            String billingAddress="";
-            String expDateM="";
-            String expDateY="";
-            while(rs.next()){
+            String cardName = "";
+            String securityCode = "";
+            String billingAddress = "";
+            String expDateM = "";
+            String expDateY = "";
+            while (rs.next()) {
                 cardName = rs.getString(4);
-                securityCode=rs.getString(3);
-                billingAddress=rs.getString(5);
-                expDateM=rs.getString(6);
-                expDateY=rs.getString(7);
+                securityCode = rs.getString(3);
+                billingAddress = rs.getString(5);
+                expDateM = rs.getString(6);
+                expDateY = rs.getString(7);
             }
             statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, name);
@@ -627,7 +600,8 @@ public class Database {
             return false;
         }
     }
-    public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM){
+
+    public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, name);

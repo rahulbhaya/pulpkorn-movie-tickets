@@ -33,13 +33,13 @@ public class SavePurchaseInfo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("status").equals("option1")){
+        if (request.getParameter("status").equals("option1")) {
             request.getRequestDispatcher("purchaseRegister.jsp").forward(request, response);
         }
-        if(request.getParameter("status").equals("option2")){
+        if (request.getParameter("status").equals("option2")) {
             request.getRequestDispatcher("purchaseLogin.jsp").forward(request, response);
         }
-        if(request.getParameter("status").equals("option3")){
+        if (request.getParameter("status").equals("option3")) {
             request.getRequestDispatcher("payment.jsp").forward(request, response);
         }
     }

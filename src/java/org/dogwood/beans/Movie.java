@@ -3,13 +3,14 @@ package org.dogwood.beans;
 import java.io.Serializable;
 
 public class Movie implements Serializable {
-    
+
     private String id, title, mpaaRating, releaseDate, synopsis, image;
-    
+
     private int runtime;
-    
-    public Movie() {}
-    
+
+    public Movie() {
+    }
+
     public Movie(String id, String title, String mpaaRating, int runtime, String releaseDate, String synopsis, String image) {
         this.id = id;
         this.title = title;
@@ -75,5 +76,5 @@ public class Movie implements Serializable {
     public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
-    
+
 }

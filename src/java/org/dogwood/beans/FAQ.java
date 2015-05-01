@@ -3,11 +3,12 @@ package org.dogwood.beans;
 import java.io.Serializable;
 
 public class FAQ implements Serializable {
-    
+
     private String question, answer;
-    
-    public FAQ() {}
-    
+
+    public FAQ() {
+    }
+
     public FAQ(String question, String answer) {
         this.question = question;
         this.answer = answer;
@@ -28,5 +29,5 @@ public class FAQ implements Serializable {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-    
+
 }

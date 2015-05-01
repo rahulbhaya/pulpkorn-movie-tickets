@@ -38,8 +38,7 @@ public class PurchaseRegister extends HttpServlet {
         if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, request.getParameter("Password"), "NORMAL")) {
             session.setAttribute("LogIn", name);
             request.getRequestDispatcher("payment.jsp").forward(request, response);
-        }
-        else {
+        } else {
             session.setAttribute("RegisterFail", true);
             request.getRequestDispatcher("purchaseRegister.jsp").forward(request, response);
         }

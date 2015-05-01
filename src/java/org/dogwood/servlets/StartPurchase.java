@@ -28,12 +28,12 @@ public class StartPurchase extends HttpServlet {
         List<String> creditCardList = new ArrayList<String>() {
         };
         List<String> creditCardListFull = Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"));
-        String id = (String)request.getParameter("MovieId");
+        String id = (String) request.getParameter("MovieId");
         Movie movie = Database.getInstance().getMovieById(id);
-        String theater = (String)request.getParameter("Theater");
+        String theater = (String) request.getParameter("Theater");
         request.getSession().setAttribute("Theater", theater);
         request.getSession().setAttribute("MovieTitle", movie.getTitle());
-        String time = (String)request.getParameter("MovieTime");
+        String time = (String) request.getParameter("MovieTime");
         request.getSession().setAttribute("MovieTime", time);
         for (String ccNumber : creditCardListFull) {
             String ccType = "";
@@ -58,7 +58,7 @@ public class StartPurchase extends HttpServlet {
         }
         request.getSession().setAttribute("CreditCards", creditCardList);
         request.getSession().setAttribute("CreditCardsFull", creditCardListFull);
-        request.getRequestDispatcher("purchase.jsp").forward(request,response);
+        request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

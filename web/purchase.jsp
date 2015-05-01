@@ -78,8 +78,8 @@
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
-        
-         <script>
+
+        <script>
             $("select").change(function () {
                 var self = $(this);
                 self.siblings(".total").text("$" +

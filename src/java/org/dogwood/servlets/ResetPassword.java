@@ -30,8 +30,7 @@ public class ResetPassword extends HttpServlet {
         String password = request.getParameter("Password");
         if (email == null || resetPassword == null || password == null || !Database.getInstance().hasUser(email)) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        }
-        else {
+        } else {
             Database.getInstance().resetPassword(email, resetPassword, password);
             session.setAttribute("LogIn", email);
             request.getRequestDispatcher("requestreset.jsp").forward(request, response);

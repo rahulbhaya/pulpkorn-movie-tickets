@@ -42,7 +42,7 @@ public class PurchaseLogin extends HttpServlet {
             dispatcher.forward(request, response);
         }
         String name = request.getParameter("Name");
-        Database.Login login = Database.getInstance().logIn(name, request.getParameter("Password"));        
+        Database.Login login = Database.getInstance().logIn(name, request.getParameter("Password"));
         if (login == Database.Login.CORRRECT_NORMAL) {
             session.setAttribute("LogIn", name);
             List<String> creditCardList = new ArrayList<String>() {
@@ -70,8 +70,7 @@ public class PurchaseLogin extends HttpServlet {
             }
             request.getSession().setAttribute("CreditCards", creditCardList);
             dispatcher.forward(request, response);
-        }
-        else if (login == Database.Login.CORRECT_ADMIN) {
+        } else if (login == Database.Login.CORRECT_ADMIN) {
             session.setAttribute("LogIn", name);
             session.setAttribute("IsAdmin", true);
             List<String> creditCardList = new ArrayList<String>() {
@@ -99,8 +98,7 @@ public class PurchaseLogin extends HttpServlet {
             }
             request.getSession().setAttribute("CreditCards", creditCardList);
             dispatcher.forward(request, response);
-        }
-        else {
+        } else {
             switch (login) {
                 case INCORRECT_USERNAME:
                     session.setAttribute("LogInFail", "Incorrect username.");

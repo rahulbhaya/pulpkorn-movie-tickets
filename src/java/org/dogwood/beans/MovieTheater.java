@@ -5,19 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieTheater implements Serializable {
-    
+
     private String name, address;
-    
+
     private List<Showtimes> showtimes;
-    
-    public MovieTheater() {}
-    
+
+    public MovieTheater() {
+    }
+
     public MovieTheater(String name, String address) {
         this.name = name;
         this.address = address;
         showtimes = new ArrayList<>();
     }
-    
+
     public String toString() {
         return "{\"name\":\"" + name + "\", \"address\":\"" + address + "\", \"movies\":" + showtimes + "}";
     }
@@ -45,5 +46,5 @@ public class MovieTheater implements Serializable {
     public void setShowtimes(List<Showtimes> showtimes) {
         this.showtimes = showtimes;
     }
-    
+
 }

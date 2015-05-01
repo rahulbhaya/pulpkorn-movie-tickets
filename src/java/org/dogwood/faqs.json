@@ -12,7 +12,7 @@
             "question": "How can I see which movies will be coming soon?",
             "answer": "Visit the Upcoming movies section of our web site."
         },
-         {
+        {
             "question": " How can I find movie times at Pulpkorn?",
             "answer": "Movie times are displayed against each movie when you search for theatres or for movies"
         },
@@ -21,7 +21,7 @@
             "answer": "Some types of passes cannot be used for newly released films. The restriction generally applies to the first two-weeks of a film's theatrical release, however there may be specific films in which this time period is extended based on studio contracts. Always look for the \"No Passes\" or \"Special Engagement\" description next to the film title."
         },
         {
-            "question":"What is the convenience fee for?",
+            "question": "What is the convenience fee for?",
             "answer": "To guarantee you are able to get your tickets to the hottest movies before they sellout we offer the convenience of purchasing tickets online. To ensure we are able to maintain this service for our valued guests we charge a small fee per ticket. The charge per ticket is displayed in the Order Summary which is shown on the right side of the screen during the purchase process. The convenience fees cannot be refunded.Convenience fees can be waived during the purchase process when an active AMC Stubs membership is entered."
         },
         {
@@ -29,9 +29,9 @@
             "answer": "Yes. Because your name does not appear on the card, you may use it yourself or give it to anyone you choose. Even Professor Kopcha, your former writing teacher, even though he gave you a B on your To Kill a Mockingbird essay."
         },
         {
-            "question":  "Can I combine more than one gift card?",
+            "question": "Can I combine more than one gift card?",
             "answer": "No. You may not consolidate your Pulpkorn Gift Cards onto one card, but you can use multiple cards for one transaction at the theatre."
         }
-         
-    ]   
+
+    ]
 }

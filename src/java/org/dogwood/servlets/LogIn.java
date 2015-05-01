@@ -31,17 +31,15 @@ public class LogIn extends HttpServlet {
             dispatcher.forward(request, response);
         }
         String name = request.getParameter("Name");
-        Login login = Database.getInstance().logIn(name, request.getParameter("Password"));        
+        Login login = Database.getInstance().logIn(name, request.getParameter("Password"));
         if (login == Login.CORRRECT_NORMAL) {
             session.setAttribute("LogIn", name);
             dispatcher.forward(request, response);
-        }
-        else if (login == Login.CORRECT_ADMIN) {
+        } else if (login == Login.CORRECT_ADMIN) {
             session.setAttribute("LogIn", name);
             session.setAttribute("IsAdmin", true);
             dispatcher.forward(request, response);
-        }
-        else {
+        } else {
             switch (login) {
                 case INCORRECT_USERNAME:
                     session.setAttribute("LogInFail", "Incorrect username.");

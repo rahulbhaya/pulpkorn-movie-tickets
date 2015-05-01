@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 public class DatabaseUploader {
-    
+
     public static void main(String[] args) {
         JSONObject json;
         URL url;
@@ -20,8 +20,7 @@ public class DatabaseUploader {
             for (Object faq : faqs) {
                 Database.getInstance().addFAQ((JSONObject) faq);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         try {
@@ -31,8 +30,7 @@ public class DatabaseUploader {
             for (Object movie : movies) {
                 Database.getInstance().addMovie((JSONObject) movie);
             }
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         try {
@@ -42,10 +40,9 @@ public class DatabaseUploader {
             for (Object movie : movies) {
                 Database.getInstance().addMovie((JSONObject) movie);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
+
 }

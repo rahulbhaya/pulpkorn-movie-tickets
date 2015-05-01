@@ -37,10 +37,9 @@ public class SaveTickets extends HttpServlet {
         request.getSession().setAttribute("adults", adults);
         request.getSession().setAttribute("seniors", seniors);
         request.getSession().setAttribute("children", children);
-        if(request.getSession().getAttribute("LogIn")!=null){
+        if (request.getSession().getAttribute("LogIn") != null) {
             request.getRequestDispatcher("payment.jsp").forward(request, response);
-        }
-        else{
+        } else {
             request.getRequestDispatcher("checkoutChoice.jsp").forward(request, response);
         }
     }

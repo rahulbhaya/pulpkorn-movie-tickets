@@ -31,10 +31,9 @@ public class SaveCardInfo extends HttpServlet {
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("LogIn");
         Boolean success = db.saveCardInfo(request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), name, request.getParameter("expdate-yy"), request.getParameter("expdate-mm"));
-        if(success){
+        if (success) {
             session.setAttribute("SaveCardSuccess", "Card Information Successfully Saved.");
-        }
-        else{
+        } else {
             session.setAttribute("SaveCardFailure", "Error:Card Information Not Saved.");
         }
         request.getRequestDispatcher("account.jsp").forward(request, response);

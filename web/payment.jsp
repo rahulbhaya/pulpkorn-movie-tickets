@@ -34,15 +34,15 @@
                             <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card"/>
                         </span>
                         <c:if test="${sessionScope.LogIn != null}">
-                        <div class="dropdown">
-                            <select class="form-control btn btn-default dropdown-toggle" id="cc-info" name="creditcards" onchange="changeCcImg();">
-                                <option selected="selected">Existing Payment Method</option>
-                                <c:forEach var="card" items="${sessionScope.CreditCards}">
-                                    <option value="${card}"><a role="menuitem" tabindex="-1" href="#">${card}</a></option>
-                                </c:forEach>
-                            </select>
-                            <img id="cc-img" src="/images/default-credit-card.png">
-                        </div>
+                            <div class="dropdown">
+                                <select class="form-control btn btn-default dropdown-toggle" id="cc-info" name="creditcards" onchange="changeCcImg();">
+                                    <option selected="selected">Existing Payment Method</option>
+                                    <c:forEach var="card" items="${sessionScope.CreditCards}">
+                                        <option value="${card}"><a role="menuitem" tabindex="-1" href="#">${card}</a></option>
+                                    </c:forEach>
+                                </select>
+                                <img id="cc-img" src="/images/default-credit-card.png">
+                            </div>
                         </c:if>
                         <c:if test="${sessionScope.LogIn == null}">
                             <div class="dropdown">
@@ -79,33 +79,33 @@
                         } else
                             document.getElementById("cc-img").src = "/images/default-credit-card.png";
                     }
+                }
             }
-        }
-                </c:if>
-                    <c:if test="${sessionScope.LogIn == null}">
-                                    $('#cardnumber').bind('input', detectCcType);
-                        function detectCcType(){
-                            var ccNum = document.getElementById("cardnumber").value;
-                            var typeDigit = ccNum.charAt(0);
-                            switch (typeDigit) {
-                                case "3":
-                                    document.getElementById("cc-img").src = "/images/AMEX.png";
-                                    break;
-                                case "4":
-                                    document.getElementById("cc-img").src = "/images/VISA.png";
-                                    break;
-                                case "5":
-                                    document.getElementById("cc-img").src = "/images/MasterCard.png";
-                                    break;
-                                case "6":
-                                    document.getElementById("cc-img").src = "/images/Discover.png";
-                                    break;
-                                default:
-                                    document.getElementById("cc-img").src = "/images/default-credit-card.png";
-                                    break;
-                            }
-                        }
-                    </c:if>
+            </c:if>
+            <c:if test="${sessionScope.LogIn == null}">
+            $('#cardnumber').bind('input', detectCcType);
+            function detectCcType() {
+                var ccNum = document.getElementById("cardnumber").value;
+                var typeDigit = ccNum.charAt(0);
+                switch (typeDigit) {
+                    case "3":
+                        document.getElementById("cc-img").src = "/images/AMEX.png";
+                        break;
+                    case "4":
+                        document.getElementById("cc-img").src = "/images/VISA.png";
+                        break;
+                    case "5":
+                        document.getElementById("cc-img").src = "/images/MasterCard.png";
+                        break;
+                    case "6":
+                        document.getElementById("cc-img").src = "/images/Discover.png";
+                        break;
+                    default:
+                        document.getElementById("cc-img").src = "/images/default-credit-card.png";
+                        break;
+                }
+            }
+            </c:if>
         </script>
     </body>
 </html>

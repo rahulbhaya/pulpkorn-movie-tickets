@@ -29,8 +29,7 @@ public class RemoveComment extends HttpServlet {
         String dateCommented = request.getParameter("DateCommented");
         if (session.getAttribute("IsAdmin") == null || commenter == null || movieId == null || dateCommented == null) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        }
-        else {
+        } else {
             Database.getInstance().removeComment(commenter, movieId, dateCommented);
             request.getRequestDispatcher("GetMovieById").forward(request, response);
         }

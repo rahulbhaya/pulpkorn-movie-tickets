@@ -33,22 +33,16 @@ public class AddEditMovie extends HttpServlet {
             if (Database.getInstance().getMovieById(movieId) == null) {
                 if (Database.getInstance().addMovie(movieId, title, releaseDate, mpaaRating, synopsis)) {
                     session.setAttribute("AddEditMovieSuccess", "Successfully added movie.");
-                }
-                else {
+                } else {
                     session.setAttribute("AddEditMovieFail", "Failed to add movie.");
                 }
-            }
-            else {
-                if (Database.getInstance().editMovie(movieId, title, releaseDate, mpaaRating, synopsis)) {
-                    session.setAttribute("AddEditMovieSuccess", "Successfully edited movie.");
-                }
-                else {
-                    session.setAttribute("AddEditMovieFail", "Failed to edit movie.");
-                }
+            } else if (Database.getInstance().editMovie(movieId, title, releaseDate, mpaaRating, synopsis)) {
+                session.setAttribute("AddEditMovieSuccess", "Successfully edited movie.");
+            } else {
+                session.setAttribute("AddEditMovieFail", "Failed to edit movie.");
             }
             request.getRequestDispatcher("admin.jsp").forward(request, response);
-        }
-        else {
+        } else {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         }
     }

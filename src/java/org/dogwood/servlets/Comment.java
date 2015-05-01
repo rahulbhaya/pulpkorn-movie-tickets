@@ -29,8 +29,7 @@ public class Comment extends HttpServlet {
         String message = request.getParameter("Message");
         if (name == null || movieId == null || message == null) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        }
-        else {
+        } else {
             Database.getInstance().comment(name, movieId, message);
             request.getRequestDispatcher("GetMovieById").forward(request, response);
         }
