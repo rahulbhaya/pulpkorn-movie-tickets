@@ -185,6 +185,27 @@ a {
     width:550px;
 }
 
+.gift-card-main {
+    width: 600px;
+    border-radius: 20px !important;
+    //background-color: #03A9F4!important;
+    background-color: #FF4080!important;
+    color: #FFF;
+    height: 370px;
+}
+
+.gift-card-amount{
+    float: right;
+}
+
+.gift-card-quantity{
+    float: right;
+}
+
+.gift-card-submit-btn{
+    background-color: #FF9800 !important;float:right;
+}
+
 .submit-button{
     background-color: #d23f31 !important;
 }
