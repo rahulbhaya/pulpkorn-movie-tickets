@@ -36,14 +36,19 @@
                                 <c:out value="${cast.name}"/>,&nbsp;
                             </c:forEach>
                         </h5>
-                        <iframe width="560" height="315" src="<c:out value='${Trailer}'/>" frameborder="0" allowfullscreen></iframe>
+                        <div class="rw-ui-container"></div>
                     </div>
                 </div>
                 <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">
-                        <img src="/images/fb_icon_325x325.png" height="20" width="20">         Share on Facebook
-                    </a>
+                        <img src="/images/fb_icon_325x325.png" height="20" width="20">Share on Facebook</a>
                 </div>                 
-                <div class="rw-ui-container"></div>
+            </div>
+            <div class="jumbotron">
+                <h3>Trailer</h3>
+                <iframe width="700" height="395" src="<c:out value='${Trailer}'/>" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="jumbotron">
                 <div>
                     <h3>Comments</h3>
                     <c:forEach var="comment" items="${sessionScope.Comments}">
@@ -84,7 +89,9 @@
                         <label>Commenting disabled for guests. <a href="login.jsp">Sign in</a> to comment.</label>
                     </c:if>
                 </div>
+
             </div>
+
         </div>                        
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>

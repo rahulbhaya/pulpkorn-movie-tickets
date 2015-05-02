@@ -12,7 +12,7 @@
             <div class="main">
                 <h1 vertical center layout>Account Overview</h1>
                 <div class="jumbotron account-card-main">
-                    <h1 class="account-card-h1">Change Password</h2>
+                    <h1 class="account-card-h1">Change Password</h1>
                         <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
                         <c:if test="${changePassword != null}">
                             <p class="bg-success"><c:out value="${changePassword}"/></p>
