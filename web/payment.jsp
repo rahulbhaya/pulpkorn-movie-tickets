@@ -12,7 +12,14 @@
                         <h1 class="payment-info-h1">Payment method</h1>
                         <span>
                             <label for="cardnumber">Card Number</label>
-                            <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" pattern="[0-9]{16}"/>
+                            <div horizontal center layout>
+                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required="" pattern="[0-9]{16}">
+                                <c:if test="${sessionScope.LogIn == null}">
+                                    <div class="dropdown">
+                                        <img id="cc-img" src="/images/default-credit-card.png">
+                                    </div>
+                                </c:if>
+                            </div>
                         </span>
                         <span>
                             <label for="expdate">Expiration Date</label>
@@ -50,19 +57,14 @@
                             <input id="phone-number" class="form-control" name="phonenumber" type="text" placeholder="Your phone number in form 123-456-7890" maxlength="12" required />
                         </span>
                         <c:if test="${sessionScope.LogIn != null}">
-                            <div class="dropdown">
+                            <div class="dropdown" horizontal center layout>
+                                <img id="cc-img" src="/images/default-credit-card.png">
                                 <select class="form-control btn btn-default dropdown-toggle" id="cc-info" name="creditcards" onchange="changeCcImg();">
                                     <option selected="selected">Existing Payment Method</option>
                                     <c:forEach var="card" items="${sessionScope.CreditCards}">
                                         <option value="${card}"><a role="menuitem" tabindex="-1" href="#">${card}</a></option>
                                     </c:forEach>
                                 </select>
-                                <img id="cc-img" src="/images/default-credit-card.png">
-                            </div>
-                        </c:if>
-                        <c:if test="${sessionScope.LogIn == null}">
-                            <div class="dropdown">
-                                <img id="cc-img" src="/images/default-credit-card.png">
                             </div>
                         </c:if>
                     </fieldset>
