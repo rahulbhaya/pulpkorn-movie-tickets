@@ -17,9 +17,12 @@
                             $(".fanmail-module input").prop("disabled", true).val("This email is already subscribed");
                         }
                     });
-                } else{
+                } else {
                     $(".fanmail-module input").val("");
-                    $(".fanmail-module input").attr("placeholder","Invalid email address");
+                    $(".fanmail-module input").attr("placeholder", "Invalid email address");
+                    setTimeout(function () {
+                        $(".fanmail-module input").attr("placeholder", "Enter email to subscribe our newsletter");
+                    }, 2000);
                 }
             };
         </script>
