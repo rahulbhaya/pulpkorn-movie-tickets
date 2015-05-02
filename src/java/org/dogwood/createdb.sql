@@ -20,6 +20,7 @@ CREATE TABLE Movie(
     ReleaseDate DATE NOT NULL,
     Synopsis TEXT NOT NULL,
     Image TEXT NOT NULL,
+    Trailer TEXT NOT NULL,
     PRIMARY KEY (Id)
 );
 

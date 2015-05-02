@@ -36,6 +36,7 @@
                                 <c:out value="${cast.name}"/>,&nbsp;
                             </c:forEach>
                         </h5>
+                        <iframe width="560" height="315" src="<c:out value='${Trailer}'/>" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">

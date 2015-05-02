@@ -72,6 +72,21 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean addTrailerUrl(String url, String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE Movie SET Trailer = ? WHERE Id = ?");
+            statement.setString(1, url);
+            statement.setString(2, movieId);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
 
     public boolean addFAQ(JSONObject json) {
         try {
@@ -91,7 +106,7 @@ public class Database {
     public boolean addMovie(JSONObject json) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Movie VALUES(?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO Movie VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, (String) json.get("id"));
             statement.setString(2, (String) json.get("title"));
             statement.setString(3, (String) json.get("mpaa_rating"));
@@ -107,6 +122,7 @@ public class Database {
                 poster = "http://content6.flixster.com" + thumbnail.substring(index);
             }
             statement.setString(7, poster);
+            statement.setString(8, "");
             statement.executeUpdate();
             connection.close();
             return true;
@@ -252,6 +268,21 @@ public class Database {
             return cast;
         } catch (SQLException ex) {
             System.out.println(ex);
+            return null;
+        }
+    }
+    
+    public String getTrailerUrl(String movieId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie WHERE Id = ?");
+            statement.setString(1, movieId);
+            ResultSet results = statement.executeQuery();
+            results.next();
+            String trailer = results.getString(8);
+            connection.close();
+            return trailer;
+        } catch (SQLException ex) {
             return null;
         }
     }
