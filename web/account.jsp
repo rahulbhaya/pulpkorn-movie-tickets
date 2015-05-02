@@ -109,7 +109,23 @@
                                 </span>
                                 <span>
                                     <label for="billingaddress">Billing Address</label>
-                                    <input id="namecard" class="form-control" name="billingaddress" type="text" placeholder="Address associated with credit card" required />
+                                    <input id="address" class="form-control" name="billingaddress" type="text" placeholder="Street address associated with credit card" required />
+                                </span>
+                                <span>
+                                    <label for="cityname">City</label>
+                                    <input id="city" class="form-control" name="cityname" type="text" placeholder="Enter your city" required />
+                                </span>
+                                <span>
+                                    <label for="state">State</label>
+                                    <input id="state" class="form-control" name="state" type="text" placeholder="State" maxlength="2" style="text-transform: uppercase;" required />
+                                </span>
+                                <span>
+                                    <label for="zipcode">ZIP code</label>
+                                    <input id="zip-code" class="form-control" name="zipcode" type="text" placeholder="ZIP code, in format 5 or 5+4" maxlength="10" required />
+                                </span>
+                                <span>
+                                    <label for="phonenumber">Phone number</label>
+                                    <input id="phone-number" class="form-control" name="phonenumber" type="text" placeholder="Your phone number in form 123-456-7890" maxlength="12" required />
                                 </span>
                                 <div class="dropdown">
                                     <img id="cc-img" src="/images/default-credit-card.png">
