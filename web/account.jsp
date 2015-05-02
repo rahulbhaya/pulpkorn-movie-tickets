@@ -13,30 +13,30 @@
                 <h1 vertical center layout>Account Overview</h1>
                 <div class="jumbotron account-card-main">
                     <h1 class="account-card-h1">Change Password</h1>
-                        <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
-                        <c:if test="${changePassword != null}">
-                            <p class="bg-success"><c:out value="${changePassword}"/></p>
-                        </c:if>
-                        <c:set var="changePassword" value="${sessionScope.ChangePasswordFail}"/>
-                        <c:if test="${changePassword != null}">
-                            <p class="bg-danger"><c:out value="${changePassword}"/></p>
-                        </c:if>
-                        <c:remove var="ChangePasswordSuccess" scope="session"/>
-                        <c:remove var="ChangePasswordFail" scope="session"/>
-                        <form action="ChangePassword" method="POST" role="form">
-                            <div class="form-group">
-                                <label for="CurrentPassword">Current Password:</label>
-                                <input class="form-control" name="CurrentPassword" placeholder="Enter current password" required type="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="NewPassword">New Password:</label>
-                                <input class="form-control" name="NewPassword" placeholder="Enter new password" required type="password">
-                            </div>
-                            <div horizontal center layout>
-                                <div flex></div>
-                                <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
-                            </div>
-                        </form>
+                    <c:set var="changePassword" value="${sessionScope.ChangePasswordSuccess}"/>
+                    <c:if test="${changePassword != null}">
+                        <p class="bg-success"><c:out value="${changePassword}"/></p>
+                    </c:if>
+                    <c:set var="changePassword" value="${sessionScope.ChangePasswordFail}"/>
+                    <c:if test="${changePassword != null}">
+                        <p class="bg-danger"><c:out value="${changePassword}"/></p>
+                    </c:if>
+                    <c:remove var="ChangePasswordSuccess" scope="session"/>
+                    <c:remove var="ChangePasswordFail" scope="session"/>
+                    <form action="ChangePassword" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="CurrentPassword">Current Password:</label>
+                            <input class="form-control" name="CurrentPassword" placeholder="Enter current password" required type="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="NewPassword">New Password:</label>
+                            <input class="form-control" name="NewPassword" placeholder="Enter new password" required type="password">
+                        </div>
+                        <div horizontal center layout>
+                            <div flex></div>
+                            <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
+                        </div>
+                    </form>
                 </div>
                 <div class="jumbotron account-card-main">
                     <h1 class="account-card-h1">Change Login Email</h2>
@@ -90,7 +90,12 @@
                             <fieldset>
                                 <span>
                                     <label for="cardnumber">Card Number</label>
-                                    <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required pattern="[0-9]{16}"/>
+                                    <div horizontal center layout>
+                                        <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" required="" pattern="[0-9]{16}">
+                                        <div class="dropdown">
+                                            <img id="cc-img" src="/images/default-credit-card.png">
+                                        </div>
+                                    </div>
                                 </span>
                                 <span>
                                     <label for="expdate">Expiration Date</label>
@@ -127,9 +132,6 @@
                                     <label for="phonenumber">Phone number</label>
                                     <input id="phone-number" class="form-control" name="phonenumber" type="text" placeholder="Your phone number in form 123-456-7890" maxlength="12" required />
                                 </span>
-                                <div class="dropdown">
-                                    <img id="cc-img" src="/images/default-credit-card.png">
-                                </div>
                             </fieldset>
                             <div horizontal center layout>
                                 <div flex></div>
