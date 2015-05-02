@@ -30,6 +30,12 @@
                                 </div>
                             </form>
                         </c:if>
+                        <h4>Cast:</h4>
+                        <h5>
+                            <c:forEach var="cast" items="${sessionScope.Cast}">
+                                <c:out value="${cast.name}"/>,&nbsp;
+                            </c:forEach>
+                        </h5>
                     </div>
                 </div>
                 <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">
