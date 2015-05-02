@@ -110,6 +110,25 @@ public class Dogwood {
         }
 
     }
+
+    public static List<Movie> searchMovies(String title) {
+        try {
+            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
+            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            JSONArray array = (JSONArray) json.get("movies");
+            List<Movie> movies = new LinkedList<>();
+            for (Object obj : array) {
+                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
+                if (movie != null) {
+                    movies.add(movie);
+                }
+            }
+            return movies;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
     
     public static boolean sendEmail(String to, String subject, String text) {
         try {
@@ -135,25 +154,6 @@ public class Dogwood {
         catch (Exception ex) {
             System.out.println(ex);
             return false;
-        }
-    }
-
-    public static List<Movie> searchMovies(String title) {
-        try {
-            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
-            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
-            JSONArray array = (JSONArray) json.get("movies");
-            List<Movie> movies = new LinkedList<>();
-            for (Object obj : array) {
-                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
-                if (movie != null) {
-                    movies.add(movie);
-                }
-            }
-            return movies;
-        } catch (Exception ex) {
-            System.out.println(ex);
-            return null;
         }
     }
     
