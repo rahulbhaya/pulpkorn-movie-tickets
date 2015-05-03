@@ -77,6 +77,8 @@ public class Dogwood {
         }
     }
     
+    
+    
     public static String getTrailer(String movieId) {
         try {
             String title = Database.getInstance().getMovieById(movieId).getTitle().replace(" ", "+");
