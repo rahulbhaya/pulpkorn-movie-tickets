@@ -44,7 +44,7 @@
                 <a href="">&nbsp;/&nbsp;</a>
             </li>
             <li>
-                <a href="help.html">Help</a>
+                <a href="help.jsp">Help</a>
             </li>
         </ul>
     </div>
