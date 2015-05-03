@@ -20,6 +20,7 @@
                         <h3>MPAA Rating: <c:out value="${movie.mpaaRating}"/></h3>
                         <h4>Synopsis:</h4>
                         <h5><c:out value="${movie.synopsis}"/></h5>
+                        <button class="btn btn-default" onclick="getGeoLocation('<c:out value='${movie.title}'/>');" type="button">View Movie Times</button>
                         <c:if test="${isAdmin != null}">
                             <form action="DeleteMovie" method="POST" role="form">
                                 <div class="form-group">
