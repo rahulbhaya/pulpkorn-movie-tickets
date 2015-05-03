@@ -13,7 +13,7 @@
                 <h1>Join Pulpkorn today</h1>
                 <c:set var="registerFail" value="${sessionScope.RegisterFail}"/>
                 <c:if test="${registerFail != null}">
-                    <p class="bg-danger"><c:out value="${registerFail}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${registerFail}"/></p>
                 </c:if>
                 <c:remove var="RegisterFail" scope="session"/>
                 <form action="Register" method="POST" role="form">

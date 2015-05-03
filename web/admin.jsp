@@ -14,11 +14,11 @@
                 <h2 class="account-card-h2">Add/Edit Movie</h2>
                 <c:set var="addEditMovie" value="${sessionScope.AddEditMovieSuccess}"/>
                 <c:if test="${addEditMovie != null}">
-                    <p class="bg-success"><c:out value="${addEditMovie}"/></p>
+                    <p class="alert-dismissable alert-success"><c:out value="${addEditMovie}"/></p>
                 </c:if>
                 <c:set var="addEditMovie" value="${sessionScope.AddEditMovieFail}"/>
                 <c:if test="${addEditMovie != null}">
-                    <p class="bg-danger"><c:out value="${addEditMovie}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${addEditMovie}"/></p>
                 </c:if>
                 <c:remove var="AddEditMovieSuccess" scope="session"/>
                 <c:remove var="AddEditMovieFail" scope="session"/>

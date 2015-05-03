@@ -13,7 +13,7 @@
                 <h1>Log In</h1>
                 <c:set var="logInFail" value="${sessionScope.LogInFail}"/>
                 <c:if test="${logInFail != null}">
-                    <p class="bg-danger"><c:out value="${logInFail}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${logInFail}"/></p>
                 </c:if>
                 <c:remove var="LogInFail" scope="session"/>
                 <form action="PurchaseLogin" method="POST" role="form">
