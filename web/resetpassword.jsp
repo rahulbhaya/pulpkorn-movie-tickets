@@ -23,6 +23,10 @@
                 <c:remove var="ResetPasswordFail" scope="session"/>
                 <form action="ResetPassword" method="POST" role="form">
                     <div class="form-group">
+                        <label for="Name">Username</label>
+                        <input class="form-control" name="Name" placeholder="Username" required type="text">
+                    </div>
+                    <div class="form-group">
                         <label for="Email">Email address</label>
                         <input class="form-control" name="Email" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
                     </div>

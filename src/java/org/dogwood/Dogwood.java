@@ -93,7 +93,7 @@ public class Dogwood {
     public static boolean requestPasswordReset(String email) {
         try {
             String resetPassword = UUID.randomUUID().toString().replaceAll("-", "");
-            String link = "http://localhost:8080/resetpassword.jsp?ResetPassword=" + resetPassword;
+            String link = "http://localhost/resetpassword.jsp?ResetPassword=" + resetPassword;
             String subject = "Your Pulpkorn Password Reset Request";
             String text = "Go <a href='" + link + "'>here</a> to reset your password: " + link;
             if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
