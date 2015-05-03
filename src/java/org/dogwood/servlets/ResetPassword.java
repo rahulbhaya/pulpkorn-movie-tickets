@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
-import org.dogwood.Dogwood;
 
 @WebServlet(name = "ResetPassword", urlPatterns = {"/ResetPassword"})
 public class ResetPassword extends HttpServlet {
@@ -25,12 +24,14 @@ public class ResetPassword extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String name = request.getParameter("Name");
         String email = request.getParameter("Email");
         String resetPassword = request.getParameter("ResetPassword");
         String password = request.getParameter("Password");
-        if (email == null || resetPassword == null || password == null || !Database.getInstance().hasUser(email)) {
+        if (name == null || email == null || resetPassword == null || password == null || !Database.getInstance().hasUser(name, email)) {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        } else {
+        } 
+        else {
             Database.getInstance().resetPassword(email, resetPassword, password);
             session.setAttribute("LogIn", email);
             request.getRequestDispatcher("requestreset.jsp").forward(request, response);

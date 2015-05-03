@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.dogwood.Database;
 import org.dogwood.beans.Movie;
 
@@ -25,16 +26,17 @@ public class StartPurchase extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         List<String> creditCardList = new ArrayList<String>() {
         };
         List<String> creditCardListFull = Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn"));
         String id = (String) request.getParameter("MovieId");
         Movie movie = Database.getInstance().getMovieById(id);
         String theater = (String) request.getParameter("Theater");
-        request.getSession().setAttribute("Theater", theater);
-        request.getSession().setAttribute("MovieTitle", movie.getTitle());
+        session.setAttribute("Theater", theater);
+        session.setAttribute("MovieTitle", movie.getTitle());
         String time = (String) request.getParameter("MovieTime");
-        request.getSession().setAttribute("MovieTime", time);
+        session.setAttribute("MovieTime", time);
         for (String ccNumber : creditCardListFull) {
             String ccType = "";
             String lastFour = ccNumber.substring(ccNumber.length() - 4);
@@ -56,8 +58,13 @@ public class StartPurchase extends HttpServlet {
             String ccString = ccType + " xx-" + lastFour;
             creditCardList.add(ccString);
         }
-        request.getSession().setAttribute("CreditCards", creditCardList);
-        request.getSession().setAttribute("CreditCardsFull", creditCardListFull);
+        String[] adultPrices = {"8.50", "8.75", "9.00", "9.25", "9.50", "9.75", "10.00"};
+        String[] childSeniorPrices = {"5.50", "5.75", "6.00", "6.25", "6.50", "6.75", "7.00"};
+        int price = (int) (Math.random() * adultPrices.length);
+        session.setAttribute("AdultPrice", adultPrices[price]);
+        session.setAttribute("ChildSeniorPrice", childSeniorPrices[price]);
+        session.setAttribute("CreditCards", creditCardList);
+        session.setAttribute("CreditCardsFull", creditCardListFull);
         request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
 

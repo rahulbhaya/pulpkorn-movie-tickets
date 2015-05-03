@@ -441,16 +441,32 @@ public class Database {
             System.out.println(ex);
             return null;
         }
-    }
+    }    
 
     public boolean hasUser(String email) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM User WHERE Name = ?"
+                    "SELECT * FROM User WHERE Email = ?"
             );
             statement.setString(1, email);
             return statement.executeQuery().next();
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
+    public boolean hasUser(String name, String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM User WHERE Name = ? AND Email = ?"
+            );
+            statement.setString(1, name);
+            statement.setString(2, email);
+            return statement.executeQuery().next();
+        } 
+        catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
@@ -472,10 +488,11 @@ public class Database {
             if (!results.next()) {
                 return Login.INCORRECT_PASSWORD;
             }
-            Login login = results.getString(3).equals("NORMAL") ? Login.CORRRECT_NORMAL : Login.CORRECT_ADMIN;
+            Login login = results.getString(4).equals("NORMAL") ? Login.CORRRECT_NORMAL : Login.CORRECT_ADMIN;
             connection.close();
             return login;
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             System.out.println(ex);
             return Login.SQL_ERROR;
         }
@@ -497,17 +514,19 @@ public class Database {
         }
     }
 
-    public boolean register(String name, String password, String type) {
+    public boolean register(String name, String email, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User VALUES(?, MD5(?), ?)");
+                    "INSERT INTO User VALUES(?, ?, MD5(?), ?)");
             statement.setString(1, name);
-            statement.setString(2, password);
-            statement.setString(3, type);
+            statement.setString(2, email);
+            statement.setString(3, password);
+            statement.setString(4, type);
             statement.executeUpdate();
             connection.close();
             return true;
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -533,11 +552,11 @@ public class Database {
     public boolean requestPasswordReset(String email, String resetPassword) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?)");
+                    "SELECT * FROM ResetPasswordRequest WHERE Email = (SELECT Email FROM User WHERE Email = ?)");
             statement.setString(1, email);
             if (statement.executeQuery().next()) {
                 statement = connection.prepareStatement(
-                        "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?)");
+                        "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Email FROM User WHERE Email = ?)");
                 statement.setString(1, email);
             }
             statement = connection.prepareStatement(
@@ -546,7 +565,8 @@ public class Database {
             statement.setString(2, resetPassword);
             connection.close();
             return true;
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -555,18 +575,19 @@ public class Database {
     public boolean resetPassword(String email, String resetPassword, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Name FROM User WHERE Name = ?) AND Password = MD5(?)");
+                    "DELETE FROM ResetPasswordRequest WHERE Email = (SELECT Email FROM User WHERE Email = ?) AND Password = MD5(?)");
             statement.setString(1, email);
             statement.setString(2, resetPassword);
             statement = connection.prepareStatement(
-                    "UPDATE User SET Password = MD5(?) WHERE Name = ?"
+                    "UPDATE User SET Password = MD5(?) WHERE Email = ?"
             );
             statement.setString(1, password);
             statement.setString(2, email);
             statement.executeUpdate();
             connection.close();
             return true;
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }

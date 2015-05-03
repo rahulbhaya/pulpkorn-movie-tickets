@@ -13,15 +13,19 @@
                 <h1>Reset Your Password</h1>
                 <c:set var="resetPasswordSuccess" value="${sessionScope.ResetPasswordSuccess}"/>
                 <c:if test="${resetPasswordSuccess != null}">
-                    <p class="bg-success"><c:out value="${resetPasswordSuccess}"/></p>
+                    <p class="alert-dismissable alert-success"><c:out value="${resetPasswordSuccess}"/></p>
                 </c:if>
                 <c:set var="resetPasswordFail" value="${sessionScope.ResetPasswordFail}"/>
                 <c:if test="${resetPasswordFail != null}">
-                    <p class="bg-danger"><c:out value="${ResetPasswordFail}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${ResetPasswordFail}"/></p>
                 </c:if>
                 <c:remove var="ResetPasswordSuccess" scope="session"/>
                 <c:remove var="ResetPasswordFail" scope="session"/>
                 <form action="ResetPassword" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="Name">Username</label>
+                        <input class="form-control" name="Name" placeholder="Username" required type="text">
+                    </div>
                     <div class="form-group">
                         <label for="Email">Email address</label>
                         <input class="form-control" name="Email" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">

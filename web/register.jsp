@@ -13,13 +13,17 @@
                 <h1>Join Pulpkorn today</h1>
                 <c:set var="registerFail" value="${sessionScope.RegisterFail}"/>
                 <c:if test="${registerFail != null}">
-                    <p class="bg-danger"><c:out value="${registerFail}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${registerFail}"/></p>
                 </c:if>
                 <c:remove var="RegisterFail" scope="session"/>
                 <form action="Register" method="POST" role="form">
                     <div class="form-group">
-                        <label for="Name">Email address</label>
-                        <input class="form-control" name="Name" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
+                        <label for="Name">Username</label>
+                        <input class="form-control" name="Name" placeholder="Username" required type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email address</label>
+                        <input class="form-control" name="Email" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
                     </div>
                     <div class="form-group">
                         <label for="Password">Password</label>

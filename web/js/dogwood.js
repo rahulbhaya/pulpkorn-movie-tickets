@@ -52,7 +52,7 @@ var searchMovies = function (query, page_limit, page, callback) {
     });
 };
 
-function getGeoLocation() {
+function getGeoLocation(title) {
     var zipcode = '10001';
     var location = 'New York, NY';
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -68,6 +68,13 @@ function getGeoLocation() {
                     zipcode = address.long_name;
                     location = results[0].formatted_address;
                 }
+            }
+            if (title) {
+                $("#theater-search-group").append($("<input>").attr({
+                    name: "Title",
+                    type: "hidden",
+                    value: title
+                }));
             }
             document.getElementById("searchbar-theater").value = location;
             document.getElementById("searchbtn-search").click();

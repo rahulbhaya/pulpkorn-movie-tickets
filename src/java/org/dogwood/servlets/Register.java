@@ -25,10 +25,13 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String name = request.getParameter("Name");
-        if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, request.getParameter("Password"), "NORMAL")) {
+        String email = request.getParameter("Email");
+        String password = request.getParameter("Password");
+        if (session.getAttribute("LogIn") == null && Database.getInstance().register(name, email, password, "NORMAL")) {
             session.setAttribute("LogIn", name);
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
-        } else {
+        } 
+        else {
             session.setAttribute("RegisterFail", true);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }

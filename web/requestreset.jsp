@@ -13,11 +13,11 @@
                 <h1>Reset Your Password</h1>
                 <c:set var="requestResetSuccess" value="${sessionScope.RequestResetSuccess}"/>
                 <c:if test="${requestResetSuccess != null}">
-                    <p class="bg-success"><c:out value="${requestResetSuccess}"/></p>
+                    <p class="alert-dismissable alert-success"><c:out value="${requestResetSuccess}"/></p>
                 </c:if>
                 <c:set var="requestResetFail" value="${sessionScope.RequestResetFail}"/>
                 <c:if test="${requestResetFail != null}">
-                    <p class="bg-danger"><c:out value="${requestResetFail}"/></p>
+                    <p class="alert-dismissable alert-danger"><c:out value="${requestResetFail}"/></p>
                 </c:if>
                 <c:remove var="RequestResetSuccess" scope="session"/>
                 <c:remove var="RequestResetFail" scope="session"/>

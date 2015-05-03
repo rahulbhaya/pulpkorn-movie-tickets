@@ -93,7 +93,7 @@ public class Dogwood {
     public static boolean requestPasswordReset(String email) {
         try {
             String resetPassword = UUID.randomUUID().toString().replaceAll("-", "");
-            String link = "http://localhost:8080/resetpassword.jsp?ResetPassword=" + resetPassword;
+            String link = "http://localhost/resetpassword.jsp?ResetPassword=" + resetPassword;
             String subject = "Your Pulpkorn Password Reset Request";
             String text = "Go <a href='" + link + "'>here</a> to reset your password: " + link;
             if (Database.getInstance().hasUser(email) && Database.getInstance().requestPasswordReset(email, resetPassword)) {
@@ -109,6 +109,25 @@ public class Dogwood {
             return false;
         }
 
+    }
+
+    public static List<Movie> searchMovies(String title) {
+        try {
+            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
+            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+            JSONArray array = (JSONArray) json.get("movies");
+            List<Movie> movies = new LinkedList<>();
+            for (Object obj : array) {
+                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
+                if (movie != null) {
+                    movies.add(movie);
+                }
+            }
+            return movies;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
     }
     
     public static boolean sendEmail(String to, String subject, String text) {
@@ -135,25 +154,6 @@ public class Dogwood {
         catch (Exception ex) {
             System.out.println(ex);
             return false;
-        }
-    }
-
-    public static List<Movie> searchMovies(String title) {
-        try {
-            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
-            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
-            JSONArray array = (JSONArray) json.get("movies");
-            List<Movie> movies = new LinkedList<>();
-            for (Object obj : array) {
-                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
-                if (movie != null) {
-                    movies.add(movie);
-                }
-            }
-            return movies;
-        } catch (Exception ex) {
-            System.out.println(ex);
-            return null;
         }
     }
     

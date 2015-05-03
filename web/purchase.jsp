@@ -10,6 +10,8 @@
                 <div id="ticket-info" class="jumbotron">
                     <h1>Purchase Tickets for ${sessionScope.MovieTitle} at ${sessionScope.MovieTime}</h1>
                     <p>${sessionScope.Theater}</p>
+                    <c:set var="adultPrice" value="${sessionScope.AdultPrice}"/>
+                    <c:set var="childSeniorPrice" value="${sessionScope.ChildSeniorPrice}"/>
                     <div class="form-group">
                         <label>Adult Tickets:</label>
                         <select class="form-control" name="adults">
@@ -25,9 +27,9 @@
                             <option>9</option>
                         </select>
                         <span> x </span>
-                        <span class="cost">$19.50</span>
+                        <span class="cost">$<c:out value="${adultPrice}"/></span>
                         <span> = </span>
-                        <span class="total">$19.50</span>
+                        <span class="total">$0.00</span>
                     </div>
                     <div class="form-group">
                         <label>Senior Tickets:</label>
@@ -44,9 +46,9 @@
                             <option>9</option>
                         </select>
                         <span> x </span>
-                        <span class="cost">$16.50</span>
+                        <span class="cost">$<c:out value="${childSeniorPrice}"/></span>
                         <span> = </span>
-                        <span class="total">$16.50</span>                      
+                        <span class="total">$0.00</span>                      
                     </div>
                     <div class="form-group">
                         <label>Child Tickets:</label>
@@ -63,9 +65,9 @@
                             <option>9</option>
                         </select>
                         <span> x </span>
-                        <span class="cost">$16.50</span>
+                        <span class="cost">$<c:out value="${childSeniorPrice}"/></span>
                         <span> = </span>
-                        <span class="total">$16.50</span>
+                        <span class="total">$0.00</span>
                     </div>
                     <div class="form-group">
                         <div horizontal center layout>
