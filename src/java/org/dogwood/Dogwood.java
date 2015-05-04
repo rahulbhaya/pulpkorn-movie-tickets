@@ -112,6 +112,18 @@ public class Dogwood {
         }
 
     }
+    
+    public static boolean sendPurchaseReciept(String email, int pin){
+        String subject = "Pulpkorn tickets purchase receipt";
+        String text = "Your ticket purchase has been logged.  Here is your receipt pin: "+pin+".  Save this pin, as it can be used to refund your purchase.";
+        if (Database.getInstance().hasUser(email)){
+            sendEmail(email, subject, text);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public static List<Movie> searchMovies(String title) {
         try {

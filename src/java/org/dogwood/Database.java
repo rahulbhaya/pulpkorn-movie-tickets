@@ -289,6 +289,21 @@ public class Database {
         }
     }
     
+    public String getEmailByUsername(String userName){
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT Email FROM User WHERE Name=?");
+            statement.setString(1, userName);
+            ResultSet set = statement.executeQuery();
+            String email = "";
+            while(set.next()){
+                email=set.getString(1);
+            }
+            return email;
+        } catch (SQLException ex) {
+            return "";
+        }
+    }
+    
     public String getTrailerUrl(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -552,7 +567,17 @@ public class Database {
     
     public boolean refundPurchase(int pin){
         try {
-            PreparedStatement statement= connection.prepareStatement("DELETE FROM Purchase WHERE PurchaseId=?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * from Purchase WHERE PurchaseId=?");
+            statement.setInt(1, pin);
+            ResultSet set = statement.executeQuery();
+            Boolean exists = false;
+            while(set.next()){
+                exists = true;
+            }
+            if(!exists){
+                return false;
+            }
+            statement= connection.prepareStatement("DELETE FROM Purchase WHERE PurchaseId=?");
             statement.setInt(1, pin);
             statement.executeUpdate();
             connection.close();
@@ -677,7 +702,7 @@ public class Database {
                 expDateM = rs.getString(6);
                 expDateY = rs.getString(7);
             }
-            statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, name);
             statement.setString(2, movie);
             statement.setString(3, theater);
@@ -691,8 +716,11 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
-            statement.setInt(14, (int)(Math.random()*9000000)+1000000);
+            int random = (int)(Math.random()*9000000)+1000000;
+            statement.setInt(14, random);
             statement.executeUpdate();
+            Dogwood.sendPurchaseReciept(getEmailByUsername(name), random);
+            System.out.println(random);
             connection.close();
             return true;
         } catch (SQLException ex) {

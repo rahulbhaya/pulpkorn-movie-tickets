@@ -11,6 +11,7 @@
         <li class="nav-list-item"><a href="GetSpecialOffers">Special Offers</a></li>
         <li class="nav-list-item"><a href="ViewFAQs">FAQs</a></li>
         <li class="nav-list-item"><a href="ViewMovieNews">Movie News</a></li>
+        <li class="nav-list-item"><a href="refund.jsp">Refund Purchase</a></li>
         <li class="dropdown nav-list-item">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <c:set var="name" value="${sessionScope.LogIn}"/>
