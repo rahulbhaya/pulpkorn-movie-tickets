@@ -16,7 +16,7 @@
         </script>
         <div class="container-fluid">
             <div class="main">
-                <h1>Select Help Topics from below to view help with</h1>
+                <h1>Please Choose a Topic from Below for Help</h1>
                 <div id="theaters" vertical layout wrap center>
                     <div class="card-header theater-card" layout horizontal center>
                         <div class="movie-card-outer">
