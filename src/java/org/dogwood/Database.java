@@ -3,6 +3,7 @@ package org.dogwood;
 import org.dogwood.beans.Movie;
 import org.dogwood.beans.Comment;
 import org.dogwood.beans.FAQ;
+import org.dogwood.beans.Help;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,6 +96,20 @@ public class Database {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO FAQ VALUES(?, ?)");
             statement.setString(1, (String) json.get("question"));
+            statement.setString(2, (String) json.get("answer"));
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    public boolean addHelp(JSONObject json) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO Help VALUES(?, ?)");
+            statement.setString(1, (String) json.get("topic"));
             statement.setString(2, (String) json.get("answer"));
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
@@ -328,6 +343,25 @@ public class Database {
             return null;
         }
     }
+    public List<Help> getHelp() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Help");
+            ResultSet results = statement.executeQuery();
+            List<Help> help = new LinkedList<>();
+            while (results.next()) {
+                String topic = results.getString(1);
+                String answer = results.getString(2);
+                help.add(new Help(topic, answer));
+            }
+            connection.close();
+            return help;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+
 
     public List<Movie> getInTheatersMovies() {
         try {

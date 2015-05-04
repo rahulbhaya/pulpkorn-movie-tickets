@@ -1,0 +1,37 @@
+{
+    "helptopics": [
+        {
+            "topic": "Never Received/Deleted My Confirmation Email",
+            "answer": "If you received confirmation at the end of your transaction that your purchase was successful you should have a copy of your confirmation email.  Please be aware that because the confirmation email comes from a no reply email address it can often be redirected to your SPAM folder"
+        },
+        {
+            "topic": "Refunds and Exchanges",
+            "answer": "In most cases you may refund or exchange your ticket(s) at least 2 hours before your movie show time. For full terms and conditions, please see our Pulpkorn Purchase Policy.In order to continue to provide movie fans with show times, exclusive content and easy-to-use tools, our tickets include a non-refundable convenience fee. A refund returns the cost of your ticket back to your original payment method, less the convenience fee. An exchange allows you to recoup both the cost of your ticket, as well as your convenience fee in the form of a Fandango Credit that may be used for a future purchase at any Pulpjorn-ticketing theater."
+        },
+        {
+            "topic": "Movie Ticket Pick-Ups",
+            "answer": "Pick up instructions will vary depending on the theater and how you paid for your tickets. Check your confirmation email to find your specific instructions.Generally, ticket redemption usually falls in one of two categories:1. Credit/Debit Card - If you used a credit or debit card you will need to bring the card you used to purchase the tickets in order to pick them up. Depending on the theater, you can go to a kiosk, guest services or the box office for ticket pick up.2. Promo Codes - If you purchased using promo codes you will need your confirmation number to pick up your tickets. You can find the confirmation number on your confirmation email or in your purchase history under My Account. Depending on the theater, you can go to a kiosk, guest services or the box office for ticket pick up."
+        },
+        {
+            "topic": "Wrong Showtimes",
+            "answer": "We strive to provide accurate showtime information for all theaters listed with Pulpkorn. But you would be amazed, especially for big blockbusters,how often showtimes change. For our ticketing partners, we get showtimes directly from their sales system, so the information is extremely accurate. For our non-ticketing partners, we rely on a national third-party service, Tribune Media Services (TMS). The information provided is accurate a great majority of the time, but is dependent on both the movie theaters and TMS to share up-to-the-minute information."
+        },
+        {
+            "topic": "Reserved seating",
+            "answer": "Select theaters on Fandango will allow you to Reserve your seat in advance. Look for 'Reserved Seating' next to show times to find theaters that are offering this feature. Reserved Seating takes the guaranteed seat that Fandango promises on all orders a step further and lets you pick your exact seat(s). At the end of your purchase process for a reserved seat on Fandango, you will be provided with a specific seat number on your confirmation page that will be waiting for you when you get to the theater."
+        },
+        {
+            "topic": "Age policy and discounts",
+            "answer": "Age and discount policies vary by theater.Generally, a child ticket category is considered to be for children between 2 and 11 years old and a senior ticket category is considered to be 65 years old and over. However, some theaters may have additional restrictions or use a different age break. Please check the policy of the individual theater you plan to attend by using the information below or contact your local theater directly."
+        },
+        {
+            "topic": "Barcode of ticket to scan at the theater",
+            "answer": "Currently mobile barcodes are available only at select theaters, but more are coming soon! Look for the 'Mobile Ticket' amenity on the movie and theater pages to find theaters that do support mobile barcodes.If you purchase a ticket at a theater that does support mobile barcodes, you can take the barcode that appears on your confirmation page (also available in your purchase history under My Account) directly to the ticket-taker for scanning. No waiting in line is necessary! For best results, set the screen brightness on your device to a high level when the ticket-taker scans the barcode."
+        },
+        {
+            "topic": "Can't reserve tickets and pay at the theater",
+            "answer": "Unfortunately, it is not possible to pay at the theater for a transaction made on Pulpkorn. When you place an order with Pulpkorn you are purchasing tickets, not just reserving them. On the completion of an order, your credit/debit card will be charge for the amount indicated."
+        }
+
+    ]
+}

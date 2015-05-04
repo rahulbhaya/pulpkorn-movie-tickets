@@ -88,6 +88,11 @@ CREATE TABLE FAQ(
     Answer TEXT NOT NULL,
     PRIMARY KEY (Question)
 );
+CREATE TABLE Help(
+    Topic VARCHAR(255),
+    Answer TEXT NOT NULL,
+    PRIMARY KEY (Topic)
+);
 
 CREATE TABLE ResetPasswordRequest(
     Email VARCHAR(25),
