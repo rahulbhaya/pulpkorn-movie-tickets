@@ -745,8 +745,12 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
-            statement.setInt(14, (int)(Math.random()*9000000)+1000000);
+            int random = (int)(Math.random()*9000000)+1000000;
+            statement.setInt(14, random);
             statement.executeUpdate();
+            if(!name.equals("Guest")){
+                Dogwood.sendPurchaseReciept(getEmailByUsername(name), random);
+            }
             connection.close();
             return true;
         } catch (SQLException ex) {
