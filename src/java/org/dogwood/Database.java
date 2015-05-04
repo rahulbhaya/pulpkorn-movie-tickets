@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
@@ -513,6 +515,18 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean refundPurchase(int pin){
+        try {
+            PreparedStatement statement= connection.prepareStatement("DELETE FROM Purchase WHERE PurchaseId=?");
+            statement.setInt(1, pin);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
 
     public boolean register(String name, String email, String password, String type) {
         try {
@@ -643,7 +657,9 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
+            statement.setInt(14, (int)(Math.random()*9000000)+1000000);
             statement.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -653,7 +669,7 @@ public class Database {
 
     public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, name);
             statement.setString(2, movie);
             statement.setString(3, theater);
@@ -667,7 +683,9 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
+            statement.setInt(14, (int)(Math.random()*9000000)+1000000);
             statement.executeUpdate();
+            connection.close();
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
