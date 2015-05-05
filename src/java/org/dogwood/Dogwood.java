@@ -6,7 +6,9 @@ import org.dogwood.beans.MovieTheater;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -125,7 +127,7 @@ public class Dogwood {
         }
     }
 
-    public static List<Movie> searchMovies(String title, String mpaaRating) {
+    public static List<Movie> searchMovies(String title, String mpaaRating, String release) {
         try {
             List<Movie> temp = new LinkedList<>();
             if (title == null || title.isEmpty()) {
@@ -147,6 +149,16 @@ public class Dogwood {
                 boolean add = true;
                 if (mpaaRating != null && !mpaaRating.equals("All") && !mpaaRating.equals(movie.getMpaaRating())) {
                     add = false;
+                }
+                if (release != null && !release.equals("All")) {
+                    Date now = new Date();
+                    Date releaseDate = new SimpleDateFormat("yyyy-MM-dd").parse(movie.getReleaseDate());
+                    if (release.equals("Current") && !now.after(releaseDate)) {
+                        add = false;
+                    }
+                    if (release.equals("Upcoming") && !now.before(releaseDate)) {
+                        add = false;
+                    }
                 }
                 if (add) {
                     movies.add(movie);

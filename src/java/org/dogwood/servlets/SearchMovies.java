@@ -30,8 +30,12 @@ public class SearchMovies extends HttpServlet {
         if (mpaaRating == null) {
             mpaaRating = "All";
         }
-        request.getSession().setAttribute("SearchMovies", Dogwood.searchMovies(title, mpaaRating));
-        request.getRequestDispatcher("movies.jsp").forward(request, response);
+        String release = request.getParameter("Release");
+        if (release == null) {
+            release = "All";
+        }
+        request.getSession().setAttribute("SearchMovies", Dogwood.searchMovies(title, mpaaRating, release));
+        request.getRequestDispatcher("movies.jsp?Title=" + title + "&MPAARating=" + mpaaRating + "&Release=" + release).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
