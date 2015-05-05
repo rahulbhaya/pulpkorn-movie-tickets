@@ -5,14 +5,26 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <h1>Movie News</h1>
         <div class="container-fluid">
             <div class="main">
-                <h2></h2>
-                <div style="border:0px; overflow:hidden; margin: 15px auto; display:block; width:100%; height:100%; max-width: 963px;">
-<iframe scrolling="yes" src="http://www.cinemablend.com/news.php" style="border: 0px none;  margin-left:-291px;height: 1500px; margin-top: -180px; width: 1550px; margin-bottom: -720px;">
-</iframe>
-</div>
+                <h1>Movie News</h1>
+                <div id="movienews" vertical layout wrap center>
+                    <c:forEach var="newsArticle" items="${sessionScope.MovieNews}">
+                        <div class="movie-detail-container" layout horizontal center>
+                            <div class="movie-detail-card">
+                                <img src="<c:out value='${newsArticle.image}'/>">
+                            </div>
+                            <div>
+                                <h3>
+                                    <a href="<c:out value='${newsArticle.link}'/>">
+                                        <c:out value="${newsArticle.title}"/>
+                                    </a>
+                                </h3>
+                                <p><c:out value="${newsArticle.description}"/></p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
         <%@include file="footer.jsp"%>

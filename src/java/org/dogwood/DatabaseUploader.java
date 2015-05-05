@@ -7,6 +7,10 @@ import static org.dogwood.Dogwood.BASE_URL;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class DatabaseUploader {
 
@@ -51,6 +55,20 @@ public class DatabaseUploader {
                 Database.getInstance().addMovie((JSONObject) movie);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Document doc = Jsoup.connect("http://www.cinemablend.com/news.php").get();
+            for (Element newsArticle : doc.select(".nnicontent")) {
+                Elements divs = newsArticle.children();
+                String title = divs.get(0).text();
+                String description = divs.get(1).text();
+                String link = "http://www.cinemablend.com" + divs.select("a").attr("href");
+                String image = newsArticle.siblingElements().get(0).select("img").attr("src");
+                Database.getInstance().addNewsArticle(title, description, link, image);
+            }
+        }
+        catch (Exception ex) {
             ex.printStackTrace();
         }
     }

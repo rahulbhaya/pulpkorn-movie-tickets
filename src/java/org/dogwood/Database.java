@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
+import org.dogwood.beans.NewsArticle;
 import org.json.simple.JSONObject;
 
 public class Database {
@@ -160,6 +161,24 @@ public class Database {
             connection.close();
             return retValue;
         } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+    
+    public boolean addNewsArticle(String title, String description, String link, String image) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO NewsArticle VALUES(?, ?, ?, ?)");
+            statement.setString(1, title);
+            statement.setString(2, description);
+            statement.setString(3, link);
+            statement.setString(4, image);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } 
+        catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -464,6 +483,28 @@ public class Database {
             return null;
         }
     }
+    
+    public List<NewsArticle> getMovieNews() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM NewsArticle");
+            ResultSet results = statement.executeQuery();
+            List<NewsArticle> movieNews = new LinkedList<>();
+            while (results.next()) {
+                String title = results.getString(1);
+                String description = results.getString(2);
+                String link = results.getString(3);
+                String image = results.getString(4);
+                movieNews.add(new NewsArticle(title, description, link, image));
+            }
+            connection.close();
+            return movieNews;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
 
     public double getMovieRating(String movieId) {
         try {
@@ -514,7 +555,7 @@ public class Database {
             System.out.println(ex);
             return null;
         }
-    }    
+    }
 
     public boolean hasUser(String email) {
         try {

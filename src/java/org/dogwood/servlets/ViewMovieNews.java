@@ -22,7 +22,7 @@ public class ViewMovieNews extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.getSession().setAttribute("MovieNews", Database.getInstance().getMovieNews());
         request.getRequestDispatcher("movienews.jsp").forward(request, response);
     }
 

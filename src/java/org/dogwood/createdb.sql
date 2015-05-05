@@ -88,10 +88,19 @@ CREATE TABLE FAQ(
     Answer TEXT NOT NULL,
     PRIMARY KEY (Question)
 );
+
 CREATE TABLE Help(
     Topic VARCHAR(255),
     Answer TEXT NOT NULL,
     PRIMARY KEY (Topic)
+);
+
+CREATE TABLE NewsArticle(
+    Title VARCHAR(255),
+    Description TEXT NOT NULL,
+    Link TEXT NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Title)
 );
 
 CREATE TABLE ResetPasswordRequest(
