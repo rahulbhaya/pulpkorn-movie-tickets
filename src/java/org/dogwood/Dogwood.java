@@ -113,20 +113,36 @@ public class Dogwood {
 
     }
 
-    public static List<Movie> searchMovies(String title) {
+    public static List<Movie> searchMovies(String title, String mpaaRating) {
         try {
-            URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
-            JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
-            JSONArray array = (JSONArray) json.get("movies");
+            List<Movie> temp = new LinkedList<>();
+            if (title == null || title.isEmpty()) {
+                temp.addAll(Database.getInstance().getAllMovies());
+            }
+            else {
+                URL url = new URL(BASE_URL + "/movies.json?apikey=" + API_KEY + "&q=" + title);
+                JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(url.openStream()));
+                JSONArray array = (JSONArray) json.get("movies");
+                for (Object obj : array) {
+                    Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
+                    if (movie != null) {
+                        temp.add(movie);
+                    }
+                }
+            }
             List<Movie> movies = new LinkedList<>();
-            for (Object obj : array) {
-                Movie movie = Database.getInstance().getMovieById((String) ((JSONObject) obj).get("id"));
-                if (movie != null) {
+            for (Movie movie : temp) {
+                boolean add = true;
+                if (mpaaRating != null && !mpaaRating.equals("All") && !mpaaRating.equals(movie.getMpaaRating())) {
+                    add = false;
+                }
+                if (add) {
                     movies.add(movie);
                 }
             }
             return movies;
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             System.out.println(ex);
             return null;
         }

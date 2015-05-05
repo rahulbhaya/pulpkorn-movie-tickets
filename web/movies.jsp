@@ -5,7 +5,7 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <div class="container-fluid">
+        <div class="container-fluid" layout vertical center>
             <div class="main">
                 <h1>Search Results for '<c:out value="${param.Title}"/>':</h1>
                 <div id="movies" horizontal layout wrap center-justified>
@@ -26,6 +26,31 @@
                             </div>
                         </div>
                     </c:forEach>
+                </div>
+                <div class="jumbotron account-card-main" layout horizontal center>
+                    <h1>Filter Search</h1>
+                    <form action="SearchMovies" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="Title">Title</label>
+                            <input class="form-control" name="Title" type="text" value="<c:out value='${param.Title}'/>">
+                        </div>
+                        <div class="form-group">
+                            <label for="MPAARating">MPAA Rating</label>
+                            <select name="MPAARating">
+                                <option>All</option>
+                                <option>G</option>
+                                <option>PG</option>
+                                <option>PG-13</option>
+                                <option>R</option>
+                                <option>NC-17</option>
+                                <option>Unrated</option>
+                            </select>
+                        </div>
+                        <div horizontal center layout>
+                            <div flex></div>
+                            <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

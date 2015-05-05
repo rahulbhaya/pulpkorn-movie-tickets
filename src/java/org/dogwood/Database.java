@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
 import org.json.simple.JSONObject;
@@ -253,6 +251,30 @@ public class Database {
         } catch (SQLException ex) {
             System.out.println(ex);
             return false;
+        }
+    }
+    
+    public List<Movie> getAllMovies() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Movie ORDER BY ReleaseDate");
+            ResultSet results = statement.executeQuery();
+            List<Movie> movies = new LinkedList<>();
+            while (results.next()) {
+                String id = results.getString(1);
+                String title = results.getString(2);
+                String mpaaRating = results.getString(3);
+                int runtime = results.getInt(4);
+                String releaseDate = results.getString(5);
+                String synopsis = results.getString(6);
+                String image = results.getString(7);
+                movies.add(new Movie(id, title, mpaaRating, runtime, releaseDate, synopsis, image));
+            }
+            connection.close();
+            return movies;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
 

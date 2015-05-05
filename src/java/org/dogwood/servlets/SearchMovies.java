@@ -22,7 +22,15 @@ public class SearchMovies extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("SearchMovies", Dogwood.searchMovies(request.getParameter("Title")));
+        String title = request.getParameter("Title");
+        if (title == null) {
+            title = "";
+        }
+        String mpaaRating = request.getParameter("MPAARating");
+        if (mpaaRating == null) {
+            mpaaRating = "All";
+        }
+        request.getSession().setAttribute("SearchMovies", Dogwood.searchMovies(title, mpaaRating));
         request.getRequestDispatcher("movies.jsp").forward(request, response);
     }
 
