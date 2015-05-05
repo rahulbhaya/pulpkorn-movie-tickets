@@ -611,6 +611,24 @@ public class Database {
             return Login.SQL_ERROR;
         }
     }
+    
+    public boolean modifyUser(String name, String email, String password, String type) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE User SET Email = ?, Password = MD5(?), Type = ? WHERE Name = ?");
+            statement.setString(1, email);
+            statement.setString(2, password);
+            statement.setString(3, type);
+            statement.setString(4, name);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } 
+        catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
 
     public boolean rateMovie(String userName, String movieId, String rating) {
         try {

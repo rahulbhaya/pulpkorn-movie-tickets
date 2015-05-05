@@ -56,8 +56,52 @@
                     </div>
                 </form>
             </div>
+            <div class="jumbotron account-card-main">
+
+                <h2 class="account-card-h2">Add/Modify User</h2>
+                <c:set var="addModifyUser" value="${sessionScope.AddModifyUserSuccess}"/>
+                <c:if test="${addModifyUser != null}">
+                    <a id="addmodifyuser"></a>
+                    <p class="alert-dismissable alert-success"><c:out value="${addModifyUser}"/></p>
+                </c:if>
+                <c:set var="addModifyUser" value="${sessionScope.AddModifyUserFail}"/>
+                <c:if test="${addModifyUser != null}">
+                    <a id="addmodifyuser"></a>
+                    <p class="alert-dismissable alert-danger"><c:out value="${addModifyUser}"/></p>
+                </c:if>
+                <c:remove var="AddModifyUserSuccess" scope="session"/>
+                <c:remove var="AddModifyUserFail" scope="session"/>
+                <form action="AddModifyUser" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="Username">Username:</label>
+                        <input class="form-control" name="Username" placeholder="Enter username" required type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email address:</label>
+                        <input class="form-control" name="Email" placeholder="Email address" required type="text" pattern="([a-z]*[A-Z]*[0-9]*)+@([a-z]*[A-Z]*[0-9]*)+\.([a-z]*[A-Z]*[0-9]*)+">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password:</label>
+                        <input class="form-control" name="Password" placeholder="Enter password" required type="password">
+                    </div>
+                    <div class="form-group">
+                        <p>User Type:</p>
+                        <label>Normal</label>
+                        <input checked class="form-control" name="Type" type="radio" value="NORMAL">
+                        <label>Admin</label>
+                        <input class="form-control" name="Type" type="radio" value="ADMIN">
+                    </div>                
+                    <div horizontal center layout>
+                        <div flex></div>
+                        <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
+                    </div>
+                </form>    
+            </div>
         </div>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
+        <script>
+            $(document.body).scrollTop($("#addmodifyuser").position().top);
+        </script>
     </body>
 </html>
