@@ -5,7 +5,9 @@
     </div>
     <div horizontal layout>
         <ul class="nav navbar-nav">
-            <h1>Pulpkorn</h1>
+            <h1>Pulpkorn
+                <font style="vertical-align: super; font-size: small;">&nbsp;Theathers on The Go</font>
+            </h1>
             <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
             <li class="nav-list-item"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
             <li class="nav-list-item"><a href="BuyGiftCards">Gift Cards</a></li>
