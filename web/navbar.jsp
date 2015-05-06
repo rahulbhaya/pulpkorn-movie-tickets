@@ -6,7 +6,7 @@
     <div horizontal layout>
         <ul class="nav navbar-nav">
             <h1>Pulpkorn
-                <font style="vertical-align: super;font-size: small;background-color: #009688;color: #FFF;border-radius: 2px;">&nbsp;United States</font>
+                <font style="vertical-align: super;font-size: small;background-color: #009688;color: #FFF;border-radius: 2px;">&nbsp;United States&nbsp;</font>
             </h1>
             <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
             <li class="nav-list-item"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
