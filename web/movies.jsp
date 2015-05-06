@@ -5,7 +5,7 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <div class="container-fluid" layout vertical center>
+        <div class="container-fluid">
             <div class="main">
                 <c:set var="query" value="${param.Title}"/>
                 <c:if test="${query == ''}">
@@ -36,13 +36,14 @@
                 <div class="jumbotron account-card-main" layout horizontal center>
                     <h1>Filter Search</h1>
                     <form action="SearchMovies" method="POST" role="form">
-                        <div class="form-group">
+                        <div id="filter-title" class="form-group">
                             <label for="Title">Title</label>
                             <input class="form-control" name="Title" type="text" value="<c:out value='${param.Title}'/>">
                         </div>
-                        <div class="form-group">
+
+                        <div id="filter-rating" class="form-group">
                             <label for="MPAARating">MPAA Rating</label>
-                            <select name="MPAARating">
+                            <select id="filter-rating-select" class="form-control btn btn-default dropdown-toggle" name="MPAARating">
                                 <option>All</option>
                                 <option>G</option>
                                 <option>PG</option>
@@ -52,15 +53,29 @@
                                 <option>Unrated</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <p>Release</p>
-                            <label>All</label>
-                            <input checked class="form-control" name="Release" type="radio" value="All">
-                            <label>Current</label>
-                            <input class="form-control" name="Release" type="radio" value="Current">
-                            <label>Upcoming</label>
-                            <input class="form-control" name="Release" type="radio" value="Upcoming">
-                        </div>                        
+
+                        <div id="filter-release" class="form-group">
+                            <label>Release:</label>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" name="Release" value="All" checked>
+                                    All
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" name="Release" value="Current">
+                                    Current
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" name="Release" value="Upcoming">
+                                    Upcoming
+                                </label>
+                            </div>
+                        </div>
+
                         <div horizontal center layout>
                             <div flex></div>
                             <button class="btn btn-danger btn-fab btn-raised mdi-action-done submit-button" type="submit"></button>
@@ -72,5 +87,27 @@
         <%@include file="ad.jsp"%>
         <%@include file="footer.jsp"%>
         <%@include file="material.jsp"%>
+        <script>
+            $(document).ready(function () {
+                var select = document.getElementById("filter-rating-select");
+                for (var i = 0; i < select.childNodes.length; i++) {
+                    if(select.childNodes[i].textContent.match('<c:out value="${param.MPAARating}"/>')){
+                        select.childNodes[i].selected=true;
+                        break;
+                    }
+                    else
+                        select.childNodes[1].selected=true;
+                }
+                var release = document.getElementById("filter-release");
+                for (var i = 0; i < select.childNodes.length; i++) {
+                    if(release.childNodes[i].textContent.match('<c:out value="${param.Release}"/>')){
+                        release.childNodes[i].childNodes[1].childNodes[1].checked=true;
+                        break;
+                    }
+                    else
+                        release.childNodes[3].childNodes[1].childNodes[1].checked=true;
+                }
+            });
+        </script>
     </body>
 </html>
