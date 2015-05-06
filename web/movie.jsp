@@ -52,14 +52,19 @@
             <div class="jumbotron">
                 <div>
                     <h3>Comments</h3>
-                    <c:forEach var="comment" items="${sessionScope.Comments}">
-                        <c:set var="name" value="${comment.userName}"/>
-                        <div class="media">
-                            <img class="media-object pull-left" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png" height="64">
-                            <div class="media-body">
-                                <h3 class="media-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h3>
-                                <p><c:out value="${comment.message}"/></p>
+                    <div class="list-group">
+                        <c:forEach var="comment" items="${sessionScope.Comments}">
+                            <c:set var="name" value="${comment.userName}"/>
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h4>
+                                    <p class="list-group-item-text"><h5><c:out value="${comment.message}"/></h5></p>
+                                </div>
                             </div>
+                            <div class="list-group-separator"></div>
                             <c:if test="${isAdmin != null}">
                                 <form action="RemoveComment" method="POST" role="form">
                                     <div class="form-group">
@@ -72,15 +77,16 @@
                                     </div>
                                 </form>
                             </c:if>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                     <c:if test="${sessionScope.LogIn != null}">
                         <form action="Comment" method="POST" role="form">
-                            <div class="form-group">
-                                <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
-                                <textarea class="form-control floating-label" maxlength="140" name="Message" rows="1" placeholder="Write a new comment..."></textarea>
+                            <div class="form-control-wrapper" horizontal layout>
+                                <textarea class="form-control empty" maxlength="140" name="Message" rows="1"></textarea>
+                                <div class="floating-label">Write a new comment...</div>
+                                <span class="material-input"></span>
                                 <div horizontal center layout>
-                                    <div flex></div>
+                                    <div flex=""></div>
                                     <button class="btn btn-flat btn-primary mdi-content-send" type="submit"></button>
                                 </div>
                             </div>
