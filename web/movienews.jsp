@@ -5,14 +5,14 @@
     <%@include file="header.jsp"%>
     <body>
         <%@include file="navbar.jsp"%>
-        <div class="container-fluid">
+        <div class="container-fluid" horizontal center>
             <div class="main">
                 <h1>Movie News</h1>
-                <div id="movienews" vertical layout wrap center>
+                <div id="news" vertical layout wrap center>
                     <c:forEach var="newsArticle" items="${sessionScope.MovieNews}">
-                        <div class="movie-detail-container" layout horizontal center>
-                            <div class="movie-detail-card">
-                                <img src="<c:out value='${newsArticle.image}'/>">
+                        <div class="jumbotron movie-detail-container" layout horizontal center>
+                            <div style="margin-right: 18px;">
+                                <img src="<c:out value='${newsArticle.image}'/>" style="height: 96px; width: 96px; border-radius: 50%;">
                             </div>
                             <div>
                                 <h3>
@@ -20,7 +20,7 @@
                                         <c:out value="${newsArticle.title}"/>
                                     </a>
                                 </h3>
-                                <p><c:out value="${newsArticle.description}"/></p>
+                                <p><h4><c:out value="${newsArticle.description}"/></h4></p>
                             </div>
                         </div>
                     </c:forEach>
