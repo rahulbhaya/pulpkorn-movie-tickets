@@ -7,7 +7,7 @@
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <form role="form" method="post" action="RefundPurchase">
-                <div id="refund-field" class="jumbotron account-card-main" layout center>
+                <div id="refund-field" class="jumbotron refund-card" layout center>
                     <fieldset>
                         <h1 class="payment-info-h1">Enter Purchase Number to Refund Purchase</h1>
                         <c:set var="refundSuccess" value="${sessionScope.RefundSuccess}"/>
@@ -16,7 +16,7 @@
                         </c:if>
                         <span>
                             <div horizontal center layout>
-                                <input id="pinField" class="form-control" name="pin" type="text" placeholder="Enter 7-digit pin" required="" pattern="[0-9]{7}">
+                                <input id="pinField" class="form-control" name="pin" type="text" placeholder="Enter 7-digit pin" required pattern="[0-9]{7}">
                             </div>
                         </span>
                     </fieldset>

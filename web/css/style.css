@@ -270,6 +270,10 @@ a {
     background-color: #d23f31 !important;float:right;
 }
 
+.refund-card {
+    width:512px;margin-left:auto;margin-right:auto;
+}
+
 .movie-detail-container{
     width: 768px;
 }
