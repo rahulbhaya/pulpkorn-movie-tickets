@@ -11,7 +11,6 @@
         <li class="nav-list-item"><a href="GetSpecialOffers">Special Offers</a></li>
         <li class="nav-list-item"><a href="ViewFAQs">FAQs</a></li>
         <li class="nav-list-item"><a href="ViewMovieNews">Movie News</a></li>
-        <li class="nav-list-item"><a href="refund.jsp">Refund Purchase</a></li>
         <li class="dropdown nav-list-item">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <c:set var="name" value="${sessionScope.LogIn}"/>
@@ -26,9 +25,11 @@
                     <c:when test="${name == 'Guest'}">
                         <li><a href="login.jsp">Log In</a></li>
                         <li><a href="register.jsp">Register</a></li>
+                        <li><a href="refund.jsp">Refund Purchase</a></li>
                     </c:when>
                     <c:otherwise>
                         <li><a href="GetAccountInfo">Account</a></li>
+                        <li><a href="refund.jsp">Refund Purchase</a></li>
                         <c:if test="${sessionScope.IsAdmin != null}">
                             <li><a href="admin.jsp">Admin Portal</a></li>
                         </c:if>

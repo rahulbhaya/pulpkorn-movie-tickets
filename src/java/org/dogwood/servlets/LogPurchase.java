@@ -35,7 +35,7 @@ public class LogPurchase extends HttpServlet {
             throws ServletException, IOException {
         String choice = (String) request.getParameter("creditcards");
         System.out.println(choice);
-        if (!choice.equals("Existing Payment Method")) {
+        if (choice!=null) {
             List<String> cards = (List<String>) request.getSession().getAttribute("CreditCardsFull");
             String card = "";
             for (int i = 0; i < cards.size(); i++) {
@@ -55,7 +55,7 @@ public class LogPurchase extends HttpServlet {
             if (name == null) {
                 name = "Guest";
             }
-            Boolean success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-yy"));
+            Boolean success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-yy"), (String)request.getSession().getAttribute("guestEmail"));
             if (success) {
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
             } else {

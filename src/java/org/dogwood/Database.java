@@ -747,9 +747,9 @@ public class Database {
         }
     }
 
-    public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM) {
+    public boolean saveCardInfo(String billingAddress, String cardNumber, String securityCode, String cardName, String acctName, String expDateY, String expDateM, String city, String state, String zip, String phone) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCardInfo VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, acctName);
             statement.setString(2, cardNumber);
             statement.setString(3, securityCode);
@@ -757,6 +757,10 @@ public class Database {
             statement.setString(5, billingAddress);
             statement.setString(6, expDateM);
             statement.setString(7, expDateY);
+            statement.setString(8, city);
+            statement.setString(9, state);
+            statement.setString(10, zip);
+            statement.setString(11, phone);
             statement.executeUpdate();
             connection.close();
             return true;
@@ -810,7 +814,7 @@ public class Database {
         }
     }
 
-    public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM) {
+    public boolean saveRegularPurchase(String name, String movie, String theater, String time, int adults, int seniors, int children, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM, String email) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Purchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, name);
@@ -829,8 +833,13 @@ public class Database {
             int random = (int)(Math.random()*9000000)+1000000;
             statement.setInt(14, random);
             statement.executeUpdate();
+            System.out.println(name);
+            System.out.println(email);
             if(!name.equals("Guest")){
                 Dogwood.sendPurchaseReciept(getEmailByUsername(name), random);
+            }
+            else{
+                Dogwood.sendPurchaseReciept(email, random);
             }
             connection.close();
             return true;
