@@ -7,7 +7,7 @@
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <form role="form" method="post" action="SaveEmailToSession">
-                <div id="refund-field" class="jumbotron account-card-main" layout center>
+                <div id="refund-field" class="jumbotron refund-card" layout center>
                     <fieldset>
                         <h1 class="payment-info-h1">Receipt Email:</h1>
                         <span>
