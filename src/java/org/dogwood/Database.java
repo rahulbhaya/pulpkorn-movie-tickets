@@ -74,7 +74,7 @@ public class Database {
             return false;
         }
     }
-    
+
     public boolean addTrailerUrl(String url, String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -104,6 +104,7 @@ public class Database {
             return false;
         }
     }
+
     public boolean addHelp(JSONObject json) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -165,7 +166,7 @@ public class Database {
             return false;
         }
     }
-    
+
     public boolean addNewsArticle(String title, String description, String link, String image) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -177,8 +178,7 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -272,7 +272,7 @@ public class Database {
             return false;
         }
     }
-    
+
     public List<Movie> getAllMovies() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -329,22 +329,22 @@ public class Database {
             return null;
         }
     }
-    
-    public String getEmailByUsername(String userName){
+
+    public String getEmailByUsername(String userName) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT Email FROM User WHERE Name=?");
             statement.setString(1, userName);
             ResultSet set = statement.executeQuery();
             String email = "";
-            while(set.next()){
-                email=set.getString(1);
+            while (set.next()) {
+                email = set.getString(1);
             }
             return email;
         } catch (SQLException ex) {
             return "";
         }
     }
-    
+
     public String getTrailerUrl(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -399,6 +399,7 @@ public class Database {
             return null;
         }
     }
+
     public List<Help> getHelp() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -417,7 +418,6 @@ public class Database {
             return null;
         }
     }
-
 
     public List<Movie> getInTheatersMovies() {
         try {
@@ -483,7 +483,7 @@ public class Database {
             return null;
         }
     }
-    
+
     public List<NewsArticle> getMovieNews() {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -499,8 +499,7 @@ public class Database {
             }
             connection.close();
             return movieNews;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
@@ -564,13 +563,12 @@ public class Database {
             );
             statement.setString(1, email);
             return statement.executeQuery().next();
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
     }
-    
+
     public boolean hasUser(String name, String email) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -579,8 +577,7 @@ public class Database {
             statement.setString(1, name);
             statement.setString(2, email);
             return statement.executeQuery().next();
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
@@ -605,13 +602,12 @@ public class Database {
             Login login = results.getString(4).equals("NORMAL") ? Login.CORRRECT_NORMAL : Login.CORRECT_ADMIN;
             connection.close();
             return login;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return Login.SQL_ERROR;
         }
     }
-    
+
     public boolean modifyUser(String name, String email, String password, String type) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -623,8 +619,7 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -645,20 +640,20 @@ public class Database {
             return false;
         }
     }
-    
-    public boolean refundPurchase(int pin){
+
+    public boolean refundPurchase(int pin) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * from Purchase WHERE PurchaseId=?");
             statement.setInt(1, pin);
             ResultSet set = statement.executeQuery();
             Boolean exists = false;
-            while(set.next()){
+            while (set.next()) {
                 exists = true;
             }
-            if(!exists){
+            if (!exists) {
                 return false;
             }
-            statement= connection.prepareStatement("DELETE FROM Purchase WHERE PurchaseId=?");
+            statement = connection.prepareStatement("DELETE FROM Purchase WHERE PurchaseId=?");
             statement.setInt(1, pin);
             statement.executeUpdate();
             connection.close();
@@ -679,8 +674,7 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -719,8 +713,7 @@ public class Database {
             statement.setString(2, resetPassword);
             connection.close();
             return true;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -740,8 +733,7 @@ public class Database {
             statement.executeUpdate();
             connection.close();
             return true;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
@@ -801,10 +793,10 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
-            int random = (int)(Math.random()*9000000)+1000000;
+            int random = (int) (Math.random() * 9000000) + 1000000;
             statement.setInt(14, random);
             statement.executeUpdate();
-            Dogwood.sendPurchaseReciept(getEmailByUsername(name), random);
+            Dogwood.sendPurchaseReciept(getEmailByUsername(name), random, movie, theater, time, adults, seniors, children);
             System.out.println(random);
             connection.close();
             return true;
@@ -830,16 +822,15 @@ public class Database {
             statement.setString(11, billingAddress);
             statement.setString(12, expDateM);
             statement.setString(13, expDateY);
-            int random = (int)(Math.random()*9000000)+1000000;
+            int random = (int) (Math.random() * 9000000) + 1000000;
             statement.setInt(14, random);
             statement.executeUpdate();
             System.out.println(name);
             System.out.println(email);
-            if(!name.equals("Guest")){
-                Dogwood.sendPurchaseReciept(getEmailByUsername(name), random);
-            }
-            else{
-                Dogwood.sendPurchaseReciept(email, random);
+            if (!name.equals("Guest")) {
+                Dogwood.sendPurchaseReciept(getEmailByUsername(name), random, movie, theater, time, adults, seniors, children);
+            } else {
+                Dogwood.sendPurchaseReciept(email, random, movie, theater, time, adults, seniors, children);
             }
             connection.close();
             return true;
@@ -848,7 +839,7 @@ public class Database {
             return false;
         }
     }
-    
+
     public boolean subscribe(String email) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -857,11 +848,10 @@ public class Database {
             boolean retValue = statement.executeUpdate() == 1;
             connection.close();
             return retValue;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
         }
-    }    
-    
+    }
+
 }
