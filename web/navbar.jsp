@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <nav class="navbar navbar-default nav-with-logo" style="background-image: url('images/Banner.png');" horizontal layout>
     <div class="navbar-header nav-header-logo">
-        <img id="site-logo" class="shake" src="images/Logo_icon.png">
+        <img id="site-logo" class="shake" src="images/Logo_icon.png" onclick="window.location.href = '/';">
     </div>
     <div horizontal layout>
         <ul class="nav navbar-nav">
-            <h1>Pulpkorn
+            <h1 onclick="window.location.href = '/';">Pulpkorn
                 <font style="vertical-align: super;font-size: small;background-color: #009688;color: #FFF;border-radius: 2px;">&nbsp;United States&nbsp;</font>
             </h1>
             <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
