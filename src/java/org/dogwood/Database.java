@@ -824,8 +824,10 @@ public class Database {
             statement.executeUpdate();
             Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard);
             connection.close();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 
