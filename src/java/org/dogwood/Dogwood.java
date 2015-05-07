@@ -115,16 +115,18 @@ public class Dogwood {
 
     }
     
-    public static boolean sendPurchaseReciept(String email, int pin){
-        String subject = "Pulpkorn tickets purchase receipt";
-        String text = "Your ticket purchase has been logged.  Here is your receipt pin: "+pin+".  Save this pin, as it can be used to refund your purchase.";
-        if (Database.getInstance().hasUser(email)){
-            sendEmail(email, subject, text);
-            return true;
-        }
-        else{
-            return false;
-        }
+    public static boolean sendPurchaseReciept(String email, int pin, String movie, String theater, String time, int adults, int seniors, int children){
+        String subject = "Pulpkorn Tickets Purchase Receipt";
+        String text = "Your order for movie "+movie+" at Pulpkorn has been completed.<br />Your ticket purchase has been logged.<br /><br />"+"Ticket infomation:<br />"+time+" at "+theater+"<br /><br />Adult tickets: "+adults+"<br />Children tickets: "+children+"<br />Senior tickets: "+seniors+"<br /><br />"+  "Your receipt PIN is: " + pin + "<br />Please save this PIN to a safe place, as it can be used to refund your purchase.";
+        Boolean success = sendEmail(email, subject, text);
+        return success;
+    }
+    
+    public static boolean sendGiftCardReceipt(String email, String billing, int cardAmount, int numCard){
+        String subject = "Pulpkorn Giftcard Purchase Receipt";
+        String text = "Your order of "+numCard+"x $"+cardAmount+" giftcard(s) has been completed.<br />It will be shipped to the following address:<br /><br />"+billing;
+        Boolean success = sendEmail(email, subject, text);
+        return success;
     }
 
     public static List<Movie> searchMovies(String title, String mpaaRating, String release) {
@@ -201,7 +203,7 @@ public class Dogwood {
     
     public static boolean subscribe(String email) {
         if (Database.getInstance().subscribe(email)) {
-            sendEmail(email, "Thank you for subscribing to Pulpkorn",
+            sendEmail(email, "Thank You for Subscribing to Pulpkorn Newsletters",
                     "You can look forward to our newsletters which release at the end of each month.");
             return true;
         }

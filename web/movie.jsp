@@ -21,16 +21,6 @@
                         <h4>Synopsis:</h4>
                         <h5><c:out value="${movie.synopsis}"/></h5>
                         <button class="btn btn-default" onclick="getGeoLocation('<c:out value='${movie.title}'/>');" type="button">View Movie Times</button>
-                        <c:if test="${isAdmin != null}">
-                            <form action="DeleteMovie" method="POST" role="form">
-                                <div class="form-group">
-                                    <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
-                                    <button class="btn btn-danger pull-right" type="submit">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true">Delete Movie</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </c:if>
                         <h4>Cast:</h4>
                         <h5>
                             <c:forEach var="cast" items="${sessionScope.Cast}">
@@ -38,9 +28,20 @@
                             </c:forEach>
                         </h5>
                         <div class="rw-ui-container"></div>
+                        <c:if test="${isAdmin != null}">
+                            <form action="DeleteMovie" method="POST" role="form">
+                                <div class="form-group">
+                                    <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
+                                    <button class="btn btn-flat btn-danger pull-right" type="submit">
+                                        Delete Movie
+                                    </button>
+                                </div>
+                            </form>
+                        </c:if>
                     </div>
                 </div>
-                <div><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target="_blank">
+                <div>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/GetMovieById?MovieId='${param.MovieId}' target='_blank'">
                         <img src="/images/fb_icon_325x325.png" height="20" width="20">Share on Facebook</a>
                 </div>                 
             </div>
@@ -52,35 +53,42 @@
             <div class="jumbotron">
                 <div>
                     <h3>Comments</h3>
-                    <c:forEach var="comment" items="${sessionScope.Comments}">
-                        <c:set var="name" value="${comment.userName}"/>
-                        <div class="media">
-                            <img class="media-object pull-left" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png" height="64">
-                            <div class="media-body">
-                                <h3 class="media-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h3>
-                                <p><c:out value="${comment.message}"/></p>
-                            </div>
+                    <div class="list-group">
+                        <c:forEach var="comment" items="${sessionScope.Comments}">
+                            <c:set var="name" value="${comment.userName}"/>
                             <c:if test="${isAdmin != null}">
                                 <form action="RemoveComment" method="POST" role="form">
                                     <div class="form-group">
                                         <input name="Commenter" type="hidden" value="<c:out value='${name}'/>">
                                         <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
                                         <input name="DateCommented" type="hidden" value="<c:out value='${comment.dateCommented}'/>">
-                                        <button class="btn btn-danger pull-right" type="submit">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true">Remove</span>
+                                        <button class="btn btn-flat btn-danger pull-right" type="submit">
+                                            Remove
                                         </button>
                                     </div>
                                 </form>
                             </c:if>
-                        </div>
-                    </c:forEach>
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <img class="circle" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png">
+                                </div>
+                                <div class="row-content">
+                                    <h4 class="list-group-item-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h4>
+                                    <p class="list-group-item-text"><h5><c:out value="${comment.message}"/></h5></p>
+                                </div>
+                            </div>
+                            <div class="list-group-separator"></div>
+
+                        </c:forEach>
+                    </div>
                     <c:if test="${sessionScope.LogIn != null}">
                         <form action="Comment" method="POST" role="form">
-                            <div class="form-group">
-                                <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
-                                <textarea class="form-control floating-label" maxlength="140" name="Message" rows="1" placeholder="Write a new comment..."></textarea>
+                            <div class="form-control-wrapper" horizontal layout>
+                                <textarea class="form-control empty" maxlength="140" name="Message" rows="1"></textarea>
+                                <div class="floating-label">Write a new comment...</div>
+                                <span class="material-input"></span>
                                 <div horizontal center layout>
-                                    <div flex></div>
+                                    <div flex=""></div>
                                     <button class="btn btn-flat btn-primary mdi-content-send" type="submit"></button>
                                 </div>
                             </div>

@@ -126,7 +126,7 @@
                                 </span>
                                 <span>
                                     <label for="zipcode">ZIP code</label>
-                                    <input id="zip-code" class="form-control" name="zipcode" type="text" placeholder="ZIP code, in format 5 or 5+4" maxlength="10" required />
+                                    <input id="zip-code" class="form-control" name="zipcode" type="text" placeholder="5 digits ZIP code" maxlength="5" required />
                                 </span>
                                 <span>
                                     <label for="phonenumber">Phone number</label>

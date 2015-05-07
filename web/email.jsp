@@ -6,17 +6,13 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <form role="form" method="post" action="RefundPurchase">
+            <form role="form" method="post" action="SaveEmailToSession">
                 <div id="refund-field" class="jumbotron refund-card" layout center>
                     <fieldset>
-                        <h1 class="payment-info-h1">Enter Purchase Number to Refund Purchase</h1>
-                        <c:set var="refundSuccess" value="${sessionScope.RefundSuccess}"/>
-                        <c:if test="${refundSuccess != null}">
-                            <p class="alert-dismissable alert-danger"><c:out value="${refundSuccess}"/></p>
-                        </c:if>
+                        <h1 class="payment-info-h1">Receipt Email:</h1>
                         <span>
                             <div horizontal center layout>
-                                <input id="pinField" class="form-control" name="pin" type="text" placeholder="Enter 7-digit pin" required pattern="[0-9]{7}">
+                                <input id="emailField" class="form-control" name="email" placeholder="Enter an email address to be sent a purchase receipt" required type="email">
                             </div>
                         </span>
                     </fieldset>

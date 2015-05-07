@@ -10,52 +10,54 @@
                 <div id="ticket-info" class="form-group payment-info jumbotron">
                     <fieldset>
                         <h1 class="payment-info-h1">Payment method</h1>
-                        <span>
-                            <label for="cardnumber">Card Number</label>
-                            <div horizontal center layout>
-                                <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" pattern="[0-9]{16}">
-                                <c:if test="${sessionScope.LogIn == null}">
-                                    <div class="dropdown">
-                                        <img id="cc-img" src="/images/default-credit-card.png">
-                                    </div>
-                                </c:if>
-                            </div>
-                        </span>
-                        <span>
-                            <label for="expdate">Expiration Date</label>
-                            <div style="display:flex;">
-                                <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" pattern="[1-9]{2}"/>
-                                <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" pattern="[0-9]{2}"/>
-                            </div>
-                        </span>
-                        <span>
-                            <label for="secure">Security Code (CVV)</label>
-                            <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" pattern="[0-9]{3}([0-9])*"/>
-                        </span>
-                        <span>
-                            <label for="namecard">Name on Card</label>
-                            <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" />
-                        </span>
-                        <span>
-                            <label for="billingaddress">Billing Address</label>
-                            <input id="address" class="form-control" name="billingaddress" type="text" placeholder="Street address associated with credit card" />
-                        </span>
-                        <span>
-                            <label for="cityname">City</label>
-                            <input id="city" class="form-control" name="cityname" type="text" placeholder="Enter your city" />
-                        </span>
-                        <span>
-                            <label for="state">State</label>
-                            <input id="state" class="form-control" name="state" type="text" placeholder="State" maxlength="2" style="text-transform: uppercase;" />
-                        </span>
-                        <span>
-                            <label for="zipcode">ZIP code</label>
-                            <input id="zip-code" class="form-control" name="zipcode" type="text" placeholder="ZIP code, in format 5 or 5+4" maxlength="10" />
-                        </span>
-                        <span>
-                            <label for="phonenumber">Phone number</label>
-                            <input id="phone-number" class="form-control" name="phonenumber" type="text" placeholder="Your phone number in form 123-456-7890" maxlength="12" />
-                        </span>
+                        <div id="new-card-info">
+                            <span>
+                                <label for="cardnumber">Card Number</label>
+                                <div horizontal center layout>
+                                    <input id="cardnumber" class="form-control" name="cardnumber" type="text" placeholder="16 digits credit card number" pattern="[0-9]{16}">
+                                    <c:if test="${sessionScope.LogIn == null}">
+                                        <div class="dropdown">
+                                            <img id="cc-img" src="/images/default-credit-card.png">
+                                        </div>
+                                    </c:if>
+                                </div>
+                            </span>
+                            <span>
+                                <label for="expdate">Expiration Date</label>
+                                <div style="display:flex;">
+                                    <input id="expdate-mm" class="form-control" name="expdate-mm" type="text" placeholder="2 digits Month (MM)" pattern="[1-9]{2}"/>
+                                    <input id="expdate-yy" class="form-control" name="expdate-yy" type="text" placeholder="2 digits Year (YY)" pattern="[0-9]{2}"/>
+                                </div>
+                            </span>
+                            <span>
+                                <label for="secure">Security Code (CVV)</label>
+                                <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" pattern="[0-9]{3}([0-9])*"/>
+                            </span>
+                            <span>
+                                <label for="namecard">Name on Card</label>
+                                <input id="namecard" class="form-control" name="namecard" type="text" placeholder="Exact name as on the card" />
+                            </span>
+                            <span>
+                                <label for="billingaddress">Billing Address</label>
+                                <input id="address" class="form-control" name="billingaddress" type="text" placeholder="Street address associated with credit card" />
+                            </span>
+                            <span>
+                                <label for="cityname">City</label>
+                                <input id="city" class="form-control" name="cityname" type="text" placeholder="Enter your city" />
+                            </span>
+                            <span>
+                                <label for="state">State</label>
+                                <input id="state" class="form-control" name="state" type="text" placeholder="State" maxlength="2" style="text-transform: uppercase;" />
+                            </span>
+                            <span>
+                                <label for="zipcode">ZIP code</label>
+                                <input id="zip-code" class="form-control" name="zipcode" type="text" placeholder="5 digits ZIP code" maxlength="5" />
+                            </span>
+                            <span>
+                                <label for="phonenumber">Phone number</label>
+                                <input id="phone-number" class="form-control" name="phonenumber" type="text" placeholder="Your phone number in form 123-456-7890" maxlength="12" />
+                            </span>
+                        </div>
                         <c:if test="${sessionScope.LogIn != null}">
                             <div class="dropdown" horizontal center layout>
                                 <img id="cc-img" src="/images/default-credit-card.png">
@@ -83,6 +85,10 @@
             <c:if test="${sessionScope.LogIn != null}">
             function changeCcImg() {
                 var ccList = document.getElementById("cc-info");
+                if (ccList.selectedIndex != 0)
+                    $("#new-card-info").hide();
+                else
+                    $("#new-card-info").show();
                 for (var i = 0; i < ccList.childNodes.length; i++) {
                     if (ccList.childNodes[i].selected) {
                         var ccType = ccList.childNodes[i].textContent;

@@ -61,6 +61,10 @@ CREATE TABLE CreditCardInfo(
     BillingAddress VARCHAR(25),
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2), 
+    City VARCHAR(25),
+    State VARCHAR(2),
+    Zip VARCHAR(5),
+    Phone VARCHAR(12),
     PRIMARY KEY (CardNumber),
     FOREIGN KEY (Name) REFERENCES User(Name)
 );
@@ -80,6 +84,20 @@ CREATE TABLE Purchase(
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2),
     PurchaseId INT NOT NULL,
+    PRIMARY KEY(PurchaseId)
+);
+
+CREATE TABLE CardPurchase(
+    UserName VARCHAR(25),
+    CardNumber VARCHAR(16),
+    SecurityCode VARCHAR(4),
+    CardName VARCHAR(25),
+    BillingAddress VARCHAR(25),
+    ExpDateM VARCHAR(2),
+    ExpDateY VARCHAR(2),
+    PurchaseId INT NOT NULL,
+    Dollar INT NOT NULL,
+    Amount INT NOT NULL,
     PRIMARY KEY(PurchaseId)
 );
 

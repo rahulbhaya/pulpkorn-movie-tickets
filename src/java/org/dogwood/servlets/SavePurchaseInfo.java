@@ -40,7 +40,7 @@ public class SavePurchaseInfo extends HttpServlet {
             request.getRequestDispatcher("purchaseLogin.jsp").forward(request, response);
         }
         if (request.getParameter("status").equals("option3")) {
-            request.getRequestDispatcher("payment.jsp").forward(request, response);
+            request.getRequestDispatcher("email.jsp").forward(request, response);
         }
     }
 

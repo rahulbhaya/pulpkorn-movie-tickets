@@ -23,7 +23,15 @@ public class BuyGiftCards extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().setAttribute("UpcomingMovies", Database.getInstance().getUpcomingMovies());
-        request.getRequestDispatcher("giftcards.jsp").forward(request, response);
+        request.getSession().setAttribute("cardamount", request.getParameter("cardamount"));
+        request.getSession().setAttribute("numcard", request.getParameter("numcard"));
+        request.getSession().setAttribute("giftcard", "yes");
+        if(request.getSession().getAttribute("LogIn")==null){
+            request.getRequestDispatcher("email.jsp").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("payment.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
