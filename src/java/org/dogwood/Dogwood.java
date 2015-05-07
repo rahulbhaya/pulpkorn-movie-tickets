@@ -124,7 +124,7 @@ public class Dogwood {
     
     public static boolean sendGiftCardReceipt(String email, String billing, int cardAmount, int numCard){
         String subject = "Pulpkorn Giftcard Purchase Receipt";
-        String text = "Your order of "+numCard+"x$"+cardAmount+" giftcard(s) has been completed and will be shipped to the address: "+billing;
+        String text = "Your order of "+numCard+"x $"+cardAmount+" giftcard(s) has been completed.<br />It will be to the following address:<br /><br />"+billing;
         Boolean success = sendEmail(email, subject, text);
         return success;
     }
