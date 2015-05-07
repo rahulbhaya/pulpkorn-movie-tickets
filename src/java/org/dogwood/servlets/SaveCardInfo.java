@@ -36,7 +36,7 @@ public class SaveCardInfo extends HttpServlet {
         } else {
             session.setAttribute("SaveCardFailure", "Error:Card Information Not Saved.");
         }
-        request.getRequestDispatcher("account.jsp").forward(request, response);
+        request.getRequestDispatcher("GetAccountInfo").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
