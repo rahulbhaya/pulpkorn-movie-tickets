@@ -791,6 +791,43 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean saveGiftPrePurchase(String number, String name, int cardAmount, int numCard){
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM CreditCardInfo WHERE CardNumber=?");
+            statement.setString(1, number);
+            ResultSet rs = statement.executeQuery();
+            String cardName = "";
+            String securityCode = "";
+            String billingAddress = "";
+            String expDateM = "";
+            String expDateY = "";
+            while (rs.next()) {
+                cardName = rs.getString(4);
+                securityCode = rs.getString(3);
+                billingAddress = rs.getString(5);
+                expDateM = rs.getString(6);
+                expDateY = rs.getString(7);
+            }
+            statement = connection.prepareStatement("INSERT INTO CardPurchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1,name);
+            statement.setString(2,number);
+            statement.setString(3,securityCode);
+            statement.setString(4,cardName);
+            statement.setString(5,billingAddress);
+            statement.setString(6,expDateM);
+            statement.setString(7,expDateY);
+            int random = (int) (Math.random() * 9000000) + 1000000;
+            statement.setInt(8, random);
+            statement.setInt(9,cardAmount);
+            statement.setInt(10,numCard);
+            statement.executeUpdate();
+            Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard);
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public boolean savePrePurchase(String number, String name, String movie, String theater, String time, int adults, int seniors, int children) {
         try {
