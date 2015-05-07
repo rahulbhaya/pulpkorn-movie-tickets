@@ -55,7 +55,13 @@ public class LogPurchase extends HttpServlet {
             if (name == null) {
                 name = "Guest";
             }
-            Boolean success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-yy"), (String)request.getSession().getAttribute("guestEmail"));
+            Boolean success;
+            if(request.getSession().getAttribute("giftcard")!=null){
+                success = Database.getInstance().saveGiftPurchase(name, request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-yy"), request.getParameter("expdate-mm"), (String)request.getSession().getAttribute("guestEmail"), Integer.parseInt((String)request.getSession().getAttribute("cardamount")), Integer.parseInt((String)request.getSession().getAttribute("numcard")));
+                request.getSession().removeAttribute("giftcard");
+            }else{
+                success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-mm"), request.getParameter("expdate-yy"), (String)request.getSession().getAttribute("guestEmail"));
+            }
             if (success) {
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
             } else {

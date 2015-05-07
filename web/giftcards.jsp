@@ -17,13 +17,13 @@
                                     Pulpkorn Gift Card
                                 </div>
                             </div>
-                            <form>
+                            <form action="BuyGiftCards" method="POST" role="form">
                                 <button class="btn btn-danger btn-fab btn-raised mdi-action-done gift-card-submit-btn" type="submit"></button>
                                 <div class="gift-card-amount">
                                     <div class="form-group">
                                         <div class="input-group" style="width: 180px;">
                                             <span class="input-group-addon" style="font-size: 10rem;color: #FFF;">$</span>
-                                            <select class="form-control btn btn-default dropdown-toggle" id="cardamt" style="width: 180px;font-size: 10rem;height: 140px;color: #FFF;text-align: right;">
+                                            <select class="form-control btn btn-default dropdown-toggle" name="cardamount" id="cardamt" style="width: 180px;font-size: 10rem;height: 140px;color: #FFF;text-align: right;">
                                                 <option class="gift-card-amount-item">20</option>
                                                 <option class="gift-card-amount-item">25</option>
                                                 <option class="gift-card-amount-item">30</option>
@@ -40,7 +40,7 @@
                                     <div class="form-group" style="float: right;">
                                         <div class="input-group" style="width: 65px;">
                                             <span class="input-group-addon" style="font-size: 5rem;color: #FFF;">×</span>
-                                            <input type="text" class="form-control" id="cardqty" value="1" maxlength="1" size="1" required pattern="[1-9]" style="width: 65px;font-size: 5rem;height: 72px;color: #FFF;text-align: right;">
+                                            <input type="text" name="numcard" class="form-control" id="cardqty" value="1" maxlength="1" size="1" required pattern="[1-9]" style="width: 65px;font-size: 5rem;height: 72px;color: #FFF;text-align: right;">
                                         </div>
                                     </div>
                                 </div>

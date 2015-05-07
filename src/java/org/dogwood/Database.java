@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.dogwood.beans.CastMember;
 import org.dogwood.beans.NewsArticle;
@@ -754,6 +756,34 @@ public class Database {
             statement.setString(10, zip);
             statement.setString(11, phone);
             statement.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean saveGiftPurchase(String name, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM, String email, int cardAmount, int numCard){
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO CardPurchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1,name);
+            statement.setString(2,cardNumber);
+            statement.setString(3,securityCode);
+            statement.setString(4,cardName);
+            statement.setString(5,billingAddress);
+            statement.setString(6,expDateM);
+            statement.setString(7,expDateY);
+            int random = (int) (Math.random() * 9000000) + 1000000;
+            statement.setInt(8, random);
+            statement.setInt(9,cardAmount);
+            statement.setInt(10,numCard);
+            statement.executeUpdate();
+            if (!name.equals("Guest")) {
+                Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard);
+            } else {
+                Dogwood.sendGiftCardReceipt(email, billingAddress, cardAmount, numCard);
+            }
             connection.close();
             return true;
         } catch (SQLException ex) {

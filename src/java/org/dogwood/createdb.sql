@@ -87,6 +87,20 @@ CREATE TABLE Purchase(
     PRIMARY KEY(PurchaseId)
 );
 
+CREATE TABLE CardPurchase(
+    UserName VARCHAR(25),
+    CardNumber VARCHAR(16),
+    SecurityCode VARCHAR(4),
+    CardName VARCHAR(25),
+    BillingAddress VARCHAR(25),
+    ExpDateM VARCHAR(2),
+    ExpDateY VARCHAR(2),
+    PurchaseId INT NOT NULL,
+    Dollar INT NOT NULL,
+    Amount INT NOT NULL,
+    PRIMARY KEY(PurchaseId)
+);
+
 CREATE TABLE FAQ(
     Question VARCHAR(255),
     Answer TEXT NOT NULL,
