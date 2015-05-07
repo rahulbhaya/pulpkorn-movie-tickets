@@ -26,7 +26,12 @@ public class BuyGiftCards extends HttpServlet {
         request.getSession().setAttribute("cardamount", request.getParameter("cardamount"));
         request.getSession().setAttribute("numcard", request.getParameter("numcard"));
         request.getSession().setAttribute("giftcard", "yes");
-        request.getRequestDispatcher("email.jsp").forward(request, response);
+        if(request.getSession().getAttribute("LogIn")==null){
+            request.getRequestDispatcher("email.jsp").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("payment.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
