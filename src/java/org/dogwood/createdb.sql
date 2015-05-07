@@ -63,7 +63,7 @@ CREATE TABLE CreditCardInfo(
     ExpDateY VARCHAR(2), 
     City VARCHAR(25),
     State VARCHAR(2),
-    Zip VARCHAR(10),
+    Zip VARCHAR(5),
     Phone VARCHAR(12),
     PRIMARY KEY (CardNumber),
     FOREIGN KEY (Name) REFERENCES User(Name)
