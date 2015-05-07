@@ -254,6 +254,32 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean deleteUser(String name) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM Comment WHERE Commenter = ?");
+            statement.setString(1, name);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "DELETE FROM CreditCardInfo WHERE Name = ?");
+            statement.setString(1, name);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "DELETE FROM Purchase WHERE UserName = ?");
+            statement.setString(1, name);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "DELETE FROM User WHERE Name = ?");
+            statement.setString(1, name);
+            boolean retValue = statement.executeUpdate() == 1;
+            connection.close();
+            return retValue;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }    
 
     public boolean editMovie(String id, String title, String releaseDate, String mpaaRating, String synopsis) {
         try {
