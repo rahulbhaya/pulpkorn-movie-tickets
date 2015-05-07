@@ -48,6 +48,7 @@ public class GetAccountInfo extends HttpServlet {
             creditCardList.add(ccString);
         }
         request.getSession().setAttribute("CreditCards", creditCardList);
+        request.getSession().setAttribute("fullCards", Database.getInstance().getCardNumberByName((String) request.getSession().getAttribute("LogIn")));
         request.getRequestDispatcher("account.jsp").forward(request, response);
     }
 

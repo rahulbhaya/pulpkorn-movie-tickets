@@ -67,11 +67,15 @@
                 </div>   
                 <div class="jumbotron account-card-main">
                     <h1 class="account-card-h1">Saved Credit Cards</h1>
+                    <form action="RemoveCard" method="POST" role="form">
                     <div id="cc-info">
                         <c:forEach var="card" items="${sessionScope.CreditCards}">
-                            <li role="presentation" style="list-style-type: none;"><img src=""><a role="menuitem" tabindex="-1" href="#">${card}</a><a href="javascript:void(0)" class="btn btn-flat btn-danger">Remove</a></li>
+                            <li role="presentation" style="list-style-type: none;"><img src=""><a role="menuitem" tabindex="-1" href="#" value="${card}">${card}</a><button type="submit" class="btn btn-flat btn-danger">Remove</button>
+                                <input type="hidden" name="cardNum" value="${card}"/>
+                            </li>
                                 </c:forEach>
                     </div>
+                    </form>
                 </div>
 
                 <div class="jumbotron account-card-main">

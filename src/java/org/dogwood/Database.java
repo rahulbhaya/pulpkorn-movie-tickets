@@ -707,6 +707,18 @@ public class Database {
             return false;
         }
     }
+    
+    public boolean removeCard(String card){
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM CreditCardInfo WHERE CardNumber=?");
+            statement.setString(1,card);
+            statement.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
 
     public boolean removeComment(String userName, String movieId, String dateCommented) {
         try {
