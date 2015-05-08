@@ -31,27 +31,27 @@
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Michael Francis</h4>
-                                            <p class="list-group-item-text">Databases are great.</p>
+                                            <p class="list-group-item-text">Web Designer at Stony Brook University Employee Assistance Program</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/jackson.jpg" alt="icon">
+                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
-                                            <h4 class="list-group-item-heading">Jackson Tan</h4>
-                                            <p class="list-group-item-text">Front-end is cool.</p>
+                                            <h4 class="list-group-item-heading">Zhen Tan</h4>
+                                            <p class="list-group-item-text"> Student at State University of New York at Stony Brook</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/brian.jpg" alt="icon">
+                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Brian Bratt</h4>
-                                            <p class="list-group-item-text">Server side is amazing.</p>
+                                            <p class="list-group-item-text">Student at State University of New York at Stony Brook</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Rahul Bhaya</h4>
-                                            <p class="list-group-item-text">APIs are fun.</p>
+                                            <p class="list-group-item-text">Student at State University of New York at Stony Brook</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>

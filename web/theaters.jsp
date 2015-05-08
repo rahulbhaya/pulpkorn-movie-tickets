@@ -59,6 +59,9 @@
                         $(element).remove();
                     }
                 });
+                if ($("#theaters").children().length === 0) {
+                    $("#theaters").append($("<h3>").text("No results."));
+                }
             });
         </script>
     </body>

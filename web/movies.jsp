@@ -96,6 +96,9 @@
                     } else
                         release.childNodes[3].childNodes[1].childNodes[1].checked = true;
                 }
+                if ($("#movies").children().length === 0) {
+                    $("#movies").append($("<h3>").text("No results."));
+                }
             });
         </script>
     </body>
