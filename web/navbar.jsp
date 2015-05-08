@@ -11,7 +11,7 @@
             <li class="nav-list-item"><a href="GetInTheatersMovies">Home</a><li>
             <li class="nav-list-item"><a href="GetUpcomingMovies">Upcoming Movies</a></li>
             <li class="nav-list-item"><a href="giftcards.jsp">Gift Cards</a></li>
-            <li class="nav-list-item"><a href="GetSpecialOffers">Special Offers</a></li>
+            <li class="nav-list-item"><a href="specialoffers.jsp">Special Offers</a></li>
             <li class="nav-list-item"><a href="ViewFAQs">FAQs</a></li>
             <li class="nav-list-item"><a href="ViewMovieNews">Movie News</a></li>
             <li class="dropdown nav-list-item">
