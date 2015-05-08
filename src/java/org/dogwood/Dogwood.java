@@ -122,9 +122,9 @@ public class Dogwood {
         return success;
     }
     
-    public static boolean sendGiftCardReceipt(String email, String billing, int cardAmount, int numCard){
+    public static boolean sendGiftCardReceipt(String email, String billing, int cardAmount, int numCard, String city, String state, String zip){
         String subject = "Pulpkorn Giftcard Purchase Receipt";
-        String text = "Your order of "+numCard+"x $"+cardAmount+" giftcard(s) has been completed.<br />It will be shipped to the following address:<br /><br />"+billing;
+        String text = "Your order of "+numCard+"x $"+cardAmount+" giftcard(s) has been completed.<br />It will be shipped to the following address:<br /><br />"+billing+" "+city+" "+state+", "+zip;
         Boolean success = sendEmail(email, subject, text);
         return success;
     }

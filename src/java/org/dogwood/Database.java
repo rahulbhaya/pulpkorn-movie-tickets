@@ -803,7 +803,7 @@ public class Database {
         }
     }
     
-    public boolean saveGiftPurchase(String name, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM, String email, int cardAmount, int numCard){
+    public boolean saveGiftPurchase(String name, String billingAddress, String cardNumber, String securityCode, String cardName, String expDateY, String expDateM, String email, int cardAmount, int numCard, String city, String state, String zip){
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO CardPurchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1,name);
@@ -819,9 +819,9 @@ public class Database {
             statement.setInt(10,numCard);
             statement.executeUpdate();
             if (!name.equals("Guest")) {
-                Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard);
+                Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard, city, state, zip);
             } else {
-                Dogwood.sendGiftCardReceipt(email, billingAddress, cardAmount, numCard);
+                Dogwood.sendGiftCardReceipt(email, billingAddress, cardAmount, numCard, city, state, zip);
             }
             connection.close();
             return true;
@@ -841,12 +841,18 @@ public class Database {
             String billingAddress = "";
             String expDateM = "";
             String expDateY = "";
+            String state = "";
+            String city="";
+            String zip = "";
             while (rs.next()) {
                 cardName = rs.getString(4);
                 securityCode = rs.getString(3);
                 billingAddress = rs.getString(5);
                 expDateM = rs.getString(6);
                 expDateY = rs.getString(7);
+                state = rs.getString(9);
+                city = rs.getString(8);
+                zip = rs.getString(10);
             }
             statement = connection.prepareStatement("INSERT INTO CardPurchase VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1,name);
@@ -861,7 +867,7 @@ public class Database {
             statement.setInt(9,cardAmount);
             statement.setInt(10,numCard);
             statement.executeUpdate();
-            Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard);
+            Dogwood.sendGiftCardReceipt(getEmailByUsername(name), billingAddress, cardAmount, numCard, city, state, zip);
             connection.close();
             return true;
         } catch (SQLException ex) {
