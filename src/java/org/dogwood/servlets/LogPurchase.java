@@ -53,6 +53,7 @@ public class LogPurchase extends HttpServlet {
                 success = Database.getInstance().savePrePurchase(card, (String) request.getSession().getAttribute("LogIn"), (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")));
             }
             if (success) {
+                request.getSession().setAttribute("PurchaseSuccess", "Purchase successful. Check your email for the receipt.");
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
             } else {
                 request.getRequestDispatcher("payment.jsp").forward(request, response);
@@ -70,6 +71,7 @@ public class LogPurchase extends HttpServlet {
                 success = Database.getInstance().saveRegularPurchase(name, (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")), request.getParameter("billingaddress"), request.getParameter("cardnumber"), request.getParameter("secure"), request.getParameter("namecard"), request.getParameter("expdate-mm"), request.getParameter("expdate-yy"), (String)request.getSession().getAttribute("guestEmail"));
             }
             if (success) {
+                request.getSession().setAttribute("PurchaseSuccess", "Purchase successful. Check your email for the receipt.");
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
             } else {
                 request.getRequestDispatcher("payment.jsp").forward(request, response);

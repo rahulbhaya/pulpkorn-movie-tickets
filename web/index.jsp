@@ -7,6 +7,11 @@
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="main">
+                <c:set var="purchaseSuccess" value="${sessionScope.PurchaseSuccess}"/>
+                <c:if test="${purchaseSuccess != null}">
+                    <p class="alert-dismissable alert-success"><c:out value="${purchaseSuccess}"/></p>
+                </c:if>
+                <c:remove var="PurchaseSuccess" scope="session"/>
                 <h1>Now Playing</h1>
                 <div id="movies" horizontal layout wrap center-justified>
                     <c:forEach var="movie" items="${sessionScope.InTheatersMovies}">
