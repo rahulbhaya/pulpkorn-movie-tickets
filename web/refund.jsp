@@ -10,10 +10,16 @@
                 <div id="refund-field" class="jumbotron refund-card" layout center>
                     <fieldset>
                         <h1 class="payment-info-h1">Enter Purchase Number to Refund Purchase</h1>
-                        <c:set var="refundSuccess" value="${sessionScope.RefundSuccess}"/>
-                        <c:if test="${refundSuccess != null}">
-                            <p class="alert-dismissable alert-danger"><c:out value="${refundSuccess}"/></p>
+                        <c:set var="refund" value="${sessionScope.RefundSuccess}"/>
+                        <c:if test="${refund != null}">
+                            <p class="alert-dismissable alert-success"><c:out value="${refund}"/></p>
                         </c:if>
+                        <c:set var="refund" value="${sessionScope.RefundFail}"/>
+                        <c:if test="${refund != null}">
+                            <p class="alert-dismissable alert-danger"><c:out value="${refund}"/></p>
+                        </c:if>
+                        <c:remove var="RefundSuccess" scope="session"/>
+                        <c:remove var="RefundFail" scope="session"/>
                         <span>
                             <div horizontal center layout>
                                 <input id="pinField" class="form-control" name="pin" type="text" placeholder="Enter 7-digit pin" required pattern="[0-9]{7}">
