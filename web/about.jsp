@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Michael Francis</h4>
-                                            <p class="list-group-item-text">Status message</p>
+                                            <p class="list-group-item-text">Databases are great.</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
@@ -40,8 +40,8 @@
                                             <img class="circle" src="images/jackson.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
-                                            <h4 class="list-group-item-heading">Zhen Tan</h4>
-                                            <p class="list-group-item-text">Status message</p>
+                                            <h4 class="list-group-item-heading">Jackson Tan</h4>
+                                            <p class="list-group-item-text">Front-end is cool.</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Brian Bratt</h4>
-                                            <p class="list-group-item-text">Status message</p>
+                                            <p class="list-group-item-text">Server side is amazing.</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Rahul Bhaya</h4>
-                                            <p class="list-group-item-text">Status message</p>
+                                            <p class="list-group-item-text">APIs are fun.</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>

@@ -9,7 +9,7 @@
     <body>
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
-            <div class="jumbotron login-card" style="height:250px;">
+            <div class="jumbotron login-card" style="height:290px;">
                 <h1>Reset Your Password</h1>
                 <c:set var="requestResetSuccess" value="${sessionScope.RequestResetSuccess}"/>
                 <c:if test="${requestResetSuccess != null}">
