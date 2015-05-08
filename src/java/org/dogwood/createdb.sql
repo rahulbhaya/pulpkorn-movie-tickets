@@ -58,7 +58,7 @@ CREATE TABLE CreditCardInfo(
     CardNumber VARCHAR(16),
     SecurityCode VARCHAR(4),
     CardName VARCHAR(25),
-    BillingAddress VARCHAR(25),
+    BillingAddress VARCHAR(50),
     ExpDateM VARCHAR(2),
     ExpDateY VARCHAR(2), 
     City VARCHAR(25),
