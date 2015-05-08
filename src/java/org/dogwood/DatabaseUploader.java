@@ -24,7 +24,8 @@ public class DatabaseUploader {
             for (Object helptopic : helptopics) {
                 Database.getInstance().addHelp((JSONObject) helptopic);
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             ex.printStackTrace();
         }
         try {
@@ -43,8 +44,10 @@ public class DatabaseUploader {
             JSONArray movies = (JSONArray) json.get("movies");
             for (Object movie : movies) {
                 Database.getInstance().addMovie((JSONObject) movie);
+                Dogwood.uploadTrailer((String) ((JSONObject) movie).get("id"));
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             ex.printStackTrace();
         }
         try {
@@ -53,8 +56,10 @@ public class DatabaseUploader {
             JSONArray movies = (JSONArray) json.get("movies");
             for (Object movie : movies) {
                 Database.getInstance().addMovie((JSONObject) movie);
+                Dogwood.uploadTrailer((String) ((JSONObject) movie).get("id"));
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             ex.printStackTrace();
         }
         try {

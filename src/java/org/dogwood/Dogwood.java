@@ -81,16 +81,16 @@ public class Dogwood {
     
     
     
-    public static String getTrailer(String movieId) {
+    public static boolean uploadTrailer(String movieId) {
         try {
             String title = Database.getInstance().getMovieById(movieId).getTitle().replace(" ", "+");
             Document doc = Jsoup.connect("http://www.youtube.com/results?search_query="+title+"+trailer").get();
             String video = ("http://www.youtube.com" + doc.select(".item-section").get(0).child(0).child(0).child(0).child(0).child(0).attr("href")).replace("watch?v=", "embed/");
-            Database.getInstance().addTrailerUrl(video, movieId);
-            return Database.getInstance().getTrailerUrl(movieId);
-        } catch (IOException ex) {
+            return Database.getInstance().addTrailerUrl(video, movieId);
+        } 
+        catch (Exception ex) {
             System.out.println(ex);
-            return null;
+            return false;
         }
     }
 

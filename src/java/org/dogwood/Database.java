@@ -376,14 +376,15 @@ public class Database {
     public String getTrailerUrl(String movieId) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM Movie WHERE Id = ?");
+                    "SELECT Trailer FROM Movie WHERE Id = ?");
             statement.setString(1, movieId);
             ResultSet results = statement.executeQuery();
             results.next();
-            String trailer = results.getString(8);
+            String trailer = results.getString(1);
             connection.close();
             return trailer;
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             return null;
         }
     }

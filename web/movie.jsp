@@ -70,7 +70,7 @@
                             </c:if>
                             <div class="list-group-item">
                                 <div class="row-picture">
-                                    <img class="circle" src="https://github.com/identicons/<c:out value='${fn:substring(name, 0, fn:indexOf(name, "@"))}'/>.png">
+                                    <img class="circle" src="https://github.com/identicons/<c:out value='${name}'/>.png">
                                 </div>
                                 <div class="row-content">
                                     <h4 class="list-group-item-heading"><c:out value="${name}"/> on <c:out value="${comment.dateCommented}"/></h4>
@@ -84,6 +84,7 @@
                     <c:if test="${sessionScope.LogIn != null}">
                         <form action="Comment" method="POST" role="form">
                             <div class="form-control-wrapper" horizontal layout>
+                                <input name="MovieId" type="hidden" value="<c:out value='${param.MovieId}'/>">
                                 <textarea class="form-control empty" maxlength="140" name="Message" rows="1"></textarea>
                                 <div class="floating-label">Write a new comment...</div>
                                 <span class="material-input"></span>
