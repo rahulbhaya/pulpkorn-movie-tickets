@@ -37,17 +37,17 @@
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
+                                            <img class="circle" src="images/jackson.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
-                                            <h4 class="list-group-item-heading">Zhen Tan</h4>
-                                            <p class="list-group-item-text"> Student at State University of New York at Stony Brook</p>
+                                            <h4 class="list-group-item-heading">Jackson Tan</h4>
+                                            <p class="list-group-item-text">Student at State University of New York at Stony Brook</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
+                                            <img class="circle" src="images/brian.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Brian Bratt</h4>
