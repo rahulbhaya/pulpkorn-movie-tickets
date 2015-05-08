@@ -42,10 +42,12 @@
                     <h1 class="account-card-h1">Change Login Email</h2>
                         <c:set var="changeEmail" value="${sessionScope.ChangeEmailSuccess}"/>
                         <c:if test="${changeEmail != null}">
+                            <a id="goto"></a>
                             <p class="alert-dismissable alert-success"><c:out value="${changeEmail}"/></p>
                         </c:if>
                         <c:set var="changeEmail" value="${sessionScope.ChangeEmailFail}"/>
                         <c:if test="${changeEmail != null}">
+                            <a id="goto"></a>
                             <p class="alert-dismissable alert-danger"><c:out value="${changeEmail}"/></p>
                         </c:if>
                         <c:remove var="ChangeEmailSuccess" scope="session"/>
@@ -82,10 +84,12 @@
                     <h1 class="account-card-h1">Add a New Credit Card</h2>
                         <c:set var="saveCard" value="${sessionScope.SaveCardSuccess}"/>
                         <c:if test="${saveCard != null}">
+                            <a id="goto"></a>
                             <p class="alert-dismissable alert-success"><c:out value="${saveCard}"/></p>
                         </c:if>
                         <c:set var="saveCard" value="${sessionScope.SaveCardFailure}"/>
                         <c:if test="${saveCard != null}">
+                            <a id="goto"></a>
                             <p class="alert-dismissable alert-danger"><c:out value="${saveCard}"/></p>
                         </c:if>
                         <c:remove var="SaveCardSuccess" scope="session"/>
@@ -110,7 +114,7 @@
                                 </span>
                                 <span>
                                     <label for="secure">Security Code (CVV)</label>
-                                    <input id="secure" class="form-control" name="secure" type="text" placeholder="3-4 digits on the back" required pattern="[0-9]{3}([0-9])*"/>
+                                    <input id="secure" class="form-control" name="secure" type="password" placeholder="3-4 digits on the back" required pattern="[0-9]{3}([0-9])*"/>
                                 </span>
                                 <span>
                                     <label for="namecard">Name on Card</label>
@@ -190,6 +194,7 @@
                         break;
                 }
             }
+            $(document.body).scrollTop($("#goto").position().top);
         </script>
     </body>
 </html>

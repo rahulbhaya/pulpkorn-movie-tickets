@@ -36,12 +36,12 @@ public class GetMovieById extends HttpServlet {
         if (cast == null || cast.isEmpty()) {
             cast = Dogwood.getCast(movieId);
         }
-        String trailer = Database.getInstance().getTrailerUrl(movieId);
+        /*String trailer = Database.getInstance().getTrailerUrl(movieId);
         if (trailer == null || trailer.equals("")) {
             trailer = Dogwood.getTrailer(movieId);
-        }
+        }*/
         session.setAttribute("Cast", cast);
-        session.setAttribute("Trailer", trailer);
+        session.setAttribute("Trailer", Database.getInstance().getTrailerUrl(movieId));
         session.setAttribute("Comments", Database.getInstance().getComments(movieId));
         request.getRequestDispatcher("movie.jsp").forward(request, response);
     }
