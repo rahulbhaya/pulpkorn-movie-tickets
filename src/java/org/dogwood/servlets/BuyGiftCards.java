@@ -1,6 +1,7 @@
 package org.dogwood.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +31,7 @@ public class BuyGiftCards extends HttpServlet {
             request.getRequestDispatcher("email.jsp").forward(request, response);
         }
         else{
+            request.getSession().setAttribute("CreditCardsFull", Database.getInstance().getCardNumberByName(((String)request.getSession().getAttribute("LogIn"))));
             request.getRequestDispatcher("payment.jsp").forward(request, response);
         }
     }

@@ -40,11 +40,18 @@ public class LogPurchase extends HttpServlet {
             String card = "";
             for (int i = 0; i < cards.size(); i++) {
                 card = cards.get(i);
-                if (card.substring(card.length() - 4, card.length() - 1).equals(choice.substring(choice.length() - 4, choice.length() - 1))) {
+                if (card.substring(card.length() - 4).equals(choice.substring(choice.length() - 4))) {
                     break;
                 }
             }
-            Boolean success = Database.getInstance().savePrePurchase(card, (String) request.getSession().getAttribute("LogIn"), (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")));
+            Boolean success;
+            if(request.getSession().getAttribute("giftcard")!=null){
+                success = Database.getInstance().saveGiftPrePurchase(card, (String)request.getSession().getAttribute("LogIn"), Integer.parseInt((String)request.getSession().getAttribute("cardamount")), Integer.parseInt((String)request.getSession().getAttribute("numcard")));
+                request.getSession().removeAttribute("giftcard");
+            }
+            else{
+                success = Database.getInstance().savePrePurchase(card, (String) request.getSession().getAttribute("LogIn"), (String) request.getSession().getAttribute("MovieTitle"), (String) request.getSession().getAttribute("Theater"), (String) request.getSession().getAttribute("MovieTime"), Integer.parseInt((String) request.getSession().getAttribute("adults")), Integer.parseInt((String) request.getSession().getAttribute("seniors")), Integer.parseInt((String) request.getSession().getAttribute("children")));
+            }
             if (success) {
                 request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
             } else {
