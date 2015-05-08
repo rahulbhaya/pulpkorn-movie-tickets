@@ -30,7 +30,7 @@ public class DeleteUser extends HttpServlet {
                 session.setAttribute("DeleteUserSuccess", "Successfully deleted user.");
             } 
             else {
-                session.setAttribute("DeleteUserFail", "Failed to delete user.");
+                session.setAttribute("DeleteUserFail", "User doesn't exist.");
             }
             request.getRequestDispatcher("admin.jsp").forward(request, response);
         } 
