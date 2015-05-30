@@ -7,6 +7,11 @@
         <%@include file="navbar.jsp"%>
         <div class="container-fluid">
             <div class="main">
+                <c:set var="purchaseSuccess" value="${sessionScope.PurchaseSuccess}"/>
+                <c:if test="${purchaseSuccess != null}">
+                    <p class="alert-dismissable alert-success"><c:out value="${purchaseSuccess}"/></p>
+                </c:if>
+                <c:remove var="PurchaseSuccess" scope="session"/>
                 <h1>Now Playing</h1>
                 <div id="movies" horizontal layout wrap center-justified>
                     <c:forEach var="movie" items="${sessionScope.InTheatersMovies}">
@@ -16,7 +21,7 @@
                                     <img src="<c:out value='${movie.image}'/>">
                                 </a>
                                 <div class="movie-card-inner">
-                                    <div class="h2"><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
+                                    <div class="h2"><a href="GetMovieById?MovieId=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
                                     <p>
                                         Release Date: <c:out value="${movie.releaseDate}"/>
                                         <br/>

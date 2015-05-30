@@ -62,7 +62,7 @@
                                     <img src="<c:out value='${movie.image}'/>">
                                 </a>
                                 <div class="movie-card-inner">
-                                    <div class="h2"><a href="GetMovieById?Id=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
+                                    <div class="h2"><a href="GetMovieById?MovieId=<c:out value='${movie.id}'/>"><c:out value="${movie.title}"/></a></div>
                                     <p>
                                         Release Date: <c:out value="${movie.releaseDate}"/>
                                         <br/>
@@ -95,6 +95,9 @@
                         break;
                     } else
                         release.childNodes[3].childNodes[1].childNodes[1].checked = true;
+                }
+                if ($("#movies").children().length === 0) {
+                    $("#movies").append($("<h3>").text("No results."));
                 }
             });
         </script>

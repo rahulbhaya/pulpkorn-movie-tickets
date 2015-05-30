@@ -76,7 +76,7 @@ public class DatabaseUploader {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        Database.getInstance().register("TheAdmin", "Admin@Admin.com", "admin", "ADMIN");
+        Database.getInstance().register("TheAdmin", "Admin@Pulpkorn.com", "admin", "ADMIN");
     }
 
 }

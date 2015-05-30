@@ -14,7 +14,7 @@
                             <div class="movie-card-inner" style="padding:20px;">
                                 <div class="h2">About Pulpkorn</div>
                                 <div>
-                                    <p>Pulpkorn was founded by four Stony Brook undergraduate students Michael Francis, Zhen Tan, Rahul Bhaya and Brian Bratt.</p>
+                                    <p>Pulpkorn was founded by four Stony Brook undergraduate students Michael Francis, Jackson Tan, Rahul Bhaya and Brian Bratt.</p>
                                     <p>We are a team of aspiring students who want to simplify your movie booking experience. Our website is designed with a user friendly interface.</p>
                                 </div>
                             </div>
@@ -37,17 +37,17 @@
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
+                                            <img class="circle" src="images/jackson.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
-                                            <h4 class="list-group-item-heading">Zhen Tan</h4>
-                                            <p class="list-group-item-text"> Student at State University of New York at Stony Brook</p>
+                                            <h4 class="list-group-item-heading">Jackson Tan</h4>
+                                            <p class="list-group-item-text">Front-end Web Developer at Lenovo and Pulpkorn.</p>
                                         </div>
                                     </div>
                                     <div class="list-group-separator"></div>
                                     <div class="list-group-item">
                                         <div class="row-picture">
-                                            <img class="circle" src="images/facebook-default-no-profile-pic.jpg" alt="icon">
+                                            <img class="circle" src="images/brian.jpg" alt="icon">
                                         </div>
                                         <div class="row-content">
                                             <h4 class="list-group-item-heading">Brian Bratt</h4>

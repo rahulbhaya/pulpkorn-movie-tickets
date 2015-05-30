@@ -32,8 +32,13 @@ public class ResetPassword extends HttpServlet {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         } 
         else {
-            Database.getInstance().resetPassword(email, resetPassword, password);
-            session.setAttribute("LogIn", email);
+            if (Database.getInstance().resetPassword(email, resetPassword, password)) {
+                session.setAttribute("ResetPasswordSuccess", "Successfully resetted password.");
+                session.setAttribute("LogIn", email);
+            }
+            else {
+                session.setAttribute("ResetPasswordFail", "Incorrect username or email.");
+            }
             request.getRequestDispatcher("requestreset.jsp").forward(request, response);
         }
     }

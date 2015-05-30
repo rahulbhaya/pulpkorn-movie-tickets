@@ -39,10 +39,11 @@ public class RefundPurchase extends HttpServlet {
         session.removeAttribute("RefundSuccess");
         Boolean success = db.refundPurchase(pin);
         if(success){
-            request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
+            session.setAttribute("RefundSuccess", "Successfully refunded purchase.");
+            request.getRequestDispatcher("refund.jsp").forward(request, response);
         }
         else{
-            session.setAttribute("RefundSuccess", "Refund failed");
+            session.setAttribute("RefundFail", "Refund failed");
             request.getRequestDispatcher("refund.jsp").forward(request, response);
         }
     }

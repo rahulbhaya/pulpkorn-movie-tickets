@@ -32,7 +32,7 @@ public class Register extends HttpServlet {
             request.getRequestDispatcher("GetInTheatersMovies").forward(request, response);
         } 
         else {
-            session.setAttribute("RegisterFail", true);
+            session.setAttribute("RegisterFail", "The username or email is already taken.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
